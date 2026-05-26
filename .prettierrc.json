@@ -1,0 +1,60 @@
+{
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "semi": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@components(/.*)?$",
+    "^@Widgets(/.*)?$",
+    "",
+    "^@api(/.*)?$",
+    "^@asset(/.*)?$",
+    "^@hooks/.+$",
+    "^@hooks$",
+    "^@reducer(/.*)?$",
+    "^@util(/.*)?$",
+    "",
+    "^@/(.*)?$",
+    "^src(/.*)?$",
+    "",
+    "^\\./",
+    "",
+    "^\\.\\.(?:/|$)",
+    "",
+    "<TYPES>^@components(/.*)?$",
+    "<TYPES>^@Widgets(/.*)?$",
+    "<TYPES>^@api(/.*)?$",
+    "<TYPES>^@asset(/.*)?$",
+    "<TYPES>^@hooks/.+$",
+    "<TYPES>^@hooks$",
+    "<TYPES>^@reducer(/.*)?$",
+    "<TYPES>^@util(/.*)?$",
+    "<TYPES>^@/(.*)?$",
+    "<TYPES>^src(/.*)?$",
+    "<TYPES>^\\./",
+    "<TYPES>^\\.\\.(?:/|$)",
+    "<TYPES>"
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.0.0",
+  "importOrderCaseSensitive": false,
+  "overrides": [
+    {
+      "files": ["*.scss", "*.css", "*.json"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
