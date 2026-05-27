@@ -16,29 +16,27 @@ This version has breaking changes — APIs, conventions, and file structure may 
 app → widgets → features → entities → shared
 ```
 
-| 레이어       | 역할                                           | 경로                | alias                    |
-| ------------ | ---------------------------------------------- | ------------------- | ------------------------ |
-| **app**      | 라우트, 레이아웃, metadata. 페이지는 얇게 유지 | `src/app/`          | —                        |
-| **widgets**  | 화면 단위 UI 조합 (header, sidebar 등)         | `src/Widgets/`      | `@Widgets`               |
-| **features** | 사용자 시나리오·액션 (로그인, 필터, 제출 등)   | `src/features/`     | `@/features/...`         |
-| **entities** | 비즈니스 엔티티 (user, project, task 등)       | `src/entities/`     | `@/entities/...`         |
-| **shared**   | 재사용 UI·API·유틸 (도메인 무관)               | 아래 shared 표 참고 | `@components`, `@api`, … |
+| 레이어       | 역할                                                | 경로             | alias          |
+| ------------ | --------------------------------------------------- | ---------------- | -------------- |
+| **app**      | Next.js 라우팅, 전역 설정, providers, layouts       | `src/app/`       | —              |
+| **widgets**  | 독립적인 비즈니스 컴포넌트들의 조합                 | `src/widgets/`   | `@widgets`     |
+| **features** | 사용자의 행동/기능 중심 단위                        | `src/features/`  | `@features`    |
+| **entities** | 비즈니스 도메인/개념 중심 단위                      | `src/entities/`  | `@entities`    |
+| **shared**   | 비즈니스 로직이 없는 순수 공통 재사용 모듈          | `src/shared/`    | `@shared`      |
 
 ### shared 세부 (alias)
 
-| 용도                        | 경로              | alias         |
-| --------------------------- | ----------------- | ------------- |
-| UI kit (Button, Input 등)   | `src/components/` | `@components` |
-| API 클라이언트·fetcher      | `src/api/`        | `@api`        |
-| 공통 hooks                  | `src/hooks/`      | `@hooks`      |
-| 유틸·헬퍼                   | `src/util/`       | `@util`       |
-| 에셋 import·상수            | `src/asset/`      | `@asset`      |
-| 전역/공유 reducer (필요 시) | `src/reducer/`    | `@reducer`    |
-| 그 외 `src/` 하위           | `src/**`          | `@/`          |
+| 용도                      | 경로               | alias         |
+| ------------------------- | ------------------ | ------------- |
+| 공통 UI kit               | `src/shared/ui/`   | `@shared/ui`  |
+| 공통 API 클라이언트       | `src/shared/api/`  | `@shared/api` |
+| 공통 유틸·헬퍼            | `src/shared/lib/`  | `@shared/lib` |
+| 그 외 shared 하위         | `src/shared/**`    | `@shared`     |
+| 그 외 `src/` 하위         | `src/**`           | `@/`          |
 
 ## 슬라이스 구조
 
-각 `features`, `entities`, `widgets` 슬라이스는 아래 세그먼트를 가질 수 있다.
+각 `widgets`, `features`, `entities` 슬라이스는 아래 세그먼트를 가질 수 있다.
 
 ```
 {slice}/
@@ -56,7 +54,7 @@ app → widgets → features → entities → shared
 
 1. **상위 레이어 → 하위 레이어만** (예: `features` → `entities`, `shared` ✅ / `entities` → `features` ❌)
 2. **같은 레이어 슬라이스 간 직접 import 금지** (예: `features/auth` → `features/cart` ❌). 공통 로직은 `shared` 또는 `entities`로 내린다.
-3. **`app`에는 비즈니스 로직 금지** — `widgets` / `features` 조합과 data 연결만.
+3. **`app`에는 비즈니스 로직 금지** — `widgets` / `features` 조합과 route-level 연결만.
 4. import 순서는 Prettier(`@ianvs/prettier-plugin-sort-imports`) 설정을 따른다.
 5. 타입은 `import type`으로 분리한다 (ESLint `consistent-type-imports`).
 
@@ -64,6 +62,7 @@ app → widgets → features → entities → shared
 
 - `src/app/**/page.tsx` — 라우트 엔트리. 가능한 한 `widgets` / `features`만 조합.
 - `src/app/**/layout.tsx` — 공통 레이아웃.
+- `src/pages/**` — Next.js Pages Router 예약 경로이므로 FSD 레이어로 사용하지 않는다.
 - Server Component / Client Component 구분은 Next.js 16 문서 기준.
 - RSC에서 클라이언트 전용 코드는 `'use client'` 경계 아래로.
 
