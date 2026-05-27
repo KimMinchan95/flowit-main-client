@@ -19,17 +19,6 @@
       }
     ],
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@components": ["./src/components"],
-      "@Widgets/*": ["./src/Widgets/*"],
-      "@Widgets": ["./src/Widgets"],
-      "@api/*": ["./src/api/*"],
-      "@asset/*": ["./src/asset/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@hooks": ["./src/hooks"],
-      "@reducer/*": ["./src/reducer/*"],
-      "@reducer": ["./src/reducer"],
-      "@util/*": ["./src/util/*"],
       "@/*": ["./src/*"]
     }
   },
