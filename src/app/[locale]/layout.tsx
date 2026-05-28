@@ -1,7 +1,5 @@
-import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import { clsx } from 'clsx';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
@@ -10,16 +8,6 @@ import { routing } from '@shared/i18n/routing';
 import type { Metadata } from 'next';
 
 import '../globals.css';
-
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
     title: 'Flowit',
@@ -46,8 +34,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <html lang={locale} className={clsx(geistSans.variable, geistMono.variable, 'h-full antialiased')}>
-            <body className="min-h-full flex flex-col">
+        <html lang={locale} className="h-full antialiased">
+            <body className="flex min-h-full flex-col">
                 <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
             </body>
         </html>
