@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "Login": "Login",
+    "Sign up": "Sign up",
+    "Logo alt": "Logo alt"
+  },
+  "common": {
+    "Home": "Home"
+  }
+}

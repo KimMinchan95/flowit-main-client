@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "Login": "로그인",
+    "Sign up": "회원가입",
+    "Logo alt": "Flowit 로고"
+  },
+  "common": {
+    "Home": "홈"
+  }
+}
