@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import { cn } from '@shared/lib';
 
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
@@ -43,7 +43,7 @@ export function Button({
     return (
         <button
             type={type}
-            className={clsx(
+            className={cn(
                 'mt-4 inline-flex items-center justify-center gap-2 font-bold shadow-sm transition-all',
                 'disabled:pointer-events-none disabled:opacity-50',
                 variantClassNameMap[variant],

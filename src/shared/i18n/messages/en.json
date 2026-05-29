@@ -1,15 +1,25 @@
 {
   "auth": {
-    "Login": "Login",
-    "Sign up": "Sign up",
-    "Logo alt": "Logo alt",
-    "Welcome back": "Welcome back",
-    "Welcome back description": "Welcome back description",
-    "Email account": "Email account",
-    "Password": "Password",
-    "No account?": "No account?"
+    "login": "Login",
+    "signUp": "Sign up",
+    "logoAlt": "Logo alt",
+    "welcomeBack": "Welcome back",
+    "welcomeBackDescription": "Welcome back description",
+    "emailAccount": "Email account",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "noAccount": "No account?",
+    "createAccount": "Create account",
+    "signupDescription": "Start by entering some basic information.",
+    "alreadyHaveAccount": "Already have an account?",
+    "name": "Name",
+    "signUpButton": "Sign up",
+    "emailFormatError": "Please enter a valid email address",
+    "passwordRequirements": "8 characters or more, less than 24 characters, combination of English and numbers",
+    "passwordMatchError": "Passwords match",
+    "enterName": "Please enter your name"
   },
   "common": {
-    "Home": "Home"
+    "home": "Home"
   }
 }

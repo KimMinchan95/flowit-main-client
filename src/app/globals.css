@@ -5,7 +5,7 @@
 @import '@fontsource/pretendard/700.css';
 
 :root {
-  --background: rgb(244 247 251 / var(--tw-bg-opacity, 1));
+  --background: rgb(244 247 251);
 }
 
 @theme inline {

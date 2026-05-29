@@ -3,22 +3,22 @@
 ## Phase 1: 프로젝트 초기 설정 및 아키텍처 구성
 
 - [ ] 프로젝트 초기 환경 세팅
-  - [ ] Next.js(App Router) 프로젝트 세팅
-  - [ ] TypeScript / ESLint / Prettier 설정
-  - [ ] 폴더 구조 설계
-  - [ ] 공통 컴포넌트 구조 설계
+  - [x] Next.js(App Router) 프로젝트 세팅
+  - [x] TypeScript / ESLint / Prettier 설정
+  - [x] 폴더 구조 설계
+  - [x] 공통 컴포넌트 구조 설계
   - [ ] 상태 관리(Zustand 등) 세팅
-  - [ ] API 클라이언트(Axios/Fetch Wrapper) 구성
-  - [ ] i18n(다국어) 설정 (선택)
+  - [x] API 클라이언트(Axios/Fetch Wrapper) 구성
+  - [x] i18n(다국어) 설정 (선택)
 
 ---
 
 ## Phase 2: 로그인 / 회원가입
 
-- [ ] 로그인 UI 구현
+- [x] 로그인 UI 구현
 - [ ] 로그인 API 연동
 
-- [ ] 회원가입 UI 구현
+- [x] 회원가입 UI 구현
 - [ ] 회원가입 API 연동
 
 ---

@@ -1,15 +1,25 @@
 {
   "auth": {
-    "Login": "로그인",
-    "Sign up": "회원가입",
-    "Logo alt": "Flowit 로고",
-    "Welcome back": "다시 오신 것을 환영합니다",
-    "Welcome back description": "업무 관리를 다시 시작해보세요.",
-    "Email account": "이메일 계정",
-    "Password": "비밀번호",
-    "No account?": "계정이 없으신가요?"
+    "login": "로그인",
+    "signUp": "회원가입",
+    "logoAlt": "Flowit 로고",
+    "welcomeBack": "다시 오신 것을 환영합니다",
+    "welcomeBackDescription": "업무 관리를 다시 시작해보세요.",
+    "emailAccount": "이메일 계정",
+    "password": "비밀번호",
+    "confirmPassword": "비밀번호 확인",
+    "noAccount": "계정이 없으신가요?",
+    "createAccount": "새로운 계정 만들기",
+    "signupDescription": "간단한 정보 입력으로 시작하세요.",
+    "alreadyHaveAccount": "이미 계정이 있으신가요?",
+    "name": "이름",
+    "signUpButton": "가입하기",
+    "emailFormatError": "올바른 이메일 주소를 입력해주세요",
+    "passwordRequirements": "8자리 이상 24자리 미만의 영문+숫자 조합",
+    "passwordMatchError": "비밀번호 일치",
+    "enterName": "이름을 입력해주세요"
   },
   "common": {
-    "Home": "홈"
+    "home": "홈"
   }
 }
