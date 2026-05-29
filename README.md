@@ -17,9 +17,13 @@
 
 - [x] 로그인 UI 구현
 - [ ] 로그인 API 연동
+  - Access Token -> Zustand 저장 (LocalStorage 저장 X -> persist 미사용)
+  - Refresh Token -> 쿠키
+  - Axios 인터셉터 설정
+  - 새로고침시 accessToken 재발급
 
 - [x] 회원가입 UI 구현
-- [ ] 회원가입 API 연동
+- [x] 회원가입 API 연동
 
 ---
 
