@@ -2,9 +2,9 @@
 
 import { useCallback, useState } from 'react';
 
-import { INITIAL_SIGNUP_FORM_VALUES, isSignupFormField } from './signup-form-state';
+import { INITIAL_SIGNUP_FORM_VALUES, isSignupFormField } from './signup-form.types';
 
-import type { SignupFormField, SignupFormValues } from './signup-form-state';
+import type { SignupFormField, SignupFormValues } from './signup-form.types';
 import type { ChangeEvent } from 'react';
 
 export function useSignupForm() {
