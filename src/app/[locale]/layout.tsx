@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { hasLocale } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { routing } from '@shared/i18n/routing';
 
-import { QueryProvider } from '@/app/providers';
+import { AppProviders } from '@/app/providers';
 
 import type { Metadata } from 'next';
 
@@ -38,9 +38,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     return (
         <html lang={locale} className="h-full antialiased">
             <body className="flex min-h-full flex-col">
-                <QueryProvider>
-                    <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-                </QueryProvider>
+                <AppProviders messages={messages} locale={locale}>
+                    {children}
+                </AppProviders>
             </body>
         </html>
     );

@@ -1,8 +1,11 @@
 import { ApiError } from './api-error';
 import { isApiErrorResponse, isApiSuccessResponse } from './parse-api-error';
 
+import { getAccessToken } from '@shared/lib/auth';
+
 type RequestOptions = Omit<RequestInit, 'body'> & {
     body?: unknown;
+    skipAuth?: boolean;
 };
 
 function getApiBaseUrl() {
@@ -15,17 +18,35 @@ function getApiBaseUrl() {
     return baseUrl.replace(/\/$/, '');
 }
 
+function buildAuthHeaders(skipAuth?: boolean): Record<string, string> {
+    if (skipAuth) {
+        return {};
+    }
+
+    const accessToken = getAccessToken();
+
+    if (!accessToken) {
+        return {};
+    }
+
+    return {
+        Authorization: `Bearer ${accessToken}`,
+    };
+}
+
 export async function apiRequest<TData>(path: string, options: RequestOptions = {}): Promise<TData> {
-    const { body, headers, ...rest } = options;
+    const { body, headers, skipAuth, ...rest } = options;
 
     let response: Response;
 
     try {
         response = await fetch(`${getApiBaseUrl()}${path}`, {
             ...rest,
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
+                ...buildAuthHeaders(skipAuth),
                 ...headers,
             },
             body: body === undefined ? undefined : JSON.stringify(body),
