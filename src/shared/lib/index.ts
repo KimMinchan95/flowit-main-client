@@ -1,5 +1,6 @@
 export {
     AUTH_PUBLIC_PATHS,
+    AUTH_ROUTES,
     getAccessToken,
     getLocaleFromPathname,
     getPathnameWithoutLocale,
