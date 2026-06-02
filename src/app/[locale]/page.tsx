@@ -1,5 +1,5 @@
-import { HomeRedirect } from '@features/auth';
+import { AuthGate } from '@features/auth';
 
 export default function HomePage() {
-    return <HomeRedirect />;
+    return <AuthGate mode="redirect" />;
 }

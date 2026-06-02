@@ -1,9 +1,9 @@
-import { GuestGuard } from '@features/auth';
+import { AuthGate } from '@features/auth';
 
 type AuthLayoutProps = {
     children: React.ReactNode;
 };
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
-    return <GuestGuard>{children}</GuestGuard>;
+    return <AuthGate mode="guest">{children}</AuthGate>;
 }

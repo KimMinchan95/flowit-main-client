@@ -1,9 +1,9 @@
-import { AuthGuard } from '@/app/providers/auth-guard';
+import { AuthGate } from '@features/auth';
 
 type AppLayoutProps = {
     children: React.ReactNode;
 };
 
 export default function AppLayout({ children }: AppLayoutProps) {
-    return <AuthGuard>{children}</AuthGuard>;
+    return <AuthGate mode="protected">{children}</AuthGate>;
 }
