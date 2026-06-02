@@ -1,11 +1,4 @@
-export type Workspace = {
-    id: number;
-    name: string;
-    description: string | null;
-    memberCount: number;
-    role: string;
-    joinedAt: number;
-};
+import type { Workspace } from '@entities/workspace';
 
 export type MeUserResponse = {
     id: number; // 사용자 식별자
