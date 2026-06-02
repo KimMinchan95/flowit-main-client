@@ -1,4 +1,4 @@
-import { WorkspaceCreate } from './workspace-create';
+import { WorkspaceCreate } from './workspaces-create';
 
 export function WorkspacesList() {
     return (
