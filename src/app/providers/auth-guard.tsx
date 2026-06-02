@@ -35,7 +35,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
             const refreshedAccessToken = await queueRefreshAccessToken();
 
             if (!refreshedAccessToken && !isCancelled) {
-                router.replace(AUTH_ROUTES.login);
+                router.replace(AUTH_ROUTES.LOGIN);
                 return;
             }
 
@@ -59,7 +59,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
         }
 
         if (!accessToken) {
-            router.replace(AUTH_ROUTES.login);
+            router.replace(AUTH_ROUTES.LOGIN);
         }
     }, [accessToken, isSessionReady, router]);
 

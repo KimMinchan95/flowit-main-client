@@ -25,7 +25,7 @@ export function LoginForm() {
             { email, password },
             {
                 onSuccess: () => {
-                    router.replace(AUTH_ROUTES.workspaces);
+                    router.replace(AUTH_ROUTES.WORKSPACES);
                 },
             },
         );

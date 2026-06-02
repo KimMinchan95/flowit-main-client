@@ -24,7 +24,7 @@ export function HomeRedirect() {
                 return;
             }
 
-            router.replace(token ? AUTH_ROUTES.workspaces : AUTH_ROUTES.login);
+            router.replace(token ? AUTH_ROUTES.WORKSPACES : AUTH_ROUTES.LOGIN);
         };
 
         void resolveRedirect();

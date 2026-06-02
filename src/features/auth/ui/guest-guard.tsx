@@ -30,7 +30,7 @@ export function GuestGuard({ children }: GuestGuardProps) {
             }
 
             if (token) {
-                router.replace(AUTH_ROUTES.workspaces);
+                router.replace(AUTH_ROUTES.WORKSPACES);
                 return;
             }
 
