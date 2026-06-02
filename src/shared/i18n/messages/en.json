@@ -1,6 +1,7 @@
 {
   "auth": {
     "login": "Login",
+    "logout": "Logout",
     "signUp": "Sign up",
     "logoAlt": "Logo alt",
     "welcomeBack": "Welcome back",

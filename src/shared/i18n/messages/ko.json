@@ -1,6 +1,7 @@
 {
   "auth": {
     "login": "로그인",
+    "logout": "로그아웃",
     "signUp": "회원가입",
     "logoAlt": "Flowit 로고",
     "welcomeBack": "다시 오신 것을 환영합니다",
