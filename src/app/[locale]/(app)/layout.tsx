@@ -1,3 +1,4 @@
+import { WorkspacesHeader } from '@widgets/workspaces-page';
 import { AuthGate } from '@features/auth';
 
 type AppLayoutProps = {
@@ -5,5 +6,10 @@ type AppLayoutProps = {
 };
 
 export default function AppLayout({ children }: AppLayoutProps) {
-    return <AuthGate mode="protected">{children}</AuthGate>;
+    return (
+        <AuthGate mode="protected">
+            <WorkspacesHeader />
+            {children}
+        </AuthGate>
+    );
 }

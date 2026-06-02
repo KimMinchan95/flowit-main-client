@@ -54,7 +54,7 @@ export function LoginForm() {
                 />
             </div>
             {submitErrorMessage && <p className="text-sm text-red-600">{submitErrorMessage}</p>}
-            <Button fullWidth type="submit" disabled={isPending}>
+            <Button fullWidth className="mt-4" type="submit" disabled={isPending}>
                 <span className="font-extrabold">{t('login')}</span>
             </Button>
         </form>

@@ -116,7 +116,7 @@ export function SignupForm() {
                     />
                 </div>
                 {submitErrorMessage && <p className="text-sm text-red-600">{submitErrorMessage}</p>}
-                <Button fullWidth type="submit" disabled={isDisabled}>
+                <Button fullWidth className="mt-4" type="submit" disabled={isDisabled}>
                     <span className="font-extrabold">{isPending ? t('signingUp') : t('signUpButton')}</span>
                 </Button>
             </form>
