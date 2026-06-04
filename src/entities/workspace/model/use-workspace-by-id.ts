@@ -1,7 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
-
 import { useMeWorkspacesQuery } from './use-me-workspaces-query';
 
 import { findWorkspaceById, getWorkspaceDisplayName } from '../lib';
@@ -14,20 +12,12 @@ type UseWorkspaceByIdProps = {
 export function useWorkspaceById({ workspaceId, enabled = true }: UseWorkspaceByIdProps) {
     const query = useMeWorkspacesQuery({ enabled });
 
-    const workspace = useMemo(
-        () => findWorkspaceById(query.data?.items ?? [], workspaceId),
-        [query.data?.items, workspaceId],
-    );
-
-    const displayName = useMemo(
-        () =>
-            getWorkspaceDisplayName({
-                workspace,
-                isPending: query.isPending,
-                workspaceId,
-            }),
-        [workspace, query.isPending, workspaceId],
-    );
+    const workspace = findWorkspaceById(query.data?.items ?? [], workspaceId);
+    const displayName = getWorkspaceDisplayName({
+        workspace,
+        isPending: query.isPending,
+        workspaceId,
+    });
 
     return {
         workspace,
