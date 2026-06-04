@@ -11,8 +11,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
     return (
         <AuthGate mode="protected">
             <MeUserPrefetch />
-            <WorkspacesHeader />
-            {children}
+            <div className="flex h-dvh flex-col overflow-hidden">
+                <WorkspacesHeader />
+                <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+            </div>
         </AuthGate>
     );
 }

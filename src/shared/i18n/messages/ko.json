@@ -42,5 +42,13 @@
     "workspaceNameRequired": "워크스페이스 이름을 입력해주세요",
     "workspaceNamePlaceholder": "예: App 개발팀",
     "descriptionPlaceholder": "어떤 프로젝트를 위한 공간인가요?"
+  },
+  "sidebar": {
+    "dashboard": "대시보드",
+    "board": "보드",
+    "members": "멤버",
+    "settings": "설정",
+    "currentWorkspace": "현재 워크스페이스",
+    "myPage": "마이페이지"
   }
 }

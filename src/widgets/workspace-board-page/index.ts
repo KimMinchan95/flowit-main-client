@@ -1,0 +1,1 @@
+export { WorkspaceBoardPage } from './ui';

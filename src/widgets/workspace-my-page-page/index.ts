@@ -1,0 +1,1 @@
+export { WorkspaceMyPagePage } from './ui';
