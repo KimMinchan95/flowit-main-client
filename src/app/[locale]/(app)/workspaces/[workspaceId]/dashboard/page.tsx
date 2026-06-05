@@ -1,4 +1,4 @@
-import { WorkspaceDashboardPage } from '@widgets/workspace-dashboard-page';
+import { WorkspaceDashboardPage } from '@views/workspace-dashboard-page';
 
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;

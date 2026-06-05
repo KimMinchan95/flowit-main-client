@@ -1,4 +1,4 @@
-import { WorkspaceBoardPage } from '@widgets/workspace-board-page';
+import { WorkspaceBoardPage } from '@views/workspace-board-page';
 
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;

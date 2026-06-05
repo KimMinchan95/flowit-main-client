@@ -1,4 +1,4 @@
-import { SignupPage } from '@widgets/signup-page';
+import { SignupPage } from '@/views/signup-page';
 
 export default function Signup() {
     return <SignupPage />;

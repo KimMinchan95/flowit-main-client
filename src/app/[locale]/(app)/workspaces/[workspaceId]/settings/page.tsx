@@ -1,4 +1,4 @@
-import { WorkspaceSettingsPage } from '@widgets/workspace-settings-page';
+import { WorkspaceSettingsPage } from '@views/workspace-settings-page';
 
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;

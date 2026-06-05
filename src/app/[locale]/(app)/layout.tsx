@@ -1,6 +1,6 @@
 import { MeUserPrefetch } from './me-user-prefetch';
+import { WorkspacesHeader } from '@views/workspaces-page';
 
-import { WorkspacesHeader } from '@widgets/workspaces-page';
 import { AuthGate } from '@features/auth';
 
 type AppLayoutProps = {

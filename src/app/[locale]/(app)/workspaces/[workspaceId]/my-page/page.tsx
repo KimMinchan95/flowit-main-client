@@ -1,4 +1,4 @@
-import { WorkspaceMyPagePage } from '@widgets/workspace-my-page-page';
+import { WorkspaceMyPagePage } from '@views/workspace-my-page-page';
 
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;

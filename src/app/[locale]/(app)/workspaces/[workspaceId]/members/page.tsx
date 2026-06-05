@@ -1,4 +1,4 @@
-import { WorkspaceMembersPage } from '@widgets/workspace-members-page';
+import { WorkspaceMembersPage } from '@views/workspace-members-page';
 
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;
