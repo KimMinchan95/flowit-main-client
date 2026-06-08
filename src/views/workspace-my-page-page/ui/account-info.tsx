@@ -7,13 +7,14 @@ import { useTranslations } from 'next-intl';
 
 import { useMeUserQuery } from '@entities/user';
 
-import { Button } from '@shared/ui';
+import { Button, Card } from '@shared/ui';
 
 import type { ReactNode } from 'react';
 
 const PASSWORD_MASK = '••••••••';
 
 export function AccountInfo() {
+    const tMyPage = useTranslations('myPage');
     const t = useTranslations('auth');
 
     const { data: meUser } = useMeUserQuery();
@@ -28,7 +29,7 @@ export function AccountInfo() {
     };
 
     return (
-        <>
+        <Card title={tMyPage('accountInfo')}>
             <div className="flex flex-col gap-6">
                 <LabeledAccountInfo label={t('name')} value={meUser?.nickname} />
                 <LabeledAccountInfo label={t('emailAccount')} value={meUser?.email} />
@@ -50,7 +51,7 @@ export function AccountInfo() {
                 />
             </div>
             <PasswordEditModal open={open} onClose={handleClose} />
-        </>
+        </Card>
     );
 }
 

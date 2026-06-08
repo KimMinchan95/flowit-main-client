@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import { useMeUserQuery } from '@entities/user';
 
-import { Button } from '@shared/ui';
+import { Button, Card } from '@shared/ui';
 
 export function UserProfile() {
     const t = useTranslations('myPage');
@@ -20,7 +20,7 @@ export function UserProfile() {
     const [open, setOpen] = useState(false);
 
     return (
-        <>
+        <Card className="flex h-fit min-w-0 flex-col items-center justify-center">
             <div className="relative mb-5">
                 <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-blue-100/50 bg-blue-50 text-3xl font-bold text-blue-700">
                     {profileText}
@@ -46,6 +46,6 @@ export function UserProfile() {
                 {t('profileEdit')}
             </Button>
             <ProfileEditModal open={open} initialNickname={displayNickname} onClose={() => setOpen(false)} />
-        </>
+        </Card>
     );
 }
