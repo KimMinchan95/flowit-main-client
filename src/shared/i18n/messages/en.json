@@ -56,6 +56,8 @@
     "title": "My page",
     "profileEdit": "Edit profile info",
     "profileUpdating": "Saving...",
-    "profileUpdateFailed": "Failed to update profile"
+    "profileUpdateFailed": "Failed to update profile",
+    "accountInfo": "Account info",
+    "joinedWorkspaces": "Joined workspaces"
   }
 }

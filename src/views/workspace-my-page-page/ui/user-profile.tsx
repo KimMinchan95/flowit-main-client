@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 import { useMeUserQuery, useUpdateMeUserMutation } from '@entities/user';
 
-import { Button, Input, Modal } from '@shared/ui';
+import { Button, LabeledInput, Modal } from '@shared/ui';
 import { getApiErrorMessage } from '@shared/api';
 import { isValidName, MAX_DEFAULT_LENGTH } from '@shared/lib';
 
@@ -22,7 +22,7 @@ export function UserProfile() {
     const profileText = meUser?.nickname?.trim().slice(0, 1) || 'U';
 
     const [open, setOpen] = useState(false);
-    const [nickname, setNickname] = useState('');
+    const [nickname, setNickname] = useState(meUser?.nickname ?? '');
 
     const handleOpen = () => {
         setOpen(true);
@@ -31,7 +31,6 @@ export function UserProfile() {
 
     const handleClose = () => {
         setOpen(false);
-        setNickname(meUser?.nickname ?? '');
     };
 
     const handleSave = () => {
@@ -102,14 +101,15 @@ export function UserProfile() {
                 }
             >
                 <div className="flex flex-col gap-2">
-                    <Input
-                        placeholder={tAuth('name')}
+                    <LabeledInput
+                        label={tAuth('name')}
+                        errorMessage={tAuth('enterName')}
+                        isError={isNicknameError}
                         value={nickname}
                         maxLength={MAX_DEFAULT_LENGTH}
                         aria-invalid={isNicknameError}
                         onChange={e => setNickname(e.target.value)}
                     />
-                    {isNicknameError && <p className="text-xs font-bold text-rose-500">{tAuth('enterName')}</p>}
                     {submitErrorMessage && <p className="text-xs font-bold text-rose-500">{submitErrorMessage}</p>}
                 </div>
             </Modal>

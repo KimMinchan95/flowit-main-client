@@ -13,8 +13,8 @@ export function WorkspaceMyPagePage() {
                     <UserProfile />
                 </Card>
                 <div className="space-y-6">
-                    <Card>2</Card>
-                    <Card>3</Card>
+                    <Card title={t('accountInfo')}>2</Card>
+                    <Card title={t('joinedWorkspaces')}>3</Card>
                 </div>
             </div>
         </main>

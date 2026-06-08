@@ -56,6 +56,8 @@
     "title": "마이페이지",
     "profileEdit": "프로필 정보 수정",
     "profileUpdating": "저장 중...",
-    "profileUpdateFailed": "프로필 수정에 실패했습니다"
+    "profileUpdateFailed": "프로필 수정에 실패했습니다",
+    "accountInfo": "계정 정보",
+    "joinedWorkspaces": "참여 중인 워크스페이스"
   }
 }
