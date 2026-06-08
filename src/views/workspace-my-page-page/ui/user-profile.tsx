@@ -19,14 +19,6 @@ export function UserProfile() {
 
     const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <>
             <div className="relative mb-5">
@@ -50,10 +42,10 @@ export function UserProfile() {
                     {meUser?.email}
                 </p>
             </div>
-            <Button variant="neutral" size="sm" fullWidth className="font-bold" onClick={handleOpen}>
+            <Button variant="neutral" size="sm" fullWidth className="font-bold" onClick={() => setOpen(true)}>
                 {t('profileEdit')}
             </Button>
-            <ProfileEditModal open={open} initialNickname={displayNickname} onClose={handleClose} />
+            <ProfileEditModal open={open} initialNickname={displayNickname} onClose={() => setOpen(false)} />
         </>
     );
 }

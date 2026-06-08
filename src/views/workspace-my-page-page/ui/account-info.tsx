@@ -1,0 +1,64 @@
+'use client';
+
+import { useState } from 'react';
+
+import { PasswordEditModal } from './password-edit-modal';
+import { useTranslations } from 'next-intl';
+
+import { useMeUserQuery } from '@entities/user';
+
+import { Button } from '@shared/ui';
+
+import type { ReactNode } from 'react';
+
+const PASSWORD_MASK = '••••••••';
+
+export function AccountInfo() {
+    const t = useTranslations('auth');
+
+    const { data: meUser } = useMeUserQuery();
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <>
+            <div className="flex flex-col gap-6">
+                <LabeledAccountInfo label={t('name')} value={meUser?.nickname} />
+                <LabeledAccountInfo label={t('emailAccount')} value={meUser?.email} />
+                <LabeledAccountInfo
+                    label={t('password')}
+                    value={
+                        <div className="flex items-center gap-2">
+                            <span className="inline-flex min-h-9 items-center leading-none">{PASSWORD_MASK}</span>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="shrink-0 font-bold text-blue-600"
+                                onClick={handleOpen}
+                            >
+                                {t('passwordEdit')}
+                            </Button>
+                        </div>
+                    }
+                />
+            </div>
+            <PasswordEditModal open={open} onClose={handleClose} />
+        </>
+    );
+}
+
+function LabeledAccountInfo({ label, value }: { label: string; value: ReactNode }) {
+    return (
+        <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium text-slate-700">{label}</label>
+            <div className="flex items-center justify-between font-bold text-slate-900">{value}</div>
+        </div>
+    );
+}

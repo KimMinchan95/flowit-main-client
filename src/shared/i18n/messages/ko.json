@@ -24,7 +24,10 @@
     "signupSuccessTitle": "회원가입 완료",
     "signupSuccessDescription": "회원가입이 완료되었습니다. 로그인해 주세요.",
     "goToLogin": "로그인하기",
-    "loginFailed": "로그인에 실패했습니다"
+    "loginFailed": "로그인에 실패했습니다",
+    "passwordEdit": "비밀번호 변경",
+    "currentPassword": "현재 비밀번호",
+    "newPassword": "새 비밀번호"
   },
   "common": {
     "home": "홈",
@@ -57,6 +60,8 @@
     "profileEdit": "프로필 정보 수정",
     "profileUpdating": "저장 중...",
     "profileUpdateFailed": "프로필 수정에 실패했습니다",
+    "passwordUpdating": "변경 중...",
+    "passwordUpdateFailed": "비밀번호 변경에 실패했습니다",
     "accountInfo": "계정 정보",
     "joinedWorkspaces": "참여 중인 워크스페이스"
   }

@@ -24,7 +24,10 @@
     "signupSuccessTitle": "Sign up complete",
     "signupSuccessDescription": "Your account has been created. Please log in.",
     "goToLogin": "Go to login",
-    "loginFailed": "Login failed"
+    "loginFailed": "Login failed",
+    "passwordEdit": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password"
   },
   "common": {
     "home": "Home",
@@ -57,6 +60,8 @@
     "profileEdit": "Edit profile info",
     "profileUpdating": "Saving...",
     "profileUpdateFailed": "Failed to update profile",
+    "passwordUpdating": "Updating...",
+    "passwordUpdateFailed": "Failed to change password",
     "accountInfo": "Account info",
     "joinedWorkspaces": "Joined workspaces"
   }
