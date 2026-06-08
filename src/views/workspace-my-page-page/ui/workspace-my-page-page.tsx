@@ -10,7 +10,7 @@ export function WorkspaceMyPagePage() {
             <h1 className="mb-8 text-2xl font-bold tracking-tight text-slate-900">{t('title')}</h1>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr]">
                 <UserProfile />
-                <div className="space-y-6">
+                <div className="min-w-0 space-y-6">
                     <AccountInfo />
                     <JoinedWorkspaces />
                 </div>
