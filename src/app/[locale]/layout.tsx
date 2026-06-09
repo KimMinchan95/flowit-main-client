@@ -9,8 +9,6 @@ import { AppProviders } from '@/app/providers';
 
 import type { Metadata } from 'next';
 
-import '../globals.css';
-
 export const metadata: Metadata = {
     title: 'Flowit',
     description: 'Flowit',
@@ -36,12 +34,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <html lang={locale} className="h-full antialiased">
-            <body className="flex min-h-full flex-col">
-                <AppProviders messages={messages} locale={locale}>
-                    {children}
-                </AppProviders>
-            </body>
-        </html>
+        <AppProviders messages={messages} locale={locale}>
+            {children}
+        </AppProviders>
     );
 }

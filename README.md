@@ -108,7 +108,7 @@
 
 ## Phase 8: 편의성
 
-- [ ] 404 페이지 (`not-found.tsx`)
+- [x] 404 페이지 (`not-found.tsx`)
 - [ ] 403 / 접근 불가 페이지
 - [ ] 전역·워크스페이스 구간 error boundary
 - [ ] 라우트/데이터 로딩 UI (loading, Skeleton)

@@ -34,6 +34,12 @@
     "cancel": "취소",
     "save": "저장"
   },
+  "notFound": {
+    "logoAlt": "Flowit 로고",
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "요청하신 페이지가 존재하지 않거나 이동되었습니다.",
+    "goHome": "홈으로 돌아가기"
+  },
   "workspaces": {
     "myWorkspaces": "나의 워크스페이스",
     "createWorkspace": "새 워크스페이스 생성",

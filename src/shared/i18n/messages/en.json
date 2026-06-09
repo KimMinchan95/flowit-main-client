@@ -34,6 +34,12 @@
     "cancel": "Cancel",
     "save": "Save"
   },
+  "notFound": {
+    "logoAlt": "Flowit logo",
+    "title": "Page not found",
+    "description": "The page you requested does not exist or has been moved.",
+    "goHome": "Go back home"
+  },
   "workspaces": {
     "myWorkspaces": "My workspaces",
     "createWorkspace": "Create new workspace",
