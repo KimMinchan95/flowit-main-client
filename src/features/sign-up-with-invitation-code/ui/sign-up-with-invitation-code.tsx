@@ -7,6 +7,9 @@ import { useTranslations } from 'next-intl';
 
 import { Button, LabeledInput, Modal } from '@shared/ui';
 
+import { getJoinInviteCodeErrorMessage } from '../lib';
+import { useJoinWorkspaceByInviteCodeMutation } from '../model';
+
 import type { ChangeEvent, FormEvent } from 'react';
 
 const INVITATION_CODE_FORM_ID = 'invitation-code-form';
@@ -21,18 +24,52 @@ export function SignUpWithInvitationCode() {
     const handleOpenInvitationModal = () => {
         setInvitationModalOpen(true);
     };
+    const [invitationCode, setInvitationCode] = useState(INITIAL_INVITATION_CODE);
+    const {
+        mutate: joinWorkspaceByInviteCode,
+        isPending: isJoiningWorkspace,
+        error,
+        reset,
+    } = useJoinWorkspaceByInviteCodeMutation();
+
+    const submitErrorMessage = error
+        ? getJoinInviteCodeErrorMessage({
+              error,
+              fallback: t('joinWithInvitationCodeFailed'),
+              unknownError: t('joinInviteCodeUnknownError'),
+              getKnownErrorMessage: errorCode => t(`joinInviteCodeErrors.${errorCode}`),
+          })
+        : null;
+
     const handleCloseInvitationModal = () => {
         setInvitationModalOpen(false);
         setInvitationCode(INITIAL_INVITATION_CODE);
+        reset();
     };
 
-    const [invitationCode, setInvitationCode] = useState(INITIAL_INVITATION_CODE);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInvitationCode(e.target.value);
+        if (error) {
+            reset();
+        }
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const trimmedInviteCode = invitationCode.trim();
+        if (!trimmedInviteCode) {
+            return;
+        }
+
+        joinWorkspaceByInviteCode(
+            { inviteCode: trimmedInviteCode },
+            {
+                onSuccess: () => {
+                    handleCloseInvitationModal();
+                },
+            },
+        );
     };
 
     return (
@@ -68,8 +105,9 @@ export function SignUpWithInvitationCode() {
                             className="font-bold"
                             type="submit"
                             form={INVITATION_CODE_FORM_ID}
+                            disabled={isJoiningWorkspace}
                         >
-                            {tCommon('join')}
+                            {isJoiningWorkspace ? tCommon('joining') : tCommon('join')}
                         </Button>
                     </div>
                 }
@@ -81,7 +119,9 @@ export function SignUpWithInvitationCode() {
                         value={invitationCode}
                         onChange={handleChange}
                         placeholder={EXAMPLE_INVITATION_CODE}
+                        isError={Boolean(submitErrorMessage)}
                     />
+                    {submitErrorMessage ? <p className="text-sm text-red-600">{submitErrorMessage}</p> : null}
                 </form>
                 <p className="mt-2 text-xs font-medium text-slate-500">{t('invitationCodeDescription')}</p>
             </Modal>

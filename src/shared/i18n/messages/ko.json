@@ -59,6 +59,16 @@
     "joinWithInvitationCode": "초대 코드로 참여하기",
     "invitationCode": "초대 코드",
     "invitationCodeDescription": "관리자에게 받은 12자리 영문/숫자 코드를 입력해주세요.",
+    "joinWithInvitationCodeFailed": "초대 코드로 참여에 실패했습니다",
+    "joinInviteCodeUnknownError": "알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해주세요",
+    "joinInviteCodeErrors": {
+      "VALIDATION_400_001": "입력값이 올바르지 않습니다",
+      "AUTH_401_001": "로그인이 필요하거나 인증이 만료되었습니다",
+      "WORKSPACE_404_001": "일치하는 초대 코드의 워크스페이스가 없습니다",
+      "WORKSPACE_JOIN_REQUEST_409_001": "이미 참여 중인 워크스페이스입니다",
+      "WORKSPACE_JOIN_REQUEST_409_002": "가입 요청을 처리할 수 없습니다. 잠시 후 다시 시도해주세요",
+      "INTERNAL_500_001": "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요"
+    },
     "invitationCodeShare": "초대 코드 공유",
     "invitationCodeShareDescription": "아래 코드를 복사하여 팀원들을 워크스페이스로 초대하세요.",
     "copyFailed": "코드 복사에 실패했습니다"
