@@ -34,7 +34,9 @@
     "cancel": "Cancel",
     "save": "Save",
     "join": "Join",
-    "joining": "Joining..."
+    "joining": "Joining...",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "notFound": {
     "logoAlt": "Flowit logo",
@@ -56,7 +58,10 @@
     "descriptionPlaceholder": "What is the space for?",
     "joinWithInvitationCode": "Join with invitation code",
     "invitationCode": "Invitation code",
-    "invitationCodeDescription": "Enter the 12-character alphanumeric code received from the administrator."
+    "invitationCodeDescription": "Enter the 12-character alphanumeric code received from the administrator.",
+    "invitationCodeShare": "Invitation code share",
+    "invitationCodeShareDescription": "Copy the code below to invite your team members to the workspace.",
+    "copyFailed": "Failed to copy the code"
   },
   "sidebar": {
     "dashboard": "Dashboard",
