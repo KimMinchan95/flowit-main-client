@@ -3,6 +3,7 @@
 import { WorkspacesCard } from './workspaces-card';
 
 import { CreateWorkspace } from '@features/create-workspace';
+import { SignUpWithInvitationCode } from '@features/sign-up-with-invitation-code';
 import { useMeWorkspacesQuery } from '@entities/workspace';
 
 export function WorkspacesList() {
@@ -15,6 +16,7 @@ export function WorkspacesList() {
                     <WorkspacesCard key={workspace.id} workspace={workspace} />
                 ))}
                 <CreateWorkspace />
+                <SignUpWithInvitationCode />
             </div>
         </div>
     );

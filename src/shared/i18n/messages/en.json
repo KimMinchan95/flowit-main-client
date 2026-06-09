@@ -32,7 +32,9 @@
   "common": {
     "home": "Home",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "join": "Join",
+    "joining": "Joining..."
   },
   "notFound": {
     "logoAlt": "Flowit logo",
@@ -51,7 +53,10 @@
     "creatingWorkspace": "Creating...",
     "workspaceNameRequired": "Please enter a workspace name",
     "workspaceNamePlaceholder": "Example: App development team",
-    "descriptionPlaceholder": "What is the space for?"
+    "descriptionPlaceholder": "What is the space for?",
+    "joinWithInvitationCode": "Join with invitation code",
+    "invitationCode": "Invitation code",
+    "invitationCodeDescription": "Enter the 12-character alphanumeric code received from the administrator."
   },
   "sidebar": {
     "dashboard": "Dashboard",

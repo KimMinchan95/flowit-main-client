@@ -32,7 +32,9 @@
   "common": {
     "home": "홈",
     "cancel": "취소",
-    "save": "저장"
+    "save": "저장",
+    "join": "참여하기",
+    "joining": "참여 중..."
   },
   "notFound": {
     "logoAlt": "Flowit 로고",
@@ -51,7 +53,10 @@
     "creatingWorkspace": "생성 중...",
     "workspaceNameRequired": "워크스페이스 이름을 입력해주세요",
     "workspaceNamePlaceholder": "예: App 개발팀",
-    "descriptionPlaceholder": "어떤 프로젝트를 위한 공간인가요?"
+    "descriptionPlaceholder": "어떤 프로젝트를 위한 공간인가요?",
+    "joinWithInvitationCode": "초대 코드로 참여하기",
+    "invitationCode": "초대 코드",
+    "invitationCodeDescription": "관리자에게 받은 12자리 영문/숫자 코드를 입력해주세요."
   },
   "sidebar": {
     "dashboard": "대시보드",
