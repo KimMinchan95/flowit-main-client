@@ -1,2 +1,3 @@
 export { createWorkspace } from './create-workspace';
-export { meWorkspaces } from './me-workspaces';
+export { getWorkspace } from './get-workspace';
+export { joinWorkspaceByInviteCode } from './join-workspace-by-invite-code';

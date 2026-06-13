@@ -3,7 +3,7 @@
 import { LayoutDashboardIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { useMeWorkspacesQuery } from '@entities/workspace';
+import { useMeWorkspacesQuery } from '@entities/user';
 
 import { Card } from '@shared/ui';
 

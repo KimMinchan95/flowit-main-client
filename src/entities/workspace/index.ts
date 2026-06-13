@@ -1,4 +1,12 @@
-export { createWorkspace, meWorkspaces } from './api';
-export { findWorkspaceById, getWorkspaceDisplayName } from './lib';
-export { meWorkspacesQueryKeys, useMeWorkspacesQuery, useWorkspaceById } from './model';
-export type { CreateWorkspaceRequest, CreateWorkspaceResponse, WorkspaceMemberRole, Workspace } from './model';
+export { createWorkspace, getWorkspace, joinWorkspaceByInviteCode } from './api';
+export { findWorkspaceById } from './lib';
+export { workspaceQueryKeys, useWorkspaceQuery } from './model';
+export type {
+    CreateWorkspaceRequest,
+    CreateWorkspaceResponse,
+    JoinWorkspaceByInviteCodeRequest,
+    JoinWorkspaceByInviteCodeResponse,
+    WorkspaceDetail,
+    WorkspaceMemberRole,
+    Workspace,
+} from './model';

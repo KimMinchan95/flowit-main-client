@@ -1,4 +1,6 @@
 export type { JoinUserData, JoinUserRequest } from './join-user.types';
+export { meWorkspacesQueryKeys } from './me-workspaces-query-keys';
+export type { MeWorkspaceItem, MeWorkspacesResponse } from './me-workspaces.types';
 export { mePasswordMutationKeys } from './me-password-mutation-keys';
 export { meProfileImageMutationKeys } from './me-profile-image-mutation-keys';
 export { meProfileImageQueryKeys } from './me-profile-image-query-keys';
@@ -10,6 +12,7 @@ export type { UpdateMeProfileImageResponse } from './update-me-profile-image.typ
 export type { UpdateMeUserRequest, UpdateMeUserResponse } from './update-me-user.types';
 export type { UserStatus } from './user.types';
 export { useMeProfileImageQuery } from './use-me-profile-image-query';
+export { useMeWorkspacesQuery } from './use-me-workspaces-query';
 export { useMeUserQuery } from './use-me-user-query';
 export { useProfileImageObjectUrl } from './use-profile-image-object-url';
 export { useUpdateMePasswordMutation } from './use-update-me-password-mutation';

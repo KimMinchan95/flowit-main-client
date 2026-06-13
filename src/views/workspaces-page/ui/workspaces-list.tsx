@@ -3,7 +3,8 @@
 import { WorkspacesCard } from './workspaces-card';
 
 import { CreateWorkspace } from '@features/create-workspace';
-import { useMeWorkspacesQuery } from '@entities/workspace';
+import { SignUpWithInvitationCode } from '@features/sign-up-with-invitation-code';
+import { useMeWorkspacesQuery } from '@entities/user';
 
 export function WorkspacesList() {
     const { data: meWorkspaces } = useMeWorkspacesQuery();
@@ -14,6 +15,7 @@ export function WorkspacesList() {
                 {meWorkspaces?.items.map(workspace => (
                     <WorkspacesCard key={workspace.id} workspace={workspace} />
                 ))}
+                <SignUpWithInvitationCode />
                 <CreateWorkspace />
             </div>
         </div>

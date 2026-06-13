@@ -6,7 +6,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { createWorkspace, meWorkspacesQueryKeys } from '@entities/workspace';
+import { meWorkspacesQueryKeys } from '@entities/user';
+import { createWorkspace } from '@entities/workspace';
 
 import { Button, LabeledInput, LabeledTextarea, Modal } from '@shared/ui';
 import { isValidWorkspaceName, MAX_DEFAULT_LENGTH, MAX_TEXT_AREA_LENGTH } from '@shared/lib';

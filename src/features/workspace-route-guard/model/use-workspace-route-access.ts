@@ -1,6 +1,7 @@
 'use client';
 
-import { findWorkspaceById, useMeWorkspacesQuery } from '@entities/workspace';
+import { useMeWorkspacesQuery } from '@entities/user';
+import { findWorkspaceById } from '@entities/workspace';
 
 export function useWorkspaceRouteAccess(workspaceId: string) {
     const query = useMeWorkspacesQuery();

@@ -1,11 +1,21 @@
-export { joinUser, meProfileImage, meUser, updateMePassword, updateMeProfileImage, updateMeUser } from './api';
+export {
+    joinUser,
+    meProfileImage,
+    meWorkspaces,
+    meUser,
+    updateMePassword,
+    updateMeProfileImage,
+    updateMeUser,
+} from './api';
 export {
     mePasswordMutationKeys,
     meProfileImageMutationKeys,
     meProfileImageQueryKeys,
     meUserMutationKeys,
     meUserQueryKeys,
+    meWorkspacesQueryKeys,
     useMeProfileImageQuery,
+    useMeWorkspacesQuery,
     useMeUserQuery,
     useProfileImageObjectUrl,
     useUpdateMePasswordMutation,
@@ -15,6 +25,8 @@ export {
 export type {
     JoinUserData,
     JoinUserRequest,
+    MeWorkspaceItem,
+    MeWorkspacesResponse,
     MeUserResponse,
     UpdateMePasswordRequest,
     UpdateMePasswordResponse,

@@ -2,6 +2,7 @@
 
 import { useEffect, useId } from 'react';
 
+import { X } from 'lucide-react';
 import { createPortal } from 'react-dom';
 
 import { cn } from '@shared/lib';
@@ -16,9 +17,19 @@ type ModalProps = {
     footer?: ReactNode;
     className?: string;
     onClose?: () => void;
+    showCloseButton?: boolean;
 };
 
-export function Modal({ open, title, description, children, footer, className, onClose }: ModalProps) {
+export function Modal({
+    open,
+    title,
+    description,
+    children,
+    footer,
+    className,
+    onClose,
+    showCloseButton = true,
+}: ModalProps) {
     const titleId = useId();
     const descriptionId = useId();
 
@@ -65,11 +76,23 @@ export function Modal({ open, title, description, children, footer, className, o
                 aria-describedby={description ? descriptionId : undefined}
                 className={cn('relative z-10 w-full max-w-sm rounded-xl bg-white p-6 shadow-xl', className)}
             >
-                {title ? (
-                    <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-2 pb-4">
-                        <h2 id={titleId} className="text-center text-lg font-bold text-slate-900">
-                            {title}
-                        </h2>
+                {title || (showCloseButton && onClose) ? (
+                    <div className="relative flex shrink-0 items-center justify-center border-b border-slate-100 px-2 pb-4">
+                        {title && (
+                            <h2 id={titleId} className="text-lg font-bold text-slate-900">
+                                {title}
+                            </h2>
+                        )}
+                        {showCloseButton && onClose && (
+                            <button
+                                type="button"
+                                className="absolute top-0 right-0 inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+                                aria-label="Close"
+                                onClick={onClose}
+                            >
+                                <X size={18} />
+                            </button>
+                        )}
                     </div>
                 ) : null}
                 {description ? (

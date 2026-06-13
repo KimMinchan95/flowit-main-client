@@ -32,7 +32,11 @@
   "common": {
     "home": "Home",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "join": "Join",
+    "joining": "Joining...",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "notFound": {
     "logoAlt": "Flowit logo",
@@ -51,7 +55,23 @@
     "creatingWorkspace": "Creating...",
     "workspaceNameRequired": "Please enter a workspace name",
     "workspaceNamePlaceholder": "Example: App development team",
-    "descriptionPlaceholder": "What is the space for?"
+    "descriptionPlaceholder": "What is the space for?",
+    "joinWithInvitationCode": "Join with invitation code",
+    "invitationCode": "Invitation code",
+    "invitationCodeDescription": "Enter the 12-character alphanumeric code received from the administrator.",
+    "joinWithInvitationCodeFailed": "Failed to join with invitation code",
+    "joinInviteCodeUnknownError": "An unknown error occurred. Please try again later",
+    "joinInviteCodeErrors": {
+      "VALIDATION_400_001": "The input value is invalid",
+      "AUTH_401_001": "Login is required or your session has expired",
+      "WORKSPACE_404_001": "No active workspace matches this invitation code",
+      "WORKSPACE_JOIN_REQUEST_409_001": "You are already a member of this workspace",
+      "WORKSPACE_JOIN_REQUEST_409_002": "Unable to process the join request. Please try again later",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "invitationCodeShare": "Invitation code share",
+    "invitationCodeShareDescription": "Copy the code below to invite your team members to the workspace.",
+    "copyFailed": "Failed to copy the code"
   },
   "sidebar": {
     "dashboard": "Dashboard",
@@ -73,5 +93,9 @@
     "profileImageUploadFailed": "Failed to upload profile image",
     "accountInfo": "Account info",
     "joinedWorkspaces": "Joined workspaces"
+  },
+  "members": {
+    "title": "Members",
+    "description": "Manage the members and roles of your workspace."
   }
 }

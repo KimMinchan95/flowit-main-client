@@ -1,5 +1,9 @@
 export type { CreateWorkspaceRequest, CreateWorkspaceResponse } from './create-workspace.types';
-export { meWorkspacesQueryKeys } from './me-workspaces-query-keys';
+export type {
+    JoinWorkspaceByInviteCodeRequest,
+    JoinWorkspaceByInviteCodeResponse,
+} from './join-workspace-by-invite-code.types';
+export type { WorkspaceDetail } from './workspace-detail.types';
+export { workspaceQueryKeys } from './workspace-query-keys';
 export type { WorkspaceMemberRole, Workspace } from './workspace.type';
-export { useMeWorkspacesQuery } from './use-me-workspaces-query';
-export { useWorkspaceById } from './use-workspace-by-id';
+export { useWorkspaceQuery } from './use-workspace-query';
