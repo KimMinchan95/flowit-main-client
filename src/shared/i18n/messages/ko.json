@@ -106,6 +106,13 @@
     "workspaceDescription": "워크스페이스 설명",
     "workspaceEdit": "워크스페이스 정보 수정",
     "workspaceUpdating": "저장 중...",
-    "workspaceUpdateFailed": "워크스페이스 수정에 실패했습니다"
+    "workspaceUpdateFailed": "워크스페이스 수정에 실패했습니다",
+    "workspaceDelete": "워크스페이스 삭제",
+    "workspaceDeleteDescription": "워크스페이스를 삭제하면 모든 Task, 댓글 및 설정 데이터가 영구적으로 삭제되며 복구할 수 없습니다.",
+    "workspaceDeleteButton": "워크스페이스 삭제하기",
+    "workspaceDeleteConfirmTitle": "워크스페이스를 삭제할까요?",
+    "workspaceDeleteConfirmDescription": "\"{workspaceName}\" 워크스페이스를 삭제하면 모든 데이터가 영구적으로 삭제되며 복구할 수 없습니다.",
+    "workspaceDeleting": "삭제 중...",
+    "workspaceDeleteFailed": "워크스페이스 삭제에 실패했습니다"
   }
 }

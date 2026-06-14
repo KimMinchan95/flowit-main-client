@@ -106,6 +106,13 @@
     "workspaceDescription": "Workspace description",
     "workspaceEdit": "Edit workspace info",
     "workspaceUpdating": "Saving...",
-    "workspaceUpdateFailed": "Failed to update workspace"
+    "workspaceUpdateFailed": "Failed to update workspace",
+    "workspaceDelete": "Delete workspace",
+    "workspaceDeleteDescription": "Deleting this workspace will permanently remove all tasks, comments, and settings. This action cannot be undone.",
+    "workspaceDeleteButton": "Delete workspace",
+    "workspaceDeleteConfirmTitle": "Delete this workspace?",
+    "workspaceDeleteConfirmDescription": "Deleting \"{workspaceName}\" will permanently remove all data. This action cannot be undone.",
+    "workspaceDeleting": "Deleting...",
+    "workspaceDeleteFailed": "Failed to delete workspace"
   }
 }

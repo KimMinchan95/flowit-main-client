@@ -9,6 +9,7 @@ import { cn } from '@shared/lib';
 export async function NotFoundPage() {
     const t = await getTranslations('notFound');
     const locale = await getLocale();
+    console.log(locale);
 
     return (
         <div className="relative flex min-h-dvh flex-col items-center justify-center px-4">

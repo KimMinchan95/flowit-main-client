@@ -1,3 +1,4 @@
+import { WorkspaceDangerZone } from './workspace-danger-zone';
 import { WorkspaceSetting } from './workspace-setting';
 import { useTranslations } from 'next-intl';
 
@@ -13,7 +14,10 @@ export function WorkspaceSettingsPage({ workspaceId }: Props) {
     return (
         <main className="p-8">
             <PageTitle title={t('title')} />
-            <WorkspaceSetting workspaceId={workspaceId} />
+            <div className="space-y-6">
+                <WorkspaceSetting workspaceId={workspaceId} />
+                <WorkspaceDangerZone workspaceId={workspaceId} />
+            </div>
         </main>
     );
 }
