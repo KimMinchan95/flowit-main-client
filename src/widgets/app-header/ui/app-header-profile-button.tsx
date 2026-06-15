@@ -5,10 +5,13 @@ import { useTranslations } from 'next-intl';
 import { useLogoutMutation } from '@features/logout';
 import { useMeProfileImageQuery, useMeUserQuery, useProfileImageObjectUrl } from '@entities/user';
 
+import { useChangeLocale } from '@shared/i18n';
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@shared/ui';
 
 export function AppHeaderProfileButton() {
     const t = useTranslations('auth');
+    const { locale, toggleLocale } = useChangeLocale();
+
     const { data: meUser } = useMeUserQuery({ enabled: true });
     const { data: profileImageBlob } = useMeProfileImageQuery({
         profileImageFileId: meUser?.profileImageFileId,
@@ -46,6 +49,7 @@ export function AppHeaderProfileButton() {
             </DropdownTrigger>
             <DropdownMenu>
                 <DropdownItem onClick={handleLogout}>{t('logout')}</DropdownItem>
+                <DropdownItem onClick={toggleLocale}>{locale === 'ko' ? 'English' : '한국어'}</DropdownItem>
             </DropdownMenu>
         </Dropdown>
     );
