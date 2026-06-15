@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import { WorkspaceDeleteModal } from './workspace-delete-modal';
 import { WorkspaceWithdrawModal } from './workspace-withdraw-modal';
 import { LogOut, Trash2 } from 'lucide-react';
@@ -19,6 +17,7 @@ import {
 import { useRouter } from '@shared/i18n';
 import { Button, Card } from '@shared/ui';
 import { WORKSPACE_ROUTES } from '@shared/lib';
+import { useModal } from '@shared/lib/hooks';
 
 type Props = {
     workspaceId: string;
@@ -34,8 +33,8 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
     const canWithdrawWorkspace = myWorkspace !== undefined;
     const canDeleteWorkspace = isWorkspaceOwner(myWorkspace?.role);
 
-    const [withdrawModalOpen, setWithdrawModalOpen] = useState(false);
-    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const { open: withdrawModalOpen, onOpen: openWithdrawModal, onClose: closeWithdrawModal } = useModal();
+    const { open: deleteModalOpen, onOpen: openDeleteModal, onClose: closeDeleteModal } = useModal();
 
     const {
         mutate: withdrawMemberMutate,
@@ -57,35 +56,19 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
         router.replace(WORKSPACE_ROUTES.list);
     };
 
-    const handleOpenWithdrawModal = () => {
-        setWithdrawModalOpen(true);
-    };
-
-    const handleCloseWithdrawModal = () => {
-        setWithdrawModalOpen(false);
-    };
-
     const handleConfirmWithdraw = () => {
         withdrawMemberMutate(undefined, {
             onSuccess: async () => {
-                handleCloseWithdrawModal();
+                closeWithdrawModal();
                 await navigateToWorkspaceList();
             },
         });
     };
 
-    const handleOpenDeleteModal = () => {
-        setDeleteModalOpen(true);
-    };
-
-    const handleCloseDeleteModal = () => {
-        setDeleteModalOpen(false);
-    };
-
     const handleConfirmDelete = () => {
         deleteWorkspaceMutate(undefined, {
             onSuccess: async () => {
-                handleCloseDeleteModal();
+                closeDeleteModal();
                 await navigateToWorkspaceList();
             },
         });
@@ -106,7 +89,7 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
                         size="sm"
                         className="border border-rose-200/80 bg-rose-50 text-rose-600 shadow-sm hover:bg-rose-600 hover:text-white"
                         icon={<LogOut size={14} />}
-                        onClick={handleOpenWithdrawModal}
+                        onClick={openWithdrawModal}
                     >
                         {t('workspaceWithdrawButton')}
                     </Button>
@@ -115,7 +98,7 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
                         workspaceName={workspace.name}
                         isWithdrawing={isWithdrawing}
                         error={withdrawError}
-                        onClose={handleCloseWithdrawModal}
+                        onClose={closeWithdrawModal}
                         onConfirm={handleConfirmWithdraw}
                     />
                 </div>
@@ -132,7 +115,7 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
                         size="sm"
                         className="border border-rose-200/80 bg-rose-50 text-rose-600 shadow-sm hover:bg-rose-600 hover:text-white"
                         icon={<Trash2 size={14} />}
-                        onClick={handleOpenDeleteModal}
+                        onClick={openDeleteModal}
                     >
                         {t('workspaceDeleteButton')}
                     </Button>
@@ -141,7 +124,7 @@ export function WorkspaceDangerZone({ workspaceId }: Props) {
                         workspaceName={workspace.name}
                         isDeleting={isDeletingWorkspace}
                         error={deleteError}
-                        onClose={handleCloseDeleteModal}
+                        onClose={closeDeleteModal}
                         onConfirm={handleConfirmDelete}
                     />
                 </div>

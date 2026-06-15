@@ -11,6 +11,7 @@ import { createWorkspace } from '@entities/workspace';
 
 import { Button, LabeledInput, LabeledTextarea, Modal } from '@shared/ui';
 import { isValidWorkspaceName, MAX_DEFAULT_LENGTH, MAX_TEXT_AREA_LENGTH } from '@shared/lib';
+import { useModal } from '@shared/lib/hooks';
 
 import {
     CREATE_WORKSPACE_FORM_FIELDS,
@@ -26,29 +27,25 @@ export function CreateWorkspace() {
     const tCommon = useTranslations('common');
     const queryClient = useQueryClient();
 
-    const [createWorkspaceModalOpen, setCreateWorkspaceModalOpen] = useState(false);
+    const { open, onOpen, onClose } = useModal();
     const [formValues, setFormValues] = useState(INITIAL_CREATE_WORKSPACE_FORM_VALUES);
 
     const workspaceName = formValues[CREATE_WORKSPACE_FORM_FIELDS.NAME];
     const workspaceDescription = formValues[CREATE_WORKSPACE_FORM_FIELDS.DESCRIPTION];
+
+    const handleClose = () => {
+        onClose();
+        setFormValues(INITIAL_CREATE_WORKSPACE_FORM_VALUES);
+    };
 
     const { mutate: createWorkspaceMutate, isPending: isCreatingWorkspace } = useMutation({
         mutationKey: ['workspace', 'create'],
         mutationFn: createWorkspace,
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: meWorkspacesQueryKeys.all });
-            handleCloseCreateWorkspaceModal();
+            handleClose();
         },
     });
-
-    const handleOpenCreateWorkspaceModal = () => {
-        setCreateWorkspaceModalOpen(true);
-    };
-
-    const handleCloseCreateWorkspaceModal = () => {
-        setCreateWorkspaceModalOpen(false);
-        setFormValues(INITIAL_CREATE_WORKSPACE_FORM_VALUES);
-    };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -78,7 +75,7 @@ export function CreateWorkspace() {
     return (
         <>
             <div
-                onClick={handleOpenCreateWorkspaceModal}
+                onClick={onOpen}
                 className="group flex h-40 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-7 text-slate-500 transition-all duration-300 hover:border-blue-400 hover:bg-blue-50/30 hover:text-blue-600"
             >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 transition-transform group-hover:scale-110">
@@ -87,18 +84,12 @@ export function CreateWorkspace() {
                 <p>{t('createWorkspace')}</p>
             </div>
             <Modal
-                open={createWorkspaceModalOpen}
+                open={open}
                 title={t('createWorkspace')}
-                onClose={handleCloseCreateWorkspaceModal}
+                onClose={handleClose}
                 footer={
                     <div className="flex w-full gap-3">
-                        <Button
-                            type="button"
-                            variant="neutral"
-                            size="md"
-                            onClick={handleCloseCreateWorkspaceModal}
-                            fullWidth
-                        >
+                        <Button type="button" variant="neutral" size="md" onClick={handleClose} fullWidth>
                             {tCommon('cancel')}
                         </Button>
                         <Button

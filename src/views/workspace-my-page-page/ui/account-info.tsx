@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-
 import { PasswordEditModal } from './password-edit-modal';
 import { useTranslations } from 'next-intl';
 
 import { useMeUserQuery } from '@entities/user';
 
 import { Button, Card } from '@shared/ui';
+import { useModal } from '@shared/lib/hooks';
 
 import type { ReactNode } from 'react';
 
@@ -18,15 +17,7 @@ export function AccountInfo() {
     const t = useTranslations('auth');
 
     const { data: meUser } = useMeUserQuery();
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const { open, onOpen, onClose } = useModal();
 
     return (
         <Card title={tMyPage('accountInfo')}>
@@ -42,7 +33,7 @@ export function AccountInfo() {
                                 variant="ghost"
                                 size="sm"
                                 className="shrink-0 font-bold text-blue-600"
-                                onClick={handleOpen}
+                                onClick={onOpen}
                             >
                                 {t('passwordEdit')}
                             </Button>
@@ -50,7 +41,7 @@ export function AccountInfo() {
                     }
                 />
             </div>
-            <PasswordEditModal open={open} onClose={handleClose} />
+            <PasswordEditModal open={open} onClose={onClose} />
         </Card>
     );
 }

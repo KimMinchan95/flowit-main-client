@@ -21,6 +21,7 @@ import {
     ProfileImageSizeError,
     ProfileImageTypeError,
 } from '@shared/lib';
+import { useModal } from '@shared/lib/hooks';
 
 export function UserProfile() {
     const t = useTranslations('myPage');
@@ -40,7 +41,7 @@ export function UserProfile() {
     const displayNickname = meUser?.nickname?.trim() ?? '';
     const profileText = displayNickname.slice(0, 1) || 'U';
 
-    const [open, setOpen] = useState(false);
+    const { open, onOpen, onClose } = useModal();
     const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
 
     const handleProfileImageButtonClick = () => {
@@ -124,10 +125,10 @@ export function UserProfile() {
             {submitErrorMessage && (
                 <p className="mb-4 w-full text-center text-xs font-bold text-rose-500">{submitErrorMessage}</p>
             )}
-            <Button variant="neutral" size="sm" fullWidth className="font-bold" onClick={() => setOpen(true)}>
+            <Button variant="neutral" size="sm" fullWidth className="font-bold" onClick={onOpen}>
                 {t('profileEdit')}
             </Button>
-            <ProfileEditModal open={open} initialNickname={displayNickname} onClose={() => setOpen(false)} />
+            <ProfileEditModal open={open} initialNickname={displayNickname} onClose={onClose} />
         </Card>
     );
 }

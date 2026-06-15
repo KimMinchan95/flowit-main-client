@@ -6,6 +6,7 @@ import { Key } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button, LabeledInput, Modal } from '@shared/ui';
+import { useModal } from '@shared/lib/hooks';
 
 import { getJoinInviteCodeErrorMessage } from '../lib';
 import { useJoinWorkspaceByInviteCodeMutation } from '../model';
@@ -20,10 +21,7 @@ export function SignUpWithInvitationCode() {
     const t = useTranslations('workspaces');
     const tCommon = useTranslations('common');
 
-    const [invitationModalOpen, setInvitationModalOpen] = useState(false);
-    const handleOpenInvitationModal = () => {
-        setInvitationModalOpen(true);
-    };
+    const { open, onOpen, onClose } = useModal();
     const [invitationCode, setInvitationCode] = useState(INITIAL_INVITATION_CODE);
     const {
         mutate: joinWorkspaceByInviteCode,
@@ -41,8 +39,8 @@ export function SignUpWithInvitationCode() {
           })
         : null;
 
-    const handleCloseInvitationModal = () => {
-        setInvitationModalOpen(false);
+    const handleClose = () => {
+        onClose();
         setInvitationCode(INITIAL_INVITATION_CODE);
         reset();
     };
@@ -66,7 +64,7 @@ export function SignUpWithInvitationCode() {
             { inviteCode: trimmedInviteCode },
             {
                 onSuccess: () => {
-                    handleCloseInvitationModal();
+                    handleClose();
                 },
             },
         );
@@ -75,7 +73,7 @@ export function SignUpWithInvitationCode() {
     return (
         <>
             <div
-                onClick={handleOpenInvitationModal}
+                onClick={onOpen}
                 className="group flex h-40 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white p-7 text-slate-500 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-50/30 hover:text-emerald-600"
             >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 transition-transform group-hover:scale-110">
@@ -84,18 +82,12 @@ export function SignUpWithInvitationCode() {
                 <p>{t('joinWithInvitationCode')}</p>
             </div>
             <Modal
-                open={invitationModalOpen}
+                open={open}
                 title={t('joinWithInvitationCode')}
-                onClose={handleCloseInvitationModal}
+                onClose={handleClose}
                 footer={
                     <div className="flex w-full gap-3">
-                        <Button
-                            variant="neutral"
-                            size="sm"
-                            fullWidth
-                            className="font-bold"
-                            onClick={handleCloseInvitationModal}
-                        >
+                        <Button variant="neutral" size="sm" fullWidth className="font-bold" onClick={handleClose}>
                             {tCommon('cancel')}
                         </Button>
                         <Button

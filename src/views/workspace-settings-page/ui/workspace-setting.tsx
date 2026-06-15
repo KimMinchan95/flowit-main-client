@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import { WorkspaceEditModal } from './workspace-edit-modal';
 import { useTranslations } from 'next-intl';
 
@@ -9,6 +7,7 @@ import { useMeWorkspacesQuery } from '@entities/user';
 import { findWorkspaceById, isWorkspaceManager, useWorkspaceQuery } from '@entities/workspace';
 
 import { Button, Card } from '@shared/ui';
+import { useModal } from '@shared/lib/hooks';
 
 import type { ReactNode } from 'react';
 
@@ -24,15 +23,7 @@ export function WorkspaceSetting({ workspaceId }: Props) {
     const myWorkspace = findWorkspaceById(meWorkspaces?.items ?? [], workspaceId);
     const canManageWorkspace = isWorkspaceManager(myWorkspace?.role);
 
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const { open, onOpen, onClose } = useModal();
 
     return (
         <Card
@@ -40,12 +31,7 @@ export function WorkspaceSetting({ workspaceId }: Props) {
                 <div className="flex items-center justify-between">
                     <span>{t('workspaceInfo')}</span>
                     {canManageWorkspace && (
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            className="shrink-0 font-bold text-blue-600"
-                            onClick={handleOpen}
-                        >
+                        <Button variant="ghost" size="sm" className="shrink-0 font-bold text-blue-600" onClick={onOpen}>
                             {t('workspaceEdit')}
                         </Button>
                     )}
@@ -62,7 +48,7 @@ export function WorkspaceSetting({ workspaceId }: Props) {
                     workspaceId={workspaceId}
                     initialName={workspace.name}
                     initialDescription={workspace.description ?? ''}
-                    onClose={handleClose}
+                    onClose={onClose}
                 />
             )}
         </Card>
