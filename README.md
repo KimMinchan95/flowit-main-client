@@ -126,5 +126,5 @@
   - [ ] 잘못된/없는 workspaceId 처리
   - [ ] 로그인 후 returnUrl 복귀
   - [ ] locale 라우팅 정리
-- [ ] 언어 전환 UI
+- [x] 언어 전환 UI
 - [ ] 페이지 title/metadata
