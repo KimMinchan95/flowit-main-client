@@ -3,10 +3,10 @@
 import { joinWorkspaceByInviteCodeMutationKeys } from './join-workspace-by-invite-code-mutation-keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { joinWorkspaceByInviteCode } from '@entities/member';
 import { meWorkspacesQueryKeys } from '@entities/user';
-import { joinWorkspaceByInviteCode } from '@entities/workspace';
 
-import type { JoinWorkspaceByInviteCodeRequest } from '@entities/workspace';
+import type { JoinWorkspaceByInviteCodeRequest } from '@entities/member/model';
 
 export function useJoinWorkspaceByInviteCodeMutation() {
     const queryClient = useQueryClient();

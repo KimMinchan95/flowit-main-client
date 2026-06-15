@@ -1,1 +1,1 @@
-export { WorkspaceSettingsPage } from './ui';
+export { WorkspaceSettingsPage, WorkspaceSetting } from './ui';

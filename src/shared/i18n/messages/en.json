@@ -97,5 +97,36 @@
   "members": {
     "title": "Members",
     "description": "Manage the members and roles of your workspace."
+  },
+  "settings": {
+    "title": "Workspace settings",
+    "description": "Manage your workspace settings.",
+    "workspaceInfo": "Workspace info",
+    "workspaceName": "Workspace name",
+    "workspaceDescription": "Workspace description",
+    "workspaceEdit": "Edit workspace info",
+    "workspaceUpdating": "Saving...",
+    "workspaceUpdateFailed": "Failed to update workspace",
+    "workspaceDelete": "Delete workspace",
+    "workspaceDeleteDescription": "Deleting this workspace will permanently remove all tasks, comments, and settings. This action cannot be undone.",
+    "workspaceDeleteButton": "Delete workspace",
+    "workspaceDeleteConfirmTitle": "Delete this workspace?",
+    "workspaceDeleteConfirmDescription": "Deleting \"{workspaceName}\" will permanently remove all data. This action cannot be undone.",
+    "workspaceDeleting": "Deleting...",
+    "workspaceDeleteFailed": "Failed to delete workspace",
+    "workspaceWithdraw": "Leave workspace",
+    "workspaceWithdrawDescription": "If you leave this workspace, you will no longer have access to its tasks, comments, or settings.",
+    "workspaceWithdrawButton": "Leave workspace",
+    "workspaceWithdrawConfirmTitle": "Leave this workspace?",
+    "workspaceWithdrawConfirmDescription": "You will no longer have access to \"{workspaceName}\" after leaving.",
+    "workspaceWithdrawing": "Leaving...",
+    "workspaceWithdrawFailed": "Failed to leave workspace",
+    "workspaceWithdrawUnknownError": "An unknown error occurred. Please try again later",
+    "workspaceWithdrawErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "AUTH_403_001": "There is no admin available to receive ownership transfer",
+      "WORKSPACE_404_001": "Workspace not found",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    }
   }
 }

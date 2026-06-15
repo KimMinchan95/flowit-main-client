@@ -97,5 +97,36 @@
   "members": {
     "title": "멤버 관리",
     "description": "워크스페이스 멤버와 권한을 관리하세요."
+  },
+  "settings": {
+    "title": "워크스페이스 설정",
+    "description": "워크스페이스 설정을 관리하세요.",
+    "workspaceInfo": "워크스페이스 정보",
+    "workspaceName": "워크스페이스 이름",
+    "workspaceDescription": "워크스페이스 설명",
+    "workspaceEdit": "워크스페이스 정보 수정",
+    "workspaceUpdating": "저장 중...",
+    "workspaceUpdateFailed": "워크스페이스 수정에 실패했습니다",
+    "workspaceDelete": "워크스페이스 삭제",
+    "workspaceDeleteDescription": "워크스페이스를 삭제하면 모든 Task, 댓글 및 설정 데이터가 영구적으로 삭제되며 복구할 수 없습니다.",
+    "workspaceDeleteButton": "워크스페이스 삭제하기",
+    "workspaceDeleteConfirmTitle": "워크스페이스를 삭제할까요?",
+    "workspaceDeleteConfirmDescription": "\"{workspaceName}\" 워크스페이스를 삭제하면 모든 데이터가 영구적으로 삭제되며 복구할 수 없습니다.",
+    "workspaceDeleting": "삭제 중...",
+    "workspaceDeleteFailed": "워크스페이스 삭제에 실패했습니다",
+    "workspaceWithdraw": "워크스페이스 탈퇴",
+    "workspaceWithdrawDescription": "워크스페이스에서 탈퇴하면 더 이상 Task, 댓글 및 설정에 접근할 수 없습니다.",
+    "workspaceWithdrawButton": "워크스페이스 탈퇴하기",
+    "workspaceWithdrawConfirmTitle": "워크스페이스에서 탈퇴할까요?",
+    "workspaceWithdrawConfirmDescription": "\"{workspaceName}\" 워크스페이스에서 탈퇴하면 더 이상 접근할 수 없습니다.",
+    "workspaceWithdrawing": "탈퇴 중...",
+    "workspaceWithdrawFailed": "워크스페이스 탈퇴에 실패했습니다",
+    "workspaceWithdrawUnknownError": "알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해주세요",
+    "workspaceWithdrawErrors": {
+      "AUTH_401_001": "로그인이 필요하거나 인증이 만료되었습니다",
+      "AUTH_403_001": "소유권을 이전받을 관리자가 없어 탈퇴할 수 없습니다",
+      "WORKSPACE_404_001": "워크스페이스가 존재하지 않습니다",
+      "INTERNAL_500_001": "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요"
+    }
   }
 }
