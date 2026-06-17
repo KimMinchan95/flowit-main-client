@@ -6,8 +6,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import { InviteWorkspaceMemberModal } from '@features/invite-workspace-member';
 import { taskQueryKeys, useWorkspaceTasksQuery } from '@entities/task';
 import { useWorkspaceQuery } from '@entities/workspace';
+
+import { useModal } from '@shared/lib/hooks';
 
 import type { Task } from '@entities/task';
 
@@ -21,6 +24,7 @@ type Props = {
 export function WorkspaceBoardPage({ workspaceId }: Props) {
     const t = useTranslations('board');
     const queryClient = useQueryClient();
+    const { open: isInviteModalOpen, onOpen: openInviteModal, onClose: closeInviteModal } = useModal();
     const { data: workspace, isPending: isWorkspacePending } = useWorkspaceQuery({ workspaceId });
     const {
         data: tasksData,
@@ -41,32 +45,31 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
         );
     };
 
-    if (isTasksPending) {
-        return (
-            <div className="flex min-h-full flex-col p-8">
-                <BoardHeader workspaceId={workspaceId} workspaceName={workspaceName} />
+    const renderBoardContent = () => {
+        if (isTasksPending) {
+            return (
                 <div className="flex flex-1 items-center justify-center">
                     <Loader2 className="size-6 animate-spin text-slate-400" />
                 </div>
-            </div>
-        );
-    }
+            );
+        }
 
-    if (isTasksError) {
-        return (
-            <div className="flex min-h-full flex-col p-8">
-                <BoardHeader workspaceId={workspaceId} workspaceName={workspaceName} />
+        if (isTasksError) {
+            return (
                 <div className="flex flex-1 items-center justify-center rounded-2xl border border-slate-200/80 bg-white py-16 text-sm font-medium text-rose-500 shadow-sm">
                     {t('loadFailed')}
                 </div>
-            </div>
-        );
-    }
+            );
+        }
+
+        return <KanbanBoard tasks={tasksData?.items ?? []} onTasksChange={handleTasksChange} />;
+    };
 
     return (
         <div className="flex min-h-full flex-col p-8">
-            <BoardHeader workspaceId={workspaceId} workspaceName={workspaceName} />
-            <KanbanBoard tasks={tasksData?.items ?? []} onTasksChange={handleTasksChange} />
+            <BoardHeader workspaceId={workspaceId} workspaceName={workspaceName} onInviteMembers={openInviteModal} />
+            {renderBoardContent()}
+            <InviteWorkspaceMemberModal workspaceId={workspaceId} open={isInviteModalOpen} onClose={closeInviteModal} />
         </div>
     );
 }
