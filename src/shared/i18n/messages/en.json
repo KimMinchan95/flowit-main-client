@@ -138,6 +138,21 @@
       "MEMBER": "Member"
     }
   },
+  "board": {
+    "projectSubtitle": "Web frontend development",
+    "inviteMembers": "Invite members",
+    "searchPlaceholder": "Search tasks...",
+    "createTask": "Create task",
+    "addTask": "Add task",
+    "progress": "Progress",
+    "loadFailed": "Failed to load tasks",
+    "unassigned": "Unassigned",
+    "columns": {
+      "todo": "To Do",
+      "inProgress": "In Progress",
+      "done": "Done"
+    }
+  },
   "settings": {
     "title": "Workspace settings",
     "description": "Manage your workspace settings.",

@@ -138,6 +138,21 @@
       "MEMBER": "멤버"
     }
   },
+  "board": {
+    "projectSubtitle": "웹 프론트엔드 개발",
+    "inviteMembers": "팀원 초대",
+    "searchPlaceholder": "업무 검색...",
+    "createTask": "Task 생성",
+    "addTask": "업무 추가",
+    "progress": "진행도",
+    "loadFailed": "작업 목록을 불러오지 못했습니다",
+    "unassigned": "미할당",
+    "columns": {
+      "todo": "To Do",
+      "inProgress": "In Progress",
+      "done": "Done"
+    }
+  },
   "settings": {
     "title": "워크스페이스 설정",
     "description": "워크스페이스 설정을 관리하세요.",

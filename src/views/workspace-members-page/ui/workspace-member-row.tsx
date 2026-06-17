@@ -1,9 +1,9 @@
 'use client';
 
 import { MemberActionsMenu } from './member-actions-menu';
-import { MemberAvatar } from './member-avatar';
 import { useTranslations } from 'next-intl';
 
+import { MemberAvatar } from '@entities/member';
 import { WorkspaceRoleBadge } from '@entities/workspace';
 
 import type { WorkspaceMember } from '@entities/member';
