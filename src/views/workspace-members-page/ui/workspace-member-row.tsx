@@ -1,20 +1,13 @@
 'use client';
 
 import { MemberActionsMenu } from './member-actions-menu';
-import { MemberAvatar } from './member-avatar';
 import { useTranslations } from 'next-intl';
 
-import { cn } from '@shared/lib';
+import { MemberAvatar } from '@entities/member';
+import { WorkspaceRoleBadge } from '@entities/workspace';
 
 import type { WorkspaceMember } from '@entities/member';
-import type { WorkspaceMemberRole } from '@entities/workspace';
 import type { MemberActions } from '../lib/get-member-actions';
-
-const ROLE_BADGE_CLASSNAME: Record<WorkspaceMemberRole, string> = {
-    OWNER: 'bg-purple-50 text-purple-700 border border-purple-100/50',
-    ADMIN: 'bg-orange-50 text-orange-700 border border-orange-100/50',
-    MEMBER: 'bg-slate-100 text-slate-600 border border-transparent',
-};
 
 type WorkspaceMemberRowProps = {
     member: WorkspaceMember;
@@ -53,9 +46,7 @@ export function WorkspaceMemberRow({
             </td>
             <td className="px-6 py-4 text-[14px] font-medium text-slate-500">{member.email}</td>
             <td className="px-6 py-4">
-                <span className={cn('rounded px-2.5 py-1 text-[12px] font-bold', ROLE_BADGE_CLASSNAME[member.role])}>
-                    {t(`roles.${member.role}`)}
-                </span>
+                <WorkspaceRoleBadge role={member.role} label={t(`roles.${member.role}`)} />
             </td>
             {showActionsColumn ? (
                 <td className="px-6 py-4 text-center">

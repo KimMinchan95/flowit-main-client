@@ -138,6 +138,32 @@
       "MEMBER": "Member"
     }
   },
+  "inviteMember": {
+    "title": "Invite members",
+    "emailLabel": "Invite by email",
+    "emailPlaceholder": "Enter a team member's email address",
+    "send": "Send",
+    "sent": "Sent",
+    "sendSuccess": "Invitation email sent successfully.",
+    "sendFailed": "Failed to send invitation email",
+    "sendFailedSandbox": "In Resend test mode, you can only send emails to the address registered on your Resend account",
+    "or": "or"
+  },
+  "board": {
+    "projectSubtitle": "Web frontend development",
+    "inviteMembers": "Invite members",
+    "searchPlaceholder": "Search tasks...",
+    "createTask": "Create task",
+    "addTask": "Add task",
+    "progress": "Progress",
+    "loadFailed": "Failed to load tasks",
+    "unassigned": "Unassigned",
+    "columns": {
+      "todo": "To Do",
+      "inProgress": "In Progress",
+      "done": "Done"
+    }
+  },
   "settings": {
     "title": "Workspace settings",
     "description": "Manage your workspace settings.",

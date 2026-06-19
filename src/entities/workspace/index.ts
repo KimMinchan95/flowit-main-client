@@ -7,6 +7,7 @@ export {
     workspaceQueryKeys,
     useWorkspaceQuery,
 } from './model';
+export { WorkspaceRoleBadge } from './ui';
 export type {
     CreateWorkspaceRequest,
     CreateWorkspaceResponse,

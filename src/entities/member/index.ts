@@ -14,6 +14,7 @@ export {
     useWithdrawMemberMutation,
     useWorkspaceMembersQuery,
 } from './model';
+export { MemberAvatar } from './ui';
 export type {
     JoinWorkspaceByInviteCodeRequest,
     JoinWorkspaceByInviteCodeResponse,
