@@ -51,3 +51,31 @@ export function getApiErrorCode(error: unknown) {
 
     return undefined;
 }
+
+type GetMappedApiErrorMessageParams<TErrorCode extends string> = {
+    error: unknown;
+    fallback: string;
+    unknownError: string;
+    isKnownErrorCode: (code: string) => code is TErrorCode;
+    getKnownErrorMessage: (errorCode: TErrorCode) => string;
+};
+
+export function getMappedApiErrorMessage<TErrorCode extends string>({
+    error,
+    fallback,
+    unknownError,
+    isKnownErrorCode,
+    getKnownErrorMessage,
+}: GetMappedApiErrorMessageParams<TErrorCode>) {
+    const errorCode = getApiErrorCode(error);
+
+    if (!errorCode) {
+        return getApiErrorMessage(error, fallback);
+    }
+
+    if (isKnownErrorCode(errorCode)) {
+        return getKnownErrorMessage(errorCode);
+    }
+
+    return unknownError;
+}
