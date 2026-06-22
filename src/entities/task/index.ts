@@ -1,6 +1,8 @@
-export { getWorkspaceTasks } from './api';
-export { taskQueryKeys, useWorkspaceTasksQuery } from './model';
+export { createWorkspaceTask, getWorkspaceTasks } from './api';
+export { taskMutationKeys, taskQueryKeys, useCreateWorkspaceTaskMutation, useWorkspaceTasksQuery } from './model';
 export type {
+    CreateWorkspaceTaskRequest,
+    CreateWorkspaceTaskResponse,
     GetWorkspaceTasksParams,
     Task,
     TaskAssignee,
