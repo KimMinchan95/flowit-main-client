@@ -168,6 +168,44 @@
       "INTERNAL_500_001": "A server error occurred. Please try again later"
     },
     "unassigned": "Unassigned",
+    "taskPriority": {
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low"
+    },
+    "taskStartDate": "Start",
+    "taskDueDate": "Due",
+    "createTaskModal": {
+      "title": "Create task",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Enter a clear task title",
+      "descriptionLabel": "Description (Markdown supported)",
+      "descriptionPlaceholder": "Describe the task in detail. You can use Markdown syntax to structure your notes.",
+      "markdownWrite": "Write",
+      "markdownPreview": "Preview",
+      "markdownPreviewEmpty": "Nothing to preview yet",
+      "assigneeLabel": "Assignee",
+      "assigneePlaceholder": "Unassigned",
+      "priorityLabel": "Priority",
+      "priority": {
+        "HIGH": "High",
+        "MEDIUM": "Medium",
+        "LOW": "Low"
+      },
+      "scheduleLabel": "Schedule",
+      "startDateLabel": "Start date",
+      "dueDateLabel": "Due date",
+      "scheduleInvalidRangeTitle": "Check the schedule",
+      "scheduleInvalidRangeDescription": "The due date cannot be earlier than the start date.",
+      "scheduleInvalidRangeConfirm": "OK",
+      "tagsLabel": "Tags",
+      "tagsCount": "{count}/{max}",
+      "tagsPlaceholder": "Press Enter to add",
+      "tagsHelper": "You can add up to {max} tags",
+      "tagsLimitReached": "Tag limit reached",
+      "submit": "Create task",
+      "submitting": "Creating..."
+    },
     "columns": {
       "todo": "To Do",
       "inProgress": "In Progress",

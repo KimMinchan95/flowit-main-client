@@ -21,6 +21,15 @@ export {
 } from './image';
 export type { AllowedProfileImageMimeType } from './image';
 export {
+    dateInputToEpochSeconds,
+    epochSecondsToDateInput,
+    formatEpochSeconds,
+    isDateRangeValid,
+    isValidDateInput,
+    parseDateInput,
+} from './date';
+export { DATE_INPUT_FORMAT, dayjs } from './date';
+export {
     isPasswordConfirmed,
     isValidEmail,
     isValidName,
