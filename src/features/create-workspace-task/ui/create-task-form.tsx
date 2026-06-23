@@ -204,6 +204,8 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                 writeLabel={t('markdownWrite')}
                                 previewLabel={t('markdownPreview')}
                                 emptyPreviewLabel={t('markdownPreviewEmpty')}
+                                expandLabel={t('markdownExpand')}
+                                expandedTitle={t('markdownExpandedTitle')}
                             />
                         </div>
                     </div>

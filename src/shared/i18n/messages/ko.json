@@ -194,6 +194,8 @@
       "markdownWrite": "작성",
       "markdownPreview": "미리보기",
       "markdownPreviewEmpty": "미리볼 내용이 없습니다",
+      "markdownExpand": "확대",
+      "markdownExpandedTitle": "설명 작성",
       "assigneeLabel": "담당자",
       "assigneePlaceholder": "미할당",
       "priorityLabel": "우선순위",

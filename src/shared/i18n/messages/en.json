@@ -194,6 +194,8 @@
       "markdownWrite": "Write",
       "markdownPreview": "Preview",
       "markdownPreviewEmpty": "Nothing to preview yet",
+      "markdownExpand": "Expand",
+      "markdownExpandedTitle": "Write description",
       "assigneeLabel": "Assignee",
       "assigneePlaceholder": "Unassigned",
       "priorityLabel": "Priority",
