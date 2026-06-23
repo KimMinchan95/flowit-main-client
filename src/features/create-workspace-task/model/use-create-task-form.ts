@@ -62,6 +62,7 @@ export function useCreateTaskForm() {
         descriptionMarkdown: form.descriptionMarkdown,
         assigneeMemberId: form.assigneeMemberId,
         priority: form.priority,
+        progress: form.progress,
         startDate: form.startDate,
         dueDate: form.dueDate,
         tags: form.tags,

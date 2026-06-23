@@ -11,6 +11,7 @@ type TaskTagInputProps = {
     tagInput: string;
     placeholder?: string;
     maxTags?: number;
+    disabled?: boolean;
     onTagInputChange: (value: string) => void;
     onAddTag: () => void;
     onRemoveTag: (tag: string) => void;
@@ -21,12 +22,14 @@ export function TaskTagInput({
     tagInput,
     placeholder,
     maxTags,
+    disabled = false,
     onTagInputChange,
     onAddTag,
     onRemoveTag,
 }: TaskTagInputProps) {
     const isComposingRef = useRef(false);
     const isTagLimitReached = maxTags !== undefined && tags.length >= maxTags;
+    const isInputDisabled = disabled || isTagLimitReached;
     const shouldShowPlaceholder = isTagLimitReached || tags.length === 0;
     const inputPlaceholder = shouldShowPlaceholder ? placeholder : '';
 
@@ -67,6 +70,7 @@ export function TaskTagInput({
                         type="button"
                         className="text-slate-500 transition-colors hover:text-rose-500"
                         onClick={() => onRemoveTag(tag)}
+                        disabled={disabled}
                         aria-label={`Remove ${tag}`}
                     >
                         <X size={12} />
@@ -80,7 +84,7 @@ export function TaskTagInput({
                 onCompositionStart={handleCompositionStart}
                 onCompositionEnd={handleCompositionEnd}
                 onKeyDown={handleKeyDown}
-                disabled={isTagLimitReached}
+                disabled={isInputDisabled}
                 className="min-w-[120px] flex-1 bg-transparent text-sm font-bold text-slate-700 outline-none disabled:cursor-not-allowed"
                 placeholder={inputPlaceholder}
             />

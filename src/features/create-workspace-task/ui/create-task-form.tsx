@@ -8,7 +8,12 @@ import { Calendar, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { useWorkspaceMembersQuery } from '@entities/member';
-import { isCreateWorkspaceTaskErrorCode, useCreateWorkspaceTaskMutation } from '@entities/task';
+import {
+    isCreateWorkspaceTaskErrorCode,
+    isUpdateWorkspaceTaskProgressErrorCode,
+    useCreateWorkspaceTaskMutation,
+    useUpdateWorkspaceTaskProgressMutation,
+} from '@entities/task';
 
 import { Button, Input, MarkdownEditor } from '@shared/ui';
 import { getMappedApiErrorMessage } from '@shared/api';
@@ -38,24 +43,52 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
     const tBoard = useTranslations('board');
     const tCommon = useTranslations('common');
     const tErrors = useTranslations('board.createTaskErrors');
+    const tProgressErrors = useTranslations('board.updateTaskProgressErrors');
 
     const { values, tagInput, isTagLimitReached, updateField, updateDateField, setTagInput, addTag, removeTag } =
         useCreateTaskForm();
     const [isScheduleInvalidRangeOpen, setIsScheduleInvalidRangeOpen] = useState(false);
+    const [isProgressUpdateFailed, setIsProgressUpdateFailed] = useState(false);
     const { data: membersData } = useWorkspaceMembersQuery({ workspaceId, enabled: !!workspaceId });
-    const { mutate: createTask, isPending, error, reset } = useCreateWorkspaceTaskMutation({ workspaceId });
+    const {
+        mutateAsync: createTaskAsync,
+        isPending: isCreatePending,
+        error: createError,
+        reset: resetCreate,
+    } = useCreateWorkspaceTaskMutation({ workspaceId });
+    const {
+        mutateAsync: updateProgressAsync,
+        isPending: isProgressPending,
+        error: progressError,
+        reset: resetProgress,
+    } = useUpdateWorkspaceTaskProgressMutation({ workspaceId });
+
+    const isPending = isCreatePending || isProgressPending;
+    const isFormLocked = isProgressUpdateFailed;
 
     const activeMembers = membersData?.members.filter(member => member.status === 'ACTIVE') ?? [];
 
-    const submitErrorMessage = error
+    const createErrorMessage = createError
         ? getMappedApiErrorMessage({
-              error,
+              error: createError,
               fallback: tBoard('createTaskFailed'),
               unknownError: tBoard('createTaskUnknownError'),
               isKnownErrorCode: isCreateWorkspaceTaskErrorCode,
               getKnownErrorMessage: errorCode => tErrors(errorCode),
           })
         : null;
+
+    const progressErrorMessage = progressError
+        ? getMappedApiErrorMessage({
+              error: progressError,
+              fallback: tBoard('updateTaskProgressFailed'),
+              unknownError: tBoard('createTaskUnknownError'),
+              isKnownErrorCode: isUpdateWorkspaceTaskProgressErrorCode,
+              getKnownErrorMessage: errorCode => tProgressErrors(errorCode),
+          })
+        : null;
+
+    const submitErrorMessage = createErrorMessage ?? progressErrorMessage;
 
     const handleDateFieldChange = (field: 'startDate' | 'dueDate', value: string) => {
         if (!isValidDateInput(value)) {
@@ -73,7 +106,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
         updateDateField(field, value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (!isDateRangeValid(values.startDate, values.dueDate)) {
@@ -81,13 +114,63 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
             return;
         }
 
-        createTask(toCreateWorkspaceTaskRequest(values, initialStatus), {
-            onSuccess: () => {
-                reset();
-                onClose();
-            },
-        });
+        resetCreate();
+        resetProgress();
+        setIsProgressUpdateFailed(false);
+
+        try {
+            const { createdId } = await createTaskAsync(toCreateWorkspaceTaskRequest(values, initialStatus));
+
+            if (values.progress > 0) {
+                try {
+                    await updateProgressAsync({ taskId: createdId, progress: values.progress });
+                } catch {
+                    setIsProgressUpdateFailed(true);
+                    return;
+                }
+            }
+
+            onClose();
+        } catch {
+            // createError is surfaced via mutation state
+        }
     };
+
+    const handleCloseAfterPartialSuccess = () => {
+        resetCreate();
+        resetProgress();
+        onClose();
+    };
+
+    let feedbackMessage = null;
+
+    if (isProgressUpdateFailed) {
+        feedbackMessage = <p className="mt-6 text-sm font-bold text-amber-600">{tBoard('createTaskProgressFailed')}</p>;
+    } else if (submitErrorMessage) {
+        feedbackMessage = <p className="mt-6 text-sm font-bold text-rose-500">{submitErrorMessage}</p>;
+    }
+
+    const footerActions = isProgressUpdateFailed ? (
+        <Button type="button" variant="primary" size="sm" onClick={handleCloseAfterPartialSuccess}>
+            {t('scheduleInvalidRangeConfirm')}
+        </Button>
+    ) : (
+        <>
+            <Button type="button" variant="neutral" size="sm" onClick={onClose} disabled={isPending}>
+                {tCommon('cancel')}
+            </Button>
+            <Button type="submit" variant="primary" size="sm" disabled={isPending} className="min-w-[120px]">
+                {isPending ? (
+                    <span className="inline-flex items-center gap-2">
+                        <Loader2 className="size-4 animate-spin" />
+                        {t('submitting')}
+                    </span>
+                ) : (
+                    t('submit')
+                )}
+            </Button>
+        </>
+    );
 
     return (
         <>
@@ -106,6 +189,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                 className="rounded-xl bg-white px-4 py-3 text-sm font-bold text-slate-900"
                                 placeholder={t('titlePlaceholder')}
                                 required
+                                disabled={isFormLocked}
                             />
                         </div>
 
@@ -138,6 +222,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                     updateField('assigneeMemberId', value ? Number(value) : null);
                                 }}
                                 className={SELECT_CLASSNAME}
+                                disabled={isFormLocked}
                             >
                                 <option value="">{t('assigneePlaceholder')}</option>
                                 {activeMembers.map(member => (
@@ -158,6 +243,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                 onChange={event => updateField('priority', event.target.value as TaskPriority)}
                                 className={SELECT_CLASSNAME}
                                 required
+                                disabled={isFormLocked}
                             >
                                 {PRIORITY_OPTIONS.map(priority => (
                                     <option key={priority} value={priority}>
@@ -165,6 +251,33 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                     </option>
                                 ))}
                             </select>
+                        </div>
+
+                        <div>
+                            <label htmlFor="task-progress" className="mb-2 block text-sm font-bold text-slate-800">
+                                {t('progressLabel')}{' '}
+                                <span
+                                    className={
+                                        values.progress === 100 ? 'text-blue-600' : 'font-extrabold text-slate-700'
+                                    }
+                                >
+                                    {values.progress}%
+                                </span>
+                            </label>
+                            <input
+                                id="task-progress"
+                                type="range"
+                                min={0}
+                                max={100}
+                                step={1}
+                                value={values.progress}
+                                onChange={event => updateField('progress', Number(event.target.value))}
+                                className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                disabled={isFormLocked}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                                aria-valuenow={values.progress}
+                            />
                         </div>
 
                         <div>
@@ -178,6 +291,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                         onChange={event => handleDateFieldChange('startDate', event.target.value)}
                                         className={DATE_INPUT_CLASSNAME}
                                         aria-label={t('startDateLabel')}
+                                        disabled={isFormLocked}
                                     />
                                 </div>
                                 <div className="relative">
@@ -188,6 +302,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                         onChange={event => handleDateFieldChange('dueDate', event.target.value)}
                                         className={DATE_INPUT_CLASSNAME}
                                         aria-label={t('dueDateLabel')}
+                                        disabled={isFormLocked}
                                     />
                                 </div>
                             </div>
@@ -211,6 +326,7 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                                 onTagInputChange={setTagInput}
                                 onAddTag={addTag}
                                 onRemoveTag={removeTag}
+                                disabled={isFormLocked}
                             />
                             <p className="mt-1.5 text-xs font-medium text-slate-400">
                                 {t('tagsHelper', { max: MAX_TASK_TAGS })}
@@ -219,25 +335,9 @@ export function CreateTaskForm({ workspaceId, initialStatus, onClose }: CreateTa
                     </div>
                 </div>
 
-                {submitErrorMessage ? (
-                    <p className="mt-6 text-sm font-bold text-rose-500">{submitErrorMessage}</p>
-                ) : null}
+                {feedbackMessage}
 
-                <div className="mt-8 flex justify-end gap-3 border-t border-slate-100 pt-6">
-                    <Button type="button" variant="neutral" size="sm" onClick={onClose} disabled={isPending}>
-                        {tCommon('cancel')}
-                    </Button>
-                    <Button type="submit" variant="primary" size="sm" disabled={isPending} className="min-w-[120px]">
-                        {isPending ? (
-                            <span className="inline-flex items-center gap-2">
-                                <Loader2 className="size-4 animate-spin" />
-                                {t('submitting')}
-                            </span>
-                        ) : (
-                            t('submit')
-                        )}
-                    </Button>
-                </div>
+                <div className="mt-8 flex justify-end gap-3 border-t border-slate-100 pt-6">{footerActions}</div>
             </form>
             <ScheduleInvalidRangeModal
                 open={isScheduleInvalidRangeOpen}

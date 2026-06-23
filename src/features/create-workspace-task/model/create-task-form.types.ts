@@ -9,6 +9,7 @@ export type CreateTaskFormValues = {
     descriptionMarkdown: string;
     assigneeMemberId: number | null;
     priority: TaskPriority;
+    progress: number;
     startDate: string;
     dueDate: string;
     tags: string[];

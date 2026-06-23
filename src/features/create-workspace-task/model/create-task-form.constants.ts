@@ -7,6 +7,7 @@ export const INITIAL_CREATE_TASK_FORM_STATE: CreateTaskFormState = {
     descriptionMarkdown: '',
     assigneeMemberId: null,
     priority: 'MEDIUM',
+    progress: 0,
     startDate: '',
     dueDate: '',
     tags: [],

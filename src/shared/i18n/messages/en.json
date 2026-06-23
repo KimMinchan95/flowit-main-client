@@ -158,13 +158,23 @@
     "progress": "Progress",
     "loadFailed": "Failed to load tasks",
     "createTaskFailed": "Failed to create task",
+    "createTaskProgressFailed": "The task was created, but setting progress failed",
     "createTaskUnknownError": "An unknown error occurred. Please try again later",
+    "updateTaskProgressFailed": "Failed to update task progress",
     "createTaskErrors": {
       "VALIDATION_400_001": "The request value is invalid",
       "AUTH_401_001": "You need to sign in or your session has expired",
       "AUTH_403_001": "You are not an active member of this workspace",
       "WORKSPACE_404_001": "This workspace does not exist",
       "WORKSPACE_MEMBER_404_001": "The selected assignee does not exist or has been removed",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "updateTaskProgressErrors": {
+      "VALIDATION_400_001": "The progress value is invalid",
+      "AUTH_401_001": "Sign-in is required or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "Workspace not found",
+      "TASK_404_001": "Task not found",
       "INTERNAL_500_001": "A server error occurred. Please try again later"
     },
     "unassigned": "Unassigned",
@@ -192,6 +202,7 @@
         "MEDIUM": "Medium",
         "LOW": "Low"
       },
+      "progressLabel": "Progress",
       "scheduleLabel": "Schedule",
       "startDateLabel": "Start date",
       "dueDateLabel": "Due date",
