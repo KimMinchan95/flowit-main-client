@@ -46,10 +46,7 @@ export function KanbanColumn({ column, tasks, onTaskClick, onTaskDragStart, onDr
                 </span>
             </div>
 
-            <div
-                data-kanban-column-scroll
-                className="flex min-h-0 flex-1 flex-col space-y-3 overflow-y-auto overscroll-y-contain pb-2 [overflow-anchor:none]"
-            >
+            <div className="flex min-h-0 flex-1 flex-col space-y-3 overflow-y-auto pb-2">
                 {tasks.map(task => (
                     <TaskCard
                         key={task.id}
