@@ -8,12 +8,12 @@ import type { Task, TaskStatus } from '@entities/task';
 
 type KanbanBoardProps = {
     tasks: Task[];
-    onTasksChange: (tasks: Task[]) => void;
+    onTaskStatusChange: (taskId: number, status: TaskStatus) => void;
     onTaskClick?: (task: Task) => void;
     onAddTask?: (status: TaskStatus) => void;
 };
 
-export function KanbanBoard({ tasks, onTasksChange, onTaskClick, onAddTask }: KanbanBoardProps) {
+export function KanbanBoard({ tasks, onTaskStatusChange, onTaskClick, onAddTask }: KanbanBoardProps) {
     const handleTaskDragStart = (event: React.DragEvent<HTMLDivElement>, taskId: number) => {
         event.dataTransfer.setData('taskId', String(taskId));
     };
@@ -25,11 +25,17 @@ export function KanbanBoard({ tasks, onTasksChange, onTaskClick, onAddTask }: Ka
             return;
         }
 
-        onTasksChange(tasks.map(task => (task.id === taskId ? { ...task, status } : task)));
+        const task = tasks.find(currentTask => currentTask.id === taskId);
+
+        if (!task || task.status === status) {
+            return;
+        }
+
+        onTaskStatusChange(taskId, status);
     };
 
     return (
-        <div className="flex flex-1 items-start gap-6 overflow-x-auto pb-4">
+        <div className="flex min-h-0 flex-1 items-stretch gap-6 overflow-x-auto overflow-y-hidden pb-2">
             {BOARD_COLUMNS.map(column => (
                 <KanbanColumn
                     key={column.id}
