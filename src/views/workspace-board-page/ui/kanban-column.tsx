@@ -38,7 +38,7 @@ export function KanbanColumn({ column, tasks, onTaskClick, onTaskDragStart, onDr
         >
             <div className="mb-5 flex shrink-0 items-center justify-between px-1">
                 <div className="flex items-center gap-2.5">
-                    <div className={`size-2 rounded-full ${column.dotClassName}`} />
+                    <div className={cn('size-2 rounded-full', column.dotClassName)} />
                     <h3 className="text-[14px] font-bold tracking-wide text-slate-800">{tColumns(column.titleKey)}</h3>
                 </div>
                 <span className="rounded bg-white/60 px-2.5 py-0.5 text-[12px] font-bold text-slate-600">
