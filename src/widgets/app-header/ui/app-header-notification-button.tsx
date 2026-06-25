@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import {
     flattenNotificationsPages,
+    useMarkNotificationsReadAllMutation,
     useMarkNotificationsSeenMutation,
     useNotificationsInfiniteQuery,
     useNotificationsSummaryQuery,
@@ -20,6 +21,7 @@ function NotificationDropdownContent() {
     const { isOpen } = useDropdown();
     const { data: summary } = useNotificationsSummaryQuery();
     const { mutate: markNotificationsSeen } = useMarkNotificationsSeenMutation();
+    const { mutate: markAllRead, isPending: isMarkingAllRead } = useMarkNotificationsReadAllMutation();
     const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } = useNotificationsInfiniteQuery({
         enabled: isOpen,
     });
@@ -63,7 +65,8 @@ function NotificationDropdownContent() {
                     <h3 className="text-[15px] font-bold text-slate-900">{t('title')}</h3>
                     <button
                         type="button"
-                        disabled={!hasUnread}
+                        disabled={!hasUnread || isMarkingAllRead}
+                        onClick={() => markAllRead()}
                         className="text-[13px] font-semibold text-blue-600 hover:underline disabled:cursor-not-allowed disabled:text-slate-300 disabled:no-underline"
                     >
                         {t('markAllRead')}

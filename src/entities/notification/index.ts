@@ -1,8 +1,9 @@
-export { getNotifications, markNotificationsSeen } from './api';
+export { getNotifications, markNotificationsReadAll, markNotificationsSeen } from './api';
 export { flattenNotificationsPages, formatNotificationRelativeTime, getNotificationMessageValues } from './lib';
 export {
     notificationMutationKeys,
     notificationQueryKeys,
+    useMarkNotificationsReadAllMutation,
     useMarkNotificationsSeenMutation,
     useNotificationsInfiniteQuery,
     useNotificationsQuery,
@@ -10,6 +11,7 @@ export {
 } from './model';
 export type {
     GetNotificationsParams,
+    MarkNotificationsReadAllResponse,
     MarkNotificationsSeenResponse,
     Notification,
     NotificationActor,
