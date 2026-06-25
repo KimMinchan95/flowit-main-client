@@ -8,6 +8,9 @@ import type { Notification } from '@entities/notification';
 type NotificationListProps = {
     items: Notification[];
     isLoading: boolean;
+    hasMore?: boolean;
+    isLoadingMore?: boolean;
+    onLoadMore?: () => void;
 };
 
 function NotificationListSkeleton() {
@@ -26,7 +29,13 @@ function NotificationListSkeleton() {
     );
 }
 
-export function NotificationList({ items, isLoading }: NotificationListProps) {
+export function NotificationList({
+    items,
+    isLoading,
+    hasMore = false,
+    isLoadingMore = false,
+    onLoadMore,
+}: NotificationListProps) {
     const t = useTranslations('notification');
 
     if (isLoading) {
@@ -42,6 +51,16 @@ export function NotificationList({ items, isLoading }: NotificationListProps) {
             {items.map(notification => (
                 <NotificationListItem key={notification.id} notification={notification} />
             ))}
+            {hasMore ? (
+                <button
+                    type="button"
+                    onClick={onLoadMore}
+                    disabled={isLoadingMore}
+                    className="w-full py-2 text-[13px] font-semibold text-blue-600 hover:underline disabled:cursor-not-allowed disabled:text-slate-300 disabled:no-underline"
+                >
+                    {isLoadingMore ? t('loadingMore') : t('loadMore')}
+                </button>
+            ) : null}
         </div>
     );
 }

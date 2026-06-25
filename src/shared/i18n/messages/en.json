@@ -42,6 +42,8 @@
     "title": "Notifications",
     "markAllRead": "Mark all as read",
     "empty": "No new notifications",
+    "loadMore": "Load more",
+    "loadingMore": "Loading...",
     "openNotifications": "Open notifications",
     "justNow": "Just now",
     "unknownActor": "Unknown user",

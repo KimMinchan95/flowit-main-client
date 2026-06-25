@@ -1,3 +1,4 @@
+export { NOTIFICATIONS_PAGE_SIZE } from './constants';
 export { notificationQueryKeys } from './notification-query-keys';
 export type {
     GetNotificationsParams,
@@ -11,4 +12,5 @@ export type {
     NotificationsResponse,
     NotificationSubject,
 } from './notification.types';
+export { useNotificationsInfiniteQuery } from './use-notifications-infinite-query';
 export { useNotificationsQuery } from './use-notifications-query';

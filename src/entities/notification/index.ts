@@ -1,6 +1,6 @@
 export { getNotifications } from './api';
-export { formatNotificationRelativeTime, getNotificationMessageValues } from './lib';
-export { notificationQueryKeys, useNotificationsQuery } from './model';
+export { flattenNotificationsPages, formatNotificationRelativeTime, getNotificationMessageValues } from './lib';
+export { notificationQueryKeys, useNotificationsInfiniteQuery, useNotificationsQuery } from './model';
 export type {
     GetNotificationsParams,
     Notification,

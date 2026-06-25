@@ -4,16 +4,19 @@ import { NotificationList } from './notification-list';
 import { Bell } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { useNotificationsQuery } from '@entities/notification';
+import { flattenNotificationsPages, useNotificationsInfiniteQuery } from '@entities/notification';
 
 import { Button, Dropdown, DropdownMenu, DropdownTrigger, useDropdown } from '@shared/ui';
 
 function NotificationDropdownContent() {
     const t = useTranslations('notification');
     const { isOpen } = useDropdown();
-    const { data, isFetching } = useNotificationsQuery({ enabled: isOpen });
-    const hasUnseen = (data?.unseenCount ?? 0) > 0;
-    const hasUnread = (data?.unreadCount ?? 0) > 0;
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } = useNotificationsInfiniteQuery({
+        enabled: isOpen,
+    });
+    const { items, unreadCount, unseenCount } = flattenNotificationsPages(data);
+    const hasUnseen = unseenCount > 0;
+    const hasUnread = unreadCount > 0;
 
     return (
         <>
@@ -49,7 +52,13 @@ function NotificationDropdownContent() {
                         {t('markAllRead')}
                     </button>
                 </div>
-                <NotificationList items={data?.items ?? []} isLoading={isFetching && !data} />
+                <NotificationList
+                    items={items}
+                    isLoading={isFetching && !data}
+                    hasMore={hasNextPage}
+                    isLoadingMore={isFetchingNextPage}
+                    onLoadMore={() => void fetchNextPage()}
+                />
             </DropdownMenu>
         </>
     );
