@@ -6,10 +6,10 @@ import { Key } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button, LabeledInput, Modal } from '@shared/ui';
+import { getMappedApiErrorMessage } from '@shared/api';
 import { useModal } from '@shared/lib/hooks';
 
-import { getJoinInviteCodeErrorMessage } from '../lib';
-import { useJoinWorkspaceByInviteCodeMutation } from '../model';
+import { isJoinInviteCodeErrorCode, useJoinWorkspaceByInviteCodeMutation } from '../model';
 
 import type { ChangeEvent, FormEvent } from 'react';
 
@@ -31,10 +31,11 @@ export function SignUpWithInvitationCode() {
     } = useJoinWorkspaceByInviteCodeMutation();
 
     const submitErrorMessage = error
-        ? getJoinInviteCodeErrorMessage({
+        ? getMappedApiErrorMessage({
               error,
               fallback: t('joinWithInvitationCodeFailed'),
               unknownError: t('joinInviteCodeUnknownError'),
+              isKnownErrorCode: isJoinInviteCodeErrorCode,
               getKnownErrorMessage: errorCode => t(`joinInviteCodeErrors.${errorCode}`),
           })
         : null;

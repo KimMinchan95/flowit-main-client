@@ -1,3 +1,4 @@
+export { MarkdownEditor } from './markdown-editor';
 export { Card } from './card';
 export { Button } from './button';
 export { Input, LabeledInput, LabeledTextarea, Textarea } from './input';

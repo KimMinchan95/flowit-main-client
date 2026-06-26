@@ -3,8 +3,9 @@
 import { useTranslations } from 'next-intl';
 
 import { Button, Modal } from '@shared/ui';
+import { getMappedApiErrorMessage } from '@shared/api';
 
-import { getWorkspaceWithdrawErrorMessage } from '../lib';
+import { isWorkspaceWithdrawErrorCode } from '../model';
 
 type WorkspaceWithdrawModalProps = {
     open: boolean;
@@ -27,10 +28,11 @@ export function WorkspaceWithdrawModal({
     const tCommon = useTranslations('common');
 
     const submitErrorMessage = error
-        ? getWorkspaceWithdrawErrorMessage({
+        ? getMappedApiErrorMessage({
               error,
               fallback: t('workspaceWithdrawFailed'),
               unknownError: t('workspaceWithdrawUnknownError'),
+              isKnownErrorCode: isWorkspaceWithdrawErrorCode,
               getKnownErrorMessage: errorCode => t(`workspaceWithdrawErrors.${errorCode}`),
           })
         : null;

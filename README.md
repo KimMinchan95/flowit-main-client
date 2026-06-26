@@ -57,16 +57,16 @@
 
 ## Phase 5: 칸반 보드 (Board)
 
-- [ ] 보드 뷰 (BoardView) UI 틀 잡기
-- [ ] 보드 조회 API 연동
+- [x] 보드 뷰 (BoardView) UI 틀 잡기
+- [x] 보드 조회 API 연동
 
-- [ ] Task 카드 UI
-  - [ ] Drag & Drop 상태 변경 기능
+- [x] Task 카드 UI
+  - [x] Drag & Drop 상태 변경 기능
 
-- [ ] Task 생성 모달 구현
-  - [ ] 마크다운 에디터 지원
+- [x] Task 생성 모달 구현
+  - [x] 마크다운 에디터 지원
 
-- [ ] Task 생성 API 연동
+- [x] Task 생성 API 연동
 
 - [ ] Task 수정 모달 구현
 - [ ] Task 수정 API 연동

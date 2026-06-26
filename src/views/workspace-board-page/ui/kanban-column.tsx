@@ -5,6 +5,7 @@ import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@shared/ui';
+import { cn } from '@shared/lib';
 
 import type { Task, TaskStatus } from '@entities/task';
 import type { BoardColumnConfig } from '../model';
@@ -28,13 +29,16 @@ export function KanbanColumn({ column, tasks, onTaskClick, onTaskDragStart, onDr
 
     return (
         <div
-            className={`flex max-h-full w-[320px] shrink-0 flex-col rounded-2xl border border-slate-200/60 p-5 ${column.bgClassName}`}
+            className={cn(
+                'flex h-fit max-h-full min-h-0 w-[320px] shrink-0 flex-col rounded-2xl border border-slate-200/60 p-5',
+                column.bgClassName,
+            )}
             onDragOver={handleDragOver}
             onDrop={event => onDrop(event, column.id)}
         >
-            <div className="mb-5 flex items-center justify-between px-1">
+            <div className="mb-5 flex shrink-0 items-center justify-between px-1">
                 <div className="flex items-center gap-2.5">
-                    <div className={`size-2 rounded-full ${column.dotClassName}`} />
+                    <div className={cn('size-2 rounded-full', column.dotClassName)} />
                     <h3 className="text-[14px] font-bold tracking-wide text-slate-800">{tColumns(column.titleKey)}</h3>
                 </div>
                 <span className="rounded bg-white/60 px-2.5 py-0.5 text-[12px] font-bold text-slate-600">
@@ -42,7 +46,7 @@ export function KanbanColumn({ column, tasks, onTaskClick, onTaskDragStart, onDr
                 </span>
             </div>
 
-            <div className="flex-1 space-y-3 overflow-y-auto pb-2">
+            <div className="flex min-h-0 flex-1 flex-col space-y-3 overflow-y-auto pb-2">
                 {tasks.map(task => (
                     <TaskCard
                         key={task.id}

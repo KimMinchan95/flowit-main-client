@@ -4,6 +4,7 @@ export {
     apiRequest,
     getApiErrorCode,
     getApiErrorMessage,
+    getMappedApiErrorMessage,
     isApiErrorResponse,
     isApiSuccessResponse,
 } from './http';

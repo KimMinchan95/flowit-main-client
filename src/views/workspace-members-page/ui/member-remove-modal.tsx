@@ -5,8 +5,9 @@ import { useTranslations } from 'next-intl';
 import { useRemoveWorkspaceMemberMutation } from '@entities/member';
 
 import { Button, Modal } from '@shared/ui';
+import { getMappedApiErrorMessage } from '@shared/api';
 
-import { getMemberRemoveErrorMessage } from '../lib';
+import { isMemberRemoveErrorCode } from '../model';
 
 import type { WorkspaceMember } from '@entities/member';
 
@@ -45,10 +46,11 @@ export function MemberRemoveModal({ open, workspaceId, member, onClose }: Member
     };
 
     const submitErrorMessage = error
-        ? getMemberRemoveErrorMessage({
+        ? getMappedApiErrorMessage({
               error,
               fallback: t('removeMemberFailed'),
               unknownError: t('removeMemberUnknownError'),
+              isKnownErrorCode: isMemberRemoveErrorCode,
               getKnownErrorMessage: errorCode => t(`removeMemberErrors.${errorCode}`),
           })
         : null;

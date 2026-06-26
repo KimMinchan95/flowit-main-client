@@ -1,30 +1,28 @@
 'use client';
 
-import { BoardHeader } from './board-header';
-import { KanbanBoard } from './kanban-board';
-import { useQueryClient } from '@tanstack/react-query';
-import { Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
+import { BoardContent } from './board-content';
+import { BoardHeader } from './board-header';
+
+import { CreateWorkspaceTaskModal } from '@features/create-workspace-task';
 import { InviteWorkspaceMemberModal } from '@features/invite-workspace-member';
-import { taskQueryKeys, useWorkspaceTasksQuery } from '@entities/task';
+import { useUpdateWorkspaceTaskStatusMutation, useWorkspaceTasksQuery } from '@entities/task';
 import { useWorkspaceQuery } from '@entities/workspace';
 
 import { useModal } from '@shared/lib/hooks';
 
-import type { Task } from '@entities/task';
-
-const BOARD_TASKS_PAGE_SIZE = 100;
-const BOARD_TASKS_QUERY_PARAMS = { page: 0, size: BOARD_TASKS_PAGE_SIZE } as const;
+import type { TaskStatus } from '@entities/task';
 
 type Props = {
     workspaceId: string;
 };
 
 export function WorkspaceBoardPage({ workspaceId }: Props) {
-    const t = useTranslations('board');
-    const queryClient = useQueryClient();
     const { open: isInviteModalOpen, onOpen: openInviteModal, onClose: closeInviteModal } = useModal();
+    const [createTaskStatus, setCreateTaskStatus] = useState<TaskStatus | null>(null);
+    const { mutate: updateTaskStatus } = useUpdateWorkspaceTaskStatusMutation({ workspaceId });
+
     const { data: workspace, isPending: isWorkspacePending } = useWorkspaceQuery({ workspaceId });
     const {
         data: tasksData,
@@ -32,44 +30,46 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
         isError: isTasksError,
     } = useWorkspaceTasksQuery({
         workspaceId,
-        params: BOARD_TASKS_QUERY_PARAMS,
         enabled: !!workspaceId,
     });
 
     const workspaceName = workspace?.name ?? (isWorkspacePending ? '…' : '');
-    const tasksQueryKey = taskQueryKeys.list({ workspaceId, ...BOARD_TASKS_QUERY_PARAMS });
+    const isCreateTaskModalOpen = createTaskStatus !== null;
 
-    const handleTasksChange = (updatedTasks: Task[]) => {
-        queryClient.setQueryData(tasksQueryKey, previous =>
-            previous ? { ...previous, items: updatedTasks } : previous,
-        );
+    const handleTaskStatusChange = (taskId: number, status: TaskStatus) => {
+        updateTaskStatus({ taskId, status });
     };
 
-    const renderBoardContent = () => {
-        if (isTasksPending) {
-            return (
-                <div className="flex flex-1 items-center justify-center">
-                    <Loader2 className="size-6 animate-spin text-slate-400" />
-                </div>
-            );
-        }
+    const openCreateTaskModal = (status: TaskStatus = 'TODO') => {
+        setCreateTaskStatus(status);
+    };
 
-        if (isTasksError) {
-            return (
-                <div className="flex flex-1 items-center justify-center rounded-2xl border border-slate-200/80 bg-white py-16 text-sm font-medium text-rose-500 shadow-sm">
-                    {t('loadFailed')}
-                </div>
-            );
-        }
-
-        return <KanbanBoard tasks={tasksData?.items ?? []} onTasksChange={handleTasksChange} />;
+    const closeCreateTaskModal = () => {
+        setCreateTaskStatus(null);
     };
 
     return (
-        <div className="flex min-h-full flex-col p-8">
-            <BoardHeader workspaceId={workspaceId} workspaceName={workspaceName} onInviteMembers={openInviteModal} />
-            {renderBoardContent()}
+        <div className="flex h-full min-h-0 flex-col overflow-hidden p-8">
+            <BoardHeader
+                workspaceId={workspaceId}
+                workspaceName={workspaceName}
+                onCreateTask={() => openCreateTaskModal()}
+                onInviteMembers={openInviteModal}
+            />
+            <BoardContent
+                isPending={isTasksPending}
+                isError={isTasksError}
+                tasks={tasksData?.items ?? []}
+                onTaskStatusChange={handleTaskStatusChange}
+                onAddTask={openCreateTaskModal}
+            />
             <InviteWorkspaceMemberModal workspaceId={workspaceId} open={isInviteModalOpen} onClose={closeInviteModal} />
+            <CreateWorkspaceTaskModal
+                workspaceId={workspaceId}
+                open={isCreateTaskModalOpen}
+                initialStatus={createTaskStatus ?? 'TODO'}
+                onClose={closeCreateTaskModal}
+            />
         </div>
     );
 }
