@@ -15,6 +15,7 @@ import {
 } from '@entities/notification';
 
 import { Button, Dropdown, DropdownMenu, DropdownTrigger, useDropdown } from '@shared/ui';
+import { cn } from '@shared/lib';
 
 function NotificationDropdownContent() {
     const t = useTranslations('notification');
@@ -46,7 +47,7 @@ function NotificationDropdownContent() {
                         <span className="relative">
                             <Bell width={22} height={22} />
                             {hasUnseen ? (
-                                <span className="absolute top-0 right-0 size-2 rounded-full border-2 border-white bg-red-500" />
+                                <span className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white bg-red-500 shadow-sm" />
                             ) : null}
                         </span>
                     }
@@ -60,14 +61,25 @@ function NotificationDropdownContent() {
                     {t('openNotifications')}
                 </Button>
             </DropdownTrigger>
-            <DropdownMenu className="w-[320px] rounded-2xl border border-slate-200/80 p-5 shadow-xl">
-                <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
-                    <h3 className="text-[15px] font-bold text-slate-900">{t('title')}</h3>
+            <DropdownMenu className="w-[min(380px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-slate-200/70 p-0 shadow-[0_12px_40px_rgba(15,23,42,0.12)]">
+                <div className="flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3.5">
+                    <div className="flex items-center gap-2">
+                        <h3 className="text-[15px] font-semibold tracking-tight text-slate-900">{t('title')}</h3>
+                        {hasUnread ? (
+                            <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-semibold text-blue-700 tabular-nums">
+                                {unreadCount}
+                            </span>
+                        ) : null}
+                    </div>
                     <button
                         type="button"
                         disabled={!hasUnread || isMarkingAllRead}
                         onClick={() => markAllRead()}
-                        className="text-[13px] font-semibold text-blue-600 hover:underline disabled:cursor-not-allowed disabled:text-slate-300 disabled:no-underline"
+                        className={cn(
+                            'rounded-lg px-2.5 py-1 text-[12px] font-semibold transition-colors',
+                            'text-blue-600 hover:bg-blue-50',
+                            'disabled:cursor-not-allowed disabled:text-slate-300 disabled:hover:bg-transparent',
+                        )}
                     >
                         {t('markAllRead')}
                     </button>
