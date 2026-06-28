@@ -296,7 +296,9 @@
       "tagsHelper": "You can add up to {max} tags",
       "tagsLimitReached": "Tag limit reached",
       "submit": "Save",
-      "submitting": "Saving..."
+      "submitting": "Saving...",
+      "progressLabel": "Progress",
+      "progressInputLabel": "Progress percentage"
     },
     "updateTaskErrors": {
       "VALIDATION_400_001": "The request value is invalid",

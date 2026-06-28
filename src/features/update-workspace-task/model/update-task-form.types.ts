@@ -10,6 +10,7 @@ export type UpdateTaskFormValues = {
     status: TaskStatus;
     assigneeMemberId: number | null;
     priority: TaskPriority;
+    progress: number;
     startDate: string;
     dueDate: string;
     tags: string[];
@@ -28,6 +29,7 @@ export function taskDetailToUpdateTaskFormState(task: TaskDetail): UpdateTaskFor
         status: task.status,
         assigneeMemberId: task.assignee?.memberId ?? null,
         priority: task.priority,
+        progress: task.progress,
         startDate: epochSecondsToDateInput(task.startDate),
         dueDate: epochSecondsToDateInput(task.dueDate),
         tags: [...task.tags],

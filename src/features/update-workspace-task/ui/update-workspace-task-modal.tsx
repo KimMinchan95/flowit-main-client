@@ -18,7 +18,14 @@ export function UpdateWorkspaceTaskModal({ workspaceId, task, open, onClose }: U
     const t = useTranslations('board.updateTaskModal');
 
     return (
-        <Modal open={open} title={t('title')} onClose={onClose} className="max-w-5xl" overlayClassName="z-[60]">
+        <Modal
+            open={open}
+            title={t('title')}
+            onClose={onClose}
+            className="max-w-5xl"
+            overlayClassName="z-[60] overflow-hidden"
+            bodyClassName="flex flex-col overflow-hidden py-0"
+        >
             {open ? <UpdateTaskForm key={task.id} workspaceId={workspaceId} task={task} onClose={onClose} /> : null}
         </Modal>
     );

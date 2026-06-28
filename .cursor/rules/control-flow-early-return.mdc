@@ -1,0 +1,76 @@
+---
+description: if-else if 금지, early return·독립 if 우선
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# 제어 흐름 — early return 우선
+
+## 금지
+
+- **`else if` 체인**을 쓰지 않는다. `else`가 없어도 마찬가지다.
+- 조건 분기마다 **서로 다른 블록이 이어져 읽어야 하는 구조**를 만들지 않는다.
+
+## 권장
+
+- **함수·핸들러**에서는 조건을 만족하면 **즉시 return**한다.
+- **값/JSX를 만들 때**도 헬퍼 함수로 분리하고, 그 안에서 **독립적인 `if` + early return**을 쓴다.
+- 조건이 **서로 배타적**이어도 `else if` 대신 **연속된 `if` + return**으로 각 분기를 독립적으로 읽게 한다.
+
+## 예시
+
+```typescript
+// ❌ BAD — else if 체인 (else 없어도 금지)
+let feedbackMessage = null;
+if (isProgressUpdateFailed) {
+  feedbackMessage = <p>...</p>;
+} else if (submitErrorMessage) {
+  feedbackMessage = <p>...</p>;
+} else if (progressErrorMessage) {
+  feedbackMessage = <p>...</p>;
+}
+
+// ✅ GOOD — 헬퍼 + 독립 if + early return
+function getFeedbackMessage() {
+  if (isProgressUpdateFailed) {
+    return <p>...</p>;
+  }
+  if (submitErrorMessage) {
+    return <p>...</p>;
+  }
+  if (progressErrorMessage) {
+    return <p>...</p>;
+  }
+  return null;
+}
+```
+
+```typescript
+// ❌ BAD
+async function handleSubmit() {
+  if (!isValid) {
+    setError('invalid');
+  } else if (isPending) {
+    return;
+  } else {
+    await submit();
+  }
+}
+
+// ✅ GOOD
+async function handleSubmit() {
+  if (!isValid) {
+    setError('invalid');
+    return;
+  }
+  if (isPending) {
+    return;
+  }
+  await submit();
+}
+```
+
+## 예외
+
+- **진짜 이진 분기**(`if / else` 한 쌍)는 허용한다. 예: 삼항 연산자, `enabled ? A : B`.
+- `switch`는 **명시적 열거형 분기**일 때만 사용한다.

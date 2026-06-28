@@ -12,8 +12,13 @@ import { cn } from '@shared/lib';
 const ACTIVE_CLASSNAME = 'bg-white text-slate-900 shadow-sm hover:bg-white';
 const INACTIVE_CLASSNAME = 'text-slate-500 hover:bg-transparent hover:text-slate-700';
 
+const CONTENT_MIN_HEIGHT_CLASSNAME = 'min-h-[280px] lg:min-h-[320px]';
+
 const TEXTAREA_CLASSNAME =
-    'h-full min-h-full resize-none border-0 bg-transparent p-1 font-medium text-slate-900 shadow-none focus:border-transparent focus:bg-transparent focus:ring-0';
+    'min-h-[280px] flex-1 resize-none rounded-xl border border-slate-200/80 bg-white p-4 text-sm font-medium text-slate-900 shadow-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 lg:min-h-[320px]';
+
+const PREVIEW_PANEL_CLASSNAME =
+    'min-h-[280px] flex-1 overflow-y-auto rounded-xl border border-slate-100 bg-slate-50/60 p-4 lg:min-h-[320px]';
 
 type MarkdownEditorTab = 'write' | 'preview';
 
@@ -33,7 +38,7 @@ export function MarkdownEditor({
     value,
     onChange,
     placeholder,
-    minHeightClassName = 'min-h-[200px] lg:min-h-[360px]',
+    minHeightClassName = 'min-h-[320px] lg:min-h-[400px]',
     writeLabel = 'Write',
     previewLabel = 'Preview',
     emptyPreviewLabel = 'Nothing to preview yet.',
@@ -91,20 +96,19 @@ export function MarkdownEditor({
                     </Button>
                 </div>
 
-                <div className={cn('p-3', minHeightClassName)}>
+                <div className={cn('flex flex-col p-3', minHeightClassName, CONTENT_MIN_HEIGHT_CLASSNAME)}>
                     {activeTab === 'write' ? (
                         <Textarea
                             value={value}
                             onChange={event => onChange(event.target.value)}
                             placeholder={placeholder}
+                            rows={12}
                             className={TEXTAREA_CLASSNAME}
                         />
                     ) : (
-                        <MarkdownPreview
-                            value={value}
-                            emptyLabel={emptyPreviewLabel}
-                            className="h-full overflow-y-auto"
-                        />
+                        <div className={PREVIEW_PANEL_CLASSNAME}>
+                            <MarkdownPreview value={value} emptyLabel={emptyPreviewLabel} />
+                        </div>
                     )}
                 </div>
             </div>
