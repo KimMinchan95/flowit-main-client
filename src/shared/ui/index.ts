@@ -6,3 +6,4 @@ export { AuthCard } from './auth-card';
 export { Modal } from './modal';
 export { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from './dropdown';
 export { PageTitle } from './page-title';
+export { TaskTagInput } from './task-tag-input/task-tag-input';

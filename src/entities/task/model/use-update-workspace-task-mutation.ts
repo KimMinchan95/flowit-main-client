@@ -4,21 +4,20 @@ import { taskMutationKeys } from './task-mutation-keys';
 import { taskQueryKeys } from './task-query-keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { updateWorkspaceTaskProgress } from '../api';
+import { updateWorkspaceTask } from '../api';
 
-import type { UpdateWorkspaceTaskProgressParams } from './update-workspace-task-progress.types';
+import type { UpdateWorkspaceTaskParams } from './update-workspace-task.types';
 
-type UseUpdateWorkspaceTaskProgressMutationProps = {
+type UseUpdateWorkspaceTaskMutationProps = {
     workspaceId: string | number;
 };
 
-export function useUpdateWorkspaceTaskProgressMutation({ workspaceId }: UseUpdateWorkspaceTaskProgressMutationProps) {
+export function useUpdateWorkspaceTaskMutation({ workspaceId }: UseUpdateWorkspaceTaskMutationProps) {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationKey: taskMutationKeys.updateProgress(workspaceId),
-        mutationFn: ({ taskId, progress }: UpdateWorkspaceTaskProgressParams) =>
-            updateWorkspaceTaskProgress(workspaceId, taskId, { progress }),
+        mutationKey: taskMutationKeys.updateTask(workspaceId),
+        mutationFn: ({ taskId, body }: UpdateWorkspaceTaskParams) => updateWorkspaceTask(workspaceId, taskId, body),
         onSuccess: async (_data, variables) => {
             await queryClient.invalidateQueries({ queryKey: taskQueryKeys.lists() });
             await queryClient.invalidateQueries({

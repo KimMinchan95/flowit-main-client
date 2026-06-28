@@ -7,6 +7,7 @@ import { BoardHeader } from './board-header';
 
 import { CreateWorkspaceTaskModal } from '@features/create-workspace-task';
 import { InviteWorkspaceMemberModal } from '@features/invite-workspace-member';
+import { WorkspaceTaskDetailModal } from '@features/view-workspace-task';
 import { useUpdateWorkspaceTaskStatusMutation, useWorkspaceTasksQuery } from '@entities/task';
 import { useWorkspaceQuery } from '@entities/workspace';
 
@@ -21,6 +22,7 @@ type Props = {
 export function WorkspaceBoardPage({ workspaceId }: Props) {
     const { open: isInviteModalOpen, onOpen: openInviteModal, onClose: closeInviteModal } = useModal();
     const [createTaskStatus, setCreateTaskStatus] = useState<TaskStatus | null>(null);
+    const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
     const { mutate: updateTaskStatus } = useUpdateWorkspaceTaskStatusMutation({ workspaceId });
 
     const { data: workspace, isPending: isWorkspacePending } = useWorkspaceQuery({ workspaceId });
@@ -62,6 +64,7 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
                 tasks={tasksData?.items ?? []}
                 onTaskStatusChange={handleTaskStatusChange}
                 onAddTask={openCreateTaskModal}
+                onTaskClick={task => setSelectedTaskId(task.id)}
             />
             <InviteWorkspaceMemberModal workspaceId={workspaceId} open={isInviteModalOpen} onClose={closeInviteModal} />
             <CreateWorkspaceTaskModal
@@ -69,6 +72,12 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
                 open={isCreateTaskModalOpen}
                 initialStatus={createTaskStatus ?? 'TODO'}
                 onClose={closeCreateTaskModal}
+            />
+            <WorkspaceTaskDetailModal
+                workspaceId={workspaceId}
+                taskId={selectedTaskId}
+                open={selectedTaskId !== null}
+                onClose={() => setSelectedTaskId(null)}
             />
         </div>
     );

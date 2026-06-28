@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { updateWorkspaceTaskStatus } from '../api';
 
+import type { TaskDetail } from './task-detail.types';
 import type { WorkspaceTasksResponse } from './task.types';
 import type { UpdateWorkspaceTaskStatusParams } from './update-workspace-task-status.types';
 
@@ -22,10 +23,13 @@ export function useUpdateWorkspaceTaskStatusMutation({ workspaceId }: UseUpdateW
             updateWorkspaceTaskStatus(workspaceId, taskId, { status }),
         onMutate: async ({ taskId, status }) => {
             await queryClient.cancelQueries({ queryKey: taskQueryKeys.lists() });
+            await queryClient.cancelQueries({ queryKey: taskQueryKeys.details() });
 
             const previousQueries = queryClient.getQueriesData<WorkspaceTasksResponse>({
                 queryKey: taskQueryKeys.lists(),
             });
+
+            const previousDetail = queryClient.getQueryData<TaskDetail>(taskQueryKeys.detail({ workspaceId, taskId }));
 
             queryClient.setQueriesData<WorkspaceTasksResponse>({ queryKey: taskQueryKeys.lists() }, current =>
                 current
@@ -36,15 +40,29 @@ export function useUpdateWorkspaceTaskStatusMutation({ workspaceId }: UseUpdateW
                     : current,
             );
 
-            return { previousQueries };
+            queryClient.setQueryData<TaskDetail>(taskQueryKeys.detail({ workspaceId, taskId }), current =>
+                current ? { ...current, status } : current,
+            );
+
+            return { previousQueries, previousDetail };
         },
-        onError: (_error, _variables, context) => {
+        onError: (_error, variables, context) => {
             context?.previousQueries.forEach(([queryKey, data]) => {
                 queryClient.setQueryData(queryKey, data);
             });
+
+            if (context?.previousDetail) {
+                queryClient.setQueryData(
+                    taskQueryKeys.detail({ workspaceId, taskId: variables.taskId }),
+                    context.previousDetail,
+                );
+            }
         },
-        onSettled: async () => {
+        onSettled: async (_data, _error, variables) => {
             await queryClient.invalidateQueries({ queryKey: taskQueryKeys.lists() });
+            await queryClient.invalidateQueries({
+                queryKey: taskQueryKeys.detail({ workspaceId, taskId: variables.taskId }),
+            });
         },
     });
 }

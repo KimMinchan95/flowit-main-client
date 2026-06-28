@@ -1,20 +1,37 @@
-export { createWorkspaceTask, getWorkspaceTasks, updateWorkspaceTaskProgress, updateWorkspaceTaskStatus } from './api';
+export {
+    createWorkspaceTask,
+    getWorkspaceTask,
+    getWorkspaceTasks,
+    updateWorkspaceTask,
+    updateWorkspaceTaskProgress,
+    updateWorkspaceTaskStatus,
+} from './api';
+export { formatTaskSchedule } from './lib/format-task-schedule';
+export { TaskScheduleText } from './ui/task-schedule-text';
 export {
     CREATE_WORKSPACE_TASK_ERROR_CODES,
+    GET_WORKSPACE_TASK_ERROR_CODES,
     isCreateWorkspaceTaskErrorCode,
+    isGetWorkspaceTaskErrorCode,
+    isUpdateWorkspaceTaskErrorCode,
     isUpdateWorkspaceTaskProgressErrorCode,
     isUpdateWorkspaceTaskStatusErrorCode,
     taskMutationKeys,
     taskQueryKeys,
     UPDATE_WORKSPACE_TASK_PROGRESS_ERROR_CODES,
+    UPDATE_WORKSPACE_TASK_ERROR_CODES,
     UPDATE_WORKSPACE_TASK_STATUS_ERROR_CODES,
     useCreateWorkspaceTaskMutation,
+    useUpdateWorkspaceTaskMutation,
     useUpdateWorkspaceTaskProgressMutation,
     useUpdateWorkspaceTaskStatusMutation,
+    useWorkspaceTaskQuery,
     useWorkspaceTasksQuery,
 } from './model';
 export type {
     CreateWorkspaceTaskErrorCode,
+    GetWorkspaceTaskErrorCode,
+    UpdateWorkspaceTaskErrorCode,
     UpdateWorkspaceTaskProgressErrorCode,
     UpdateWorkspaceTaskStatusErrorCode,
 } from './model';
@@ -24,8 +41,14 @@ export type {
     GetWorkspaceTasksParams,
     Task,
     TaskAssignee,
+    TaskComment,
+    TaskCommentAuthor,
+    TaskCommentPage,
+    TaskDetail,
     TaskPriority,
     TaskStatus,
+    UpdateWorkspaceTaskParams,
+    UpdateWorkspaceTaskRequest,
     UpdateWorkspaceTaskProgressParams,
     UpdateWorkspaceTaskStatusParams,
     WorkspaceTasksResponse,
