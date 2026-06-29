@@ -233,7 +233,7 @@
       "descriptionEmpty": "작성된 내용이 없습니다",
       "commentsTab": "댓글 {count}",
       "activityTab": "활동 로그",
-      "commentPlaceholder": "댓글을 입력하세요...",
+      "commentPlaceholder": "마크다운으로 댓글을 작성하세요...",
       "noComments": "아직 댓글이 없습니다",
       "commentsTruncated": "전체 {total}개 중 {shown}개 표시",
       "edited": "수정됨",
@@ -255,7 +255,14 @@
       "schedule": "일정",
       "noSchedule": "일정 없음",
       "commentSubmitting": "작성 중...",
-      "commentsLoadFailed": "댓글을 불러오지 못했습니다"
+      "commentsLoadFailed": "댓글을 불러오지 못했습니다",
+      "commentSubmit": "댓글 등록",
+      "commentMarkdownExpandedTitle": "댓글 작성",
+      "commentLength": "{count}/{max}",
+      "markdownWrite": "작성",
+      "markdownPreview": "미리보기",
+      "markdownPreviewEmpty": "미리볼 내용이 없습니다",
+      "markdownExpand": "확대"
     },
     "taskDetailErrors": {
       "AUTH_401_001": "로그인이 필요하거나 인증이 만료되었습니다",

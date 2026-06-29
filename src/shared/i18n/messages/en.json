@@ -233,7 +233,7 @@
       "descriptionEmpty": "No description provided",
       "commentsTab": "Comments {count}",
       "activityTab": "Activity log",
-      "commentPlaceholder": "Write a comment...",
+      "commentPlaceholder": "Write a comment in Markdown...",
       "noComments": "No comments yet",
       "commentsTruncated": "Showing {shown} of {total} comments",
       "edited": "Edited",
@@ -255,7 +255,14 @@
       "schedule": "Schedule",
       "noSchedule": "No schedule",
       "commentSubmitting": "Posting...",
-      "commentsLoadFailed": "Failed to load comments"
+      "commentsLoadFailed": "Failed to load comments",
+      "commentSubmit": "Post comment",
+      "commentMarkdownExpandedTitle": "Write comment",
+      "commentLength": "{count}/{max}",
+      "markdownWrite": "Write",
+      "markdownPreview": "Preview",
+      "markdownPreviewEmpty": "Nothing to preview yet",
+      "markdownExpand": "Expand"
     },
     "taskDetailErrors": {
       "AUTH_401_001": "You need to sign in or your session has expired",

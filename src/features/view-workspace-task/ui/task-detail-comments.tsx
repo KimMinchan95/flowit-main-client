@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Loader2, Plus } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { MemberAvatar } from '@entities/member';
@@ -14,11 +14,10 @@ import {
     useWorkspaceTaskCommentsQuery,
 } from '@entities/task';
 
+import { Button, MarkdownEditor } from '@shared/ui';
 import { MarkdownPreview } from '@shared/ui/markdown-editor/markdown-preview';
 import { getMappedApiErrorMessage } from '@shared/api';
 import { formatEpochSeconds } from '@shared/lib/date';
-
-import type { KeyboardEvent } from 'react';
 
 type TaskDetailCommentsProps = {
     workspaceId: string | number;
@@ -50,7 +49,6 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
     const comments = commentPage?.items ?? [];
     const totalCount = commentPage?.totalCount ?? 0;
     const trimmedComment = commentInput.trim();
-    const isSubmitDisabled = isCreatePending || trimmedComment.length === 0;
 
     const commentsErrorMessage = isCommentsError
         ? getMappedApiErrorMessage({
@@ -62,6 +60,9 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
           })
         : null;
 
+    const isInputDisabled = isCreatePending || isCommentsPending || Boolean(commentsErrorMessage);
+    const isSubmitDisabled = isCreatePending || trimmedComment.length === 0 || isInputDisabled;
+
     const createErrorMessage = createError
         ? getMappedApiErrorMessage({
               error: createError,
@@ -71,6 +72,10 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
               getKnownErrorMessage: errorCode => tCreateErrors(errorCode),
           })
         : null;
+
+    const handleCommentChange = (value: string) => {
+        setCommentInput(value.slice(0, MAX_WORKSPACE_TASK_COMMENT_LENGTH));
+    };
 
     const handleSubmitComment = async () => {
         if (isSubmitDisabled) {
@@ -85,15 +90,6 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
         } catch {
             // surfaced via mutation state
         }
-    };
-
-    const handleCommentKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key !== 'Enter' || event.nativeEvent.isComposing) {
-            return;
-        }
-
-        event.preventDefault();
-        void handleSubmitComment();
     };
 
     return (
@@ -128,7 +124,7 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
                                   <MarkdownPreview
                                       value={comment.contentMarkdown}
                                       emptyLabel=""
-                                      className="text-[15px] text-slate-700"
+                                      className="text-[15px] leading-relaxed text-slate-700"
                                   />
                               </div>
                           </div>
@@ -146,30 +142,45 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
                 ) : null}
             </div>
 
-            <div className="mt-auto mb-6 pb-2">
-                {createErrorMessage ? (
-                    <p className="mb-3 text-sm font-bold text-rose-500">{createErrorMessage}</p>
-                ) : null}
-                <div className="relative">
-                    <input
-                        type="text"
-                        value={commentInput}
-                        onChange={event => setCommentInput(event.target.value)}
-                        onKeyDown={handleCommentKeyDown}
-                        maxLength={MAX_WORKSPACE_TASK_COMMENT_LENGTH}
-                        placeholder={t('commentPlaceholder')}
-                        disabled={isCreatePending || isCommentsPending || Boolean(commentsErrorMessage)}
-                        className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pr-12 pl-5 text-[15px] shadow-sm transition-shadow focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                    />
-                    <button
+            <div className="mt-auto mb-6 space-y-3 pb-2">
+                {createErrorMessage ? <p className="text-sm font-bold text-rose-500">{createErrorMessage}</p> : null}
+                <MarkdownEditor
+                    size="compact"
+                    value={commentInput}
+                    onChange={handleCommentChange}
+                    placeholder={t('commentPlaceholder')}
+                    maxLength={MAX_WORKSPACE_TASK_COMMENT_LENGTH}
+                    disabled={isInputDisabled}
+                    writeLabel={t('markdownWrite')}
+                    previewLabel={t('markdownPreview')}
+                    emptyPreviewLabel={t('markdownPreviewEmpty')}
+                    expandLabel={t('markdownExpand')}
+                    expandedTitle={t('commentMarkdownExpandedTitle')}
+                />
+                <div className="flex items-center justify-end gap-3">
+                    <span className="text-xs font-medium text-slate-400">
+                        {t('commentLength', {
+                            count: commentInput.length,
+                            max: MAX_WORKSPACE_TASK_COMMENT_LENGTH,
+                        })}
+                    </span>
+                    <Button
                         type="button"
+                        variant="primary"
+                        size="sm"
                         onClick={() => void handleSubmitComment()}
-                        disabled={isSubmitDisabled || isCommentsPending || Boolean(commentsErrorMessage)}
-                        aria-label={t('commentPlaceholder')}
-                        className="absolute top-1/2 right-2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                        disabled={isSubmitDisabled}
+                        className="min-w-[96px]"
                     >
-                        {isCreatePending ? <Loader2 className="size-4 animate-spin" /> : <Plus size={18} />}
-                    </button>
+                        {isCreatePending ? (
+                            <span className="inline-flex items-center gap-2">
+                                <Loader2 className="size-4 animate-spin" />
+                                {t('commentSubmitting')}
+                            </span>
+                        ) : (
+                            t('commentSubmit')
+                        )}
+                    </Button>
                 </div>
             </div>
         </div>
