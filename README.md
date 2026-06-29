@@ -46,11 +46,11 @@
   - [x] 탑 헤더 UI 구현
 
 - [x] 알림 UI
-- [ ] 알림 API 연동
+- [x] 알림 API 연동
   - [x] 알림 목록 조회 API 연동
-  - [ ] 알림 확인 처리 API 연동
-  - [ ] 알림 모두 읽음 처리 API 연동
-  - [ ] 알림 web socket 연동
+  - [x] 알림 확인 처리 API 연동
+  - [x] 알림 모두 읽음 처리 API 연동
+  - [x] 알림 web socket 연동
 
 - [x] 유저 프로필 Dropdown
   - [x] 프로필 정보 UI
