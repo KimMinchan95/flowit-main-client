@@ -4,4 +4,5 @@ export { parseNotificationWsMessage } from './parse-notification-ws-message';
 export { formatNotificationRelativeTime } from './format-notification-relative-time';
 export { getNotificationMessageValues } from './get-notification-message-values';
 export { getNotificationRoleChange } from './get-notification-role-change';
+export { resolveNotificationLinkHref } from './resolve-notification-href';
 export { upsertNotificationInCache, isNotificationInCache } from './upsert-notification-in-cache';

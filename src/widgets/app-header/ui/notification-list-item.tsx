@@ -2,8 +2,15 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 
-import { formatNotificationRelativeTime, NotificationAvatar, NotificationMessage } from '@entities/notification';
+import {
+    formatNotificationRelativeTime,
+    NotificationAvatar,
+    NotificationMessage,
+    resolveNotificationLinkHref,
+} from '@entities/notification';
 
+import { Link } from '@shared/i18n';
+import { useDropdown } from '@shared/ui';
 import { cn } from '@shared/lib';
 
 import type { Notification } from '@entities/notification';
@@ -15,18 +22,19 @@ type NotificationListItemProps = {
 export function NotificationListItem({ notification }: NotificationListItemProps) {
     const locale = useLocale();
     const t = useTranslations('notification');
+    const { setIsOpen } = useDropdown();
+    const href = resolveNotificationLinkHref(notification.link);
     const isUnread = !notification.read;
     const relativeTime = formatNotificationRelativeTime(notification.occurredAt, locale, {
         justNow: t('justNow'),
     });
+    const itemClassName = cn(
+        'group relative flex items-start gap-3 px-4 py-3 transition-colors hover:bg-slate-50/80',
+        isUnread && 'bg-blue-50/30 hover:bg-blue-50/50',
+    );
 
-    return (
-        <div
-            className={cn(
-                'group relative flex items-start gap-3 px-4 py-3 transition-colors hover:bg-slate-50/80',
-                isUnread && 'bg-blue-50/30 hover:bg-blue-50/50',
-            )}
-        >
+    const content = (
+        <>
             {isUnread ? <span className="absolute top-2 left-2 size-1.5 rounded-full bg-blue-500" aria-hidden /> : null}
             <NotificationAvatar
                 notification={notification}
@@ -44,6 +52,16 @@ export function NotificationListItem({ notification }: NotificationListItemProps
                     {relativeTime}
                 </span>
             </div>
-        </div>
+        </>
+    );
+
+    if (!href) {
+        return <div className={itemClassName}>{content}</div>;
+    }
+
+    return (
+        <Link href={href} className={cn('block', itemClassName)} onClick={() => setIsOpen(false)}>
+            {content}
+        </Link>
     );
 }
