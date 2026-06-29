@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { NotificationList } from './notification-list';
 import { Bell } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -30,19 +28,18 @@ function NotificationDropdownContent() {
     const hasUnseen = (summary?.unseenCount ?? 0) > 0;
     const hasUnread = unreadCount > 0;
 
-    useEffect(() => {
+    const handleOpenNotifications = () => {
         if (!isOpen) {
-            return;
+            markNotificationsSeen();
         }
-
-        markNotificationsSeen();
-    }, [isOpen, markNotificationsSeen]);
+    };
 
     return (
         <>
             <DropdownTrigger>
                 <Button
                     iconOnly
+                    onClick={handleOpenNotifications}
                     icon={
                         <span className="relative">
                             <Bell width={22} height={22} />
