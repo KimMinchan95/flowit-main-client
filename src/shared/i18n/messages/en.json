@@ -253,7 +253,9 @@
       "close": "Close",
       "edit": "Edit",
       "schedule": "Schedule",
-      "noSchedule": "No schedule"
+      "noSchedule": "No schedule",
+      "commentSubmitting": "Posting...",
+      "commentsLoadFailed": "Failed to load comments"
     },
     "taskDetailErrors": {
       "AUTH_401_001": "You need to sign in or your session has expired",
@@ -306,6 +308,24 @@
       "AUTH_403_001": "You are not an active member of this workspace",
       "WORKSPACE_404_001": "This workspace does not exist",
       "WORKSPACE_MEMBER_404_001": "The selected assignee does not exist or has been removed",
+      "TASK_404_001": "This task does not exist",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "createCommentFailed": "Failed to create comment",
+    "createCommentUnknownError": "An unknown error occurred. Please try again later",
+    "createCommentErrors": {
+      "VALIDATION_400_001": "Comment content is invalid",
+      "AUTH_401_001": "You need to sign in or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "This workspace does not exist",
+      "TASK_404_001": "This task does not exist",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "taskCommentErrors": {
+      "VALIDATION_400_001": "Comment content is invalid",
+      "AUTH_401_001": "You need to sign in or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "This workspace does not exist",
       "TASK_404_001": "This task does not exist",
       "INTERNAL_500_001": "A server error occurred. Please try again later"
     }

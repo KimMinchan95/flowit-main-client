@@ -7,6 +7,8 @@ import { TaskDetailComments } from './task-detail-comments';
 import { TaskDetailMeta } from './task-detail-meta';
 import { useTranslations } from 'next-intl';
 
+import { useWorkspaceTaskCommentsQuery } from '@entities/task';
+
 import { MarkdownPreview } from '@shared/ui/markdown-editor/markdown-preview';
 import { cn } from '@shared/lib';
 
@@ -25,6 +27,12 @@ export function TaskDetailView({ task, viewMode }: TaskDetailViewProps) {
     const t = useTranslations('board.taskDetail');
     const [activeTab, setActiveTab] = useState<TaskDetailTab>('comments');
 
+    const { data: commentPage } = useWorkspaceTaskCommentsQuery({
+        workspaceId: task.workspaceId,
+        taskId: task.id,
+    });
+
+    const commentCount = commentPage?.totalCount ?? task.commentPage.totalCount;
     const isCenter = viewMode === 'center';
 
     const descriptionSection = (
@@ -53,7 +61,7 @@ export function TaskDetailView({ task, viewMode }: TaskDetailViewProps) {
                             : 'font-medium text-slate-400 hover:text-slate-700',
                     )}
                 >
-                    {t('commentsTab', { count: task.commentPage.totalCount })}
+                    {t('commentsTab', { count: commentCount })}
                 </button>
                 <button
                     type="button"
@@ -70,7 +78,7 @@ export function TaskDetailView({ task, viewMode }: TaskDetailViewProps) {
             </div>
 
             {activeTab === 'comments' ? (
-                <TaskDetailComments comments={task.commentPage.items} totalCount={task.commentPage.totalCount} />
+                <TaskDetailComments workspaceId={task.workspaceId} taskId={task.id} />
             ) : (
                 <TaskDetailActivity task={task} />
             )}

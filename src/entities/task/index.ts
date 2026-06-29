@@ -1,6 +1,8 @@
 export {
     createWorkspaceTask,
+    createWorkspaceTaskComment,
     getWorkspaceTask,
+    getWorkspaceTaskComments,
     getWorkspaceTasks,
     updateWorkspaceTask,
     updateWorkspaceTaskProgress,
@@ -9,9 +11,15 @@ export {
 export { formatTaskSchedule } from './lib/format-task-schedule';
 export { TaskScheduleText } from './ui/task-schedule-text';
 export {
+    DEFAULT_WORKSPACE_TASK_COMMENTS_PAGE_SIZE,
+    MAX_WORKSPACE_TASK_COMMENT_LENGTH,
+    CREATE_WORKSPACE_TASK_COMMENT_ERROR_CODES,
     CREATE_WORKSPACE_TASK_ERROR_CODES,
+    GET_WORKSPACE_TASK_COMMENTS_ERROR_CODES,
     GET_WORKSPACE_TASK_ERROR_CODES,
+    isCreateWorkspaceTaskCommentErrorCode,
     isCreateWorkspaceTaskErrorCode,
+    isGetWorkspaceTaskCommentsErrorCode,
     isGetWorkspaceTaskErrorCode,
     isUpdateWorkspaceTaskErrorCode,
     isUpdateWorkspaceTaskProgressErrorCode,
@@ -21,10 +29,12 @@ export {
     UPDATE_WORKSPACE_TASK_PROGRESS_ERROR_CODES,
     UPDATE_WORKSPACE_TASK_ERROR_CODES,
     UPDATE_WORKSPACE_TASK_STATUS_ERROR_CODES,
+    useCreateWorkspaceTaskCommentMutation,
     useCreateWorkspaceTaskMutation,
     useUpdateWorkspaceTaskMutation,
     useUpdateWorkspaceTaskProgressMutation,
     useUpdateWorkspaceTaskStatusMutation,
+    useWorkspaceTaskCommentsQuery,
     useWorkspaceTaskQuery,
     useWorkspaceTasksQuery,
 } from './model';
@@ -36,8 +46,11 @@ export type {
     UpdateWorkspaceTaskStatusErrorCode,
 } from './model';
 export type {
+    CreateWorkspaceTaskCommentRequest,
+    CreateWorkspaceTaskCommentResponse,
     CreateWorkspaceTaskRequest,
     CreateWorkspaceTaskResponse,
+    GetWorkspaceTaskCommentsParams,
     GetWorkspaceTasksParams,
     Task,
     TaskAssignee,

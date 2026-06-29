@@ -1,5 +1,7 @@
 export { createWorkspaceTask } from './create-workspace-task';
+export { createWorkspaceTaskComment } from './create-workspace-task-comment';
 export { getWorkspaceTask } from './get-workspace-task';
+export { getWorkspaceTaskComments } from './get-workspace-task-comments';
 export { getWorkspaceTasks } from './get-workspace-tasks';
 export { updateWorkspaceTask } from './update-workspace-task';
 export { updateWorkspaceTaskProgress } from './update-workspace-task-progress';
