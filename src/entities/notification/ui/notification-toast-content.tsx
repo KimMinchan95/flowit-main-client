@@ -1,7 +1,8 @@
 'use client';
 
+import { NotificationAvatar } from './notification-avatar';
 import { NotificationMessage } from './notification-message';
-import { Bell, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
@@ -31,9 +32,7 @@ export function NotificationToastContent({ notification }: NotificationToastCont
                 <X size={14} strokeWidth={2.25} aria-hidden />
             </button>
             <div className="flex items-start gap-3 py-3.5 pr-10 pl-4">
-                <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                    <Bell size={16} strokeWidth={2.25} aria-hidden />
-                </div>
+                <NotificationAvatar notification={notification} size="md" className="mt-0.5" />
                 <div className="min-w-0 flex-1">
                     <p className="text-[11px] font-semibold tracking-wide text-blue-600">{t('title')}</p>
                     <NotificationMessage notification={notification} variant="toast" />

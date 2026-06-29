@@ -11,7 +11,7 @@ export {
     useNotificationsQuery,
     useNotificationsSummaryQuery,
 } from './model';
-export { NotificationMessage, NotificationRealtimeSubscriber } from './ui';
+export { NotificationAvatar, NotificationMessage, NotificationRealtimeSubscriber } from './ui';
 export type {
     GetNotificationsParams,
     MarkNotificationsReadAllResponse,
