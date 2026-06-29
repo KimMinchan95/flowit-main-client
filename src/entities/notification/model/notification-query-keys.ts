@@ -7,4 +7,5 @@ export const notificationQueryKeys = {
     list: (params: GetNotificationsParams = {}) => ['notification', 'list', params] as const,
     infiniteList: (params: Omit<GetNotificationsParams, 'page'> = {}) =>
         ['notification', 'infinite-list', params] as const,
+    infiniteLists: () => ['notification', 'infinite-list'] as const,
 };

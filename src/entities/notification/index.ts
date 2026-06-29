@@ -3,12 +3,15 @@ export { flattenNotificationsPages, formatNotificationRelativeTime, getNotificat
 export {
     notificationMutationKeys,
     notificationQueryKeys,
+    NOTIFICATION_WS_DESTINATION,
     useMarkNotificationsReadAllMutation,
     useMarkNotificationsSeenMutation,
+    useNotificationRealtime,
     useNotificationsInfiniteQuery,
     useNotificationsQuery,
     useNotificationsSummaryQuery,
 } from './model';
+export { NotificationRealtimeSubscriber } from './ui';
 export type {
     GetNotificationsParams,
     MarkNotificationsReadAllResponse,

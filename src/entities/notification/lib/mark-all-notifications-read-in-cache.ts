@@ -17,7 +17,7 @@ export function markAllNotificationsReadInCache(queryClient: QueryClient) {
     );
 
     queryClient.setQueriesData<InfiniteData<NotificationsResponse>>(
-        { queryKey: ['notification', 'infinite-list'] },
+        { queryKey: notificationQueryKeys.infiniteLists() },
         old => {
             if (!old) {
                 return old;

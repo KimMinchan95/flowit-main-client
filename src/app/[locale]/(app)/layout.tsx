@@ -1,6 +1,7 @@
 import { AppHeader } from '@widgets/app-header';
 import { AuthGate } from '@features/auth';
 import { MeUserPrefetch } from '@features/me-user-prefetch';
+import { NotificationRealtimeSubscriber } from '@entities/notification';
 
 import { WebSocketProvider } from '@/app/providers';
 
@@ -12,6 +13,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     return (
         <AuthGate mode="protected">
             <WebSocketProvider>
+                <NotificationRealtimeSubscriber />
                 <MeUserPrefetch />
                 <div className="flex h-dvh flex-col overflow-hidden">
                     <AppHeader />
