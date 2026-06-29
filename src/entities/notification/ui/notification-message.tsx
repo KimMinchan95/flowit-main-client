@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@shared/lib';
 
 import { getNotificationMessageValues } from '../lib/get-notification-message-values';
+import { getNotificationRoleChange } from '../lib/get-notification-role-change';
 
 import type { Notification } from '../model/notification.types';
 import type { ReactNode } from 'react';
@@ -22,7 +23,9 @@ function renderBold(chunks: ReactNode) {
 export function NotificationMessage({ notification, className, variant = 'list' }: NotificationMessageProps) {
     const t = useTranslations('notification');
     const tTypes = useTranslations('notification.types');
+    const tMembers = useTranslations('members');
     const values = getNotificationMessageValues(notification, t('unknownActor'));
+    const roleChange = getNotificationRoleChange(notification);
     const messageClassName = cn(
         variant === 'toast'
             ? 'mt-0.5 line-clamp-2 text-[13px] leading-snug font-medium text-slate-800'
@@ -33,6 +36,23 @@ export function NotificationMessage({ notification, className, variant = 'list' 
 
     if (!tTypes.has(notification.type)) {
         return <p className={messageClassName}>{t('fallback')}</p>;
+    }
+
+    if (notification.type === 'WORKSPACE_MEMBER_ROLE_CHANGED') {
+        if (!roleChange) {
+            return <p className={messageClassName}>{t('fallback')}</p>;
+        }
+
+        return (
+            <p className={messageClassName}>
+                {tTypes.rich('WORKSPACE_MEMBER_ROLE_CHANGED', {
+                    ...values,
+                    roleFrom: tMembers(`roles.${roleChange.from}`),
+                    roleTo: tMembers(`roles.${roleChange.to}`),
+                    bold: renderBold,
+                })}
+            </p>
+        );
     }
 
     return (

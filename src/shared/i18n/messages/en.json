@@ -51,7 +51,7 @@
     "dismiss": "Dismiss",
     "types": {
       "WORKSPACE_MEMBER_JOINED": "<bold>{actor}</bold> joined {workspace}.",
-      "WORKSPACE_MEMBER_ROLE_CHANGED": "<bold>{actor}</bold> changed <bold>{subject}</bold>'s role in {workspace}.",
+      "WORKSPACE_MEMBER_ROLE_CHANGED": "<bold>{actor}</bold> changed <bold>{subject}</bold>'s role in {workspace} from {roleFrom} to {roleTo}.",
       "WORKSPACE_MEMBER_REMOVED": "<bold>{actor}</bold> removed <bold>{subject}</bold> from {workspace}.",
       "WORKSPACE_ACCESS_REVOKED": "Your access to {workspace} was revoked.",
       "WORKSPACE_MEMBER_WITHDRAWN": "<bold>{subject}</bold> left {workspace}."

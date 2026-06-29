@@ -51,9 +51,9 @@
     "dismiss": "닫기",
     "types": {
       "WORKSPACE_MEMBER_JOINED": "<bold>{actor}</bold>님이 {workspace} 워크스페이스에 가입했습니다.",
-      "WORKSPACE_MEMBER_ROLE_CHANGED": "<bold>{actor}</bold>님이 {workspace}에서 {subject}님의 역할을 변경했습니다.",
+      "WORKSPACE_MEMBER_ROLE_CHANGED": "<bold>{actor}</bold>님이 {workspace}에서 <bold>{subject}</bold>님의 역할을 {roleFrom}에서 {roleTo}로 변경했습니다.",
       "WORKSPACE_MEMBER_REMOVED": "<bold>{actor}</bold>님이 {workspace}에서 {subject}님을 제거했습니다.",
-      "WORKSPACE_ACCESS_REVOKED": "{workspace} 워크스페이스 접근 권한이 회수되었습니다.",
+      "WORKSPACE_ACCESS_REVOKED": "{workspace} 워크스페이스에서 제외되었습니다.",
       "WORKSPACE_MEMBER_WITHDRAWN": "<bold>{subject}</bold>님이 {workspace} 워크스페이스에서 탈퇴했습니다."
     }
   },
