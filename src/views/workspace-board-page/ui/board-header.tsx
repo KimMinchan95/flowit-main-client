@@ -1,7 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
-
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -22,10 +20,7 @@ export function BoardHeader({ workspaceId, workspaceName, onCreateTask, onInvite
     const t = useTranslations('board');
     const { data } = useWorkspaceMembersQuery({ workspaceId, enabled: !!workspaceId });
 
-    const members = useMemo(
-        () => data?.members.filter(member => member.status === 'ACTIVE').slice(0, MAX_VISIBLE_MEMBERS) ?? [],
-        [data?.members],
-    );
+    const members = data?.members.filter(member => member.status === 'ACTIVE').slice(0, MAX_VISIBLE_MEMBERS) ?? [];
 
     return (
         <div className="mb-8 flex shrink-0 items-center justify-between gap-4 overflow-x-auto pb-2">

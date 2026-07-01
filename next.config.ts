@@ -8,6 +8,7 @@ const apiProxyTarget = process.env.API_PROXY_TARGET ?? 'http://localhost:8080';
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
+    reactCompiler: true,
     async rewrites() {
         return [
             {

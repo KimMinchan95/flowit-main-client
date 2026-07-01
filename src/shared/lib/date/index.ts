@@ -1,4 +1,5 @@
 export { DATE_INPUT_FORMAT, dayjs } from './dayjs';
+export { formatRelativeEpochSeconds } from './format-relative-epoch-seconds';
 export { formatEpochSecondsRelativeTime } from './relative-time';
 export {
     dateInputToEpochSeconds,

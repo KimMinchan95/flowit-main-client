@@ -2,16 +2,14 @@
 
 import { useState } from 'react';
 
-import { Calendar } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { MemberAvatar } from '@entities/member';
+import { TaskScheduleText } from '@entities/task';
 
 import { cn } from '@shared/lib';
-import { formatEpochSeconds, getTaskScheduleStatus } from '@shared/lib/date';
 
 import type { Task, TaskPriority } from '@entities/task';
-import type { TaskScheduleStatus } from '@shared/lib/date';
 
 type TaskCardProps = {
     task: Task;
@@ -25,43 +23,9 @@ const PRIORITY_CLASSNAME: Record<TaskPriority, string> = {
     LOW: 'border-slate-100 bg-slate-50 text-slate-600',
 };
 
-const SCHEDULE_TEXT_CLASSNAME: Record<TaskScheduleStatus, string> = {
-    upcoming: 'text-slate-500',
-    active: 'text-emerald-600',
-    overdue: 'text-rose-600',
-};
-
-const SCHEDULE_ICON_CLASSNAME: Record<TaskScheduleStatus, string> = {
-    upcoming: 'text-slate-400',
-    active: 'text-emerald-500',
-    overdue: 'text-rose-500',
-};
-
-function formatTaskSchedule(task: Task, startLabel: string, dueLabel: string) {
-    const startDate = formatEpochSeconds(task.startDate);
-    const dueDate = formatEpochSeconds(task.dueDate);
-
-    if (startDate && dueDate) {
-        return `${startDate} ~ ${dueDate}`;
-    }
-
-    if (startDate) {
-        return `${startLabel} ${startDate}`;
-    }
-
-    if (dueDate) {
-        return `${dueLabel} ${dueDate}`;
-    }
-
-    return null;
-}
-
 export function TaskCard({ task, onClick, onDragStart }: TaskCardProps) {
     const t = useTranslations('board');
     const [isDragging, setIsDragging] = useState(false);
-
-    const scheduleLabel = formatTaskSchedule(task, t('taskStartDate'), t('taskDueDate'));
-    const scheduleStatus = getTaskScheduleStatus(task.startDate, task.dueDate);
 
     const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
         setIsDragging(true);
@@ -100,20 +64,14 @@ export function TaskCard({ task, onClick, onDragStart }: TaskCardProps) {
                 {task.title}
             </h4>
 
-            {scheduleLabel ? (
-                <div
-                    className={cn(
-                        'mb-4 flex items-center gap-1.5 text-xs font-semibold',
-                        scheduleStatus ? SCHEDULE_TEXT_CLASSNAME[scheduleStatus] : 'text-slate-500',
-                    )}
-                >
-                    <Calendar
-                        className={cn(
-                            'size-3.5 shrink-0',
-                            scheduleStatus ? SCHEDULE_ICON_CLASSNAME[scheduleStatus] : 'text-slate-400',
-                        )}
+            {task.startDate || task.dueDate ? (
+                <div className="mb-4">
+                    <TaskScheduleText
+                        startDate={task.startDate}
+                        dueDate={task.dueDate}
+                        className="text-xs"
+                        textClassName="text-xs"
                     />
-                    <span>{scheduleLabel}</span>
                 </div>
             ) : null}
 
@@ -133,7 +91,12 @@ export function TaskCard({ task, onClick, onDragStart }: TaskCardProps) {
             <div className="mt-auto flex items-center justify-between gap-3">
                 {task.assignee ? (
                     <div className="flex min-w-0 items-center gap-2">
-                        <MemberAvatar name={task.assignee.name} size="sm" />
+                        <MemberAvatar
+                            name={task.assignee.name}
+                            workspaceId={task.workspaceId}
+                            memberId={task.assignee.memberId}
+                            size="sm"
+                        />
                         <span className="truncate text-sm font-bold text-slate-500">{task.assignee.name}</span>
                     </div>
                 ) : (

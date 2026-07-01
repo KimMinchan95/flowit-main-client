@@ -17,11 +17,11 @@ export {
     useMeProfileImageQuery,
     useMeWorkspacesQuery,
     useMeUserQuery,
-    useProfileImageObjectUrl,
     useUpdateMePasswordMutation,
     useUpdateMeProfileImageMutation,
     useUpdateMeUserMutation,
 } from './model';
+export { createProfileImageObjectUrl } from './lib/create-profile-image-object-url';
 export type {
     JoinUserData,
     JoinUserRequest,

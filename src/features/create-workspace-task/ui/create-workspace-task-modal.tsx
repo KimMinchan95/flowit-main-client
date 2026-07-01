@@ -19,7 +19,14 @@ export function CreateWorkspaceTaskModal({ workspaceId, open, initialStatus, onC
     const formKey = `${workspaceId}-${initialStatus}`;
 
     return (
-        <Modal open={open} title={t('title')} onClose={onClose} className="max-w-5xl">
+        <Modal
+            open={open}
+            title={t('title')}
+            onClose={onClose}
+            className="max-w-5xl"
+            overlayClassName="overflow-hidden"
+            bodyClassName="flex flex-col overflow-hidden py-0"
+        >
             {open ? (
                 <CreateTaskForm
                     key={formKey}

@@ -11,9 +11,11 @@ type UseWorkspaceMembersQueryProps = {
 };
 
 export function useWorkspaceMembersQuery({ workspaceId, enabled = true }: UseWorkspaceMembersQueryProps) {
+    const normalizedWorkspaceId = String(workspaceId);
+
     return useQuery({
-        queryKey: memberQueryKeys.list(workspaceId),
-        queryFn: () => getWorkspaceMembers(workspaceId),
-        enabled,
+        queryKey: memberQueryKeys.list(normalizedWorkspaceId),
+        queryFn: () => getWorkspaceMembers(normalizedWorkspaceId),
+        enabled: enabled && Boolean(workspaceId),
     });
 }

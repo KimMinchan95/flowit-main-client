@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "python3 .cursor/hooks/handler.py session_start"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "python3 .cursor/hooks/handler.py session_end"
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "python3 .cursor/hooks/handler.py user_prompt",
+        "matcher": "UserPromptSubmit"
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "python3 .cursor/hooks/handler.py guard",
+        "matcher": "Write|StrReplace|Delete|EditNotebook|ApplyPatch"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "python3 .cursor/hooks/handler.py log_post_tool"
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": "python3 .cursor/hooks/handler.py log_tool_failure"
+      }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "python3 .cursor/hooks/handler.py agent_response"
+      }
+    ]
+  }
+}

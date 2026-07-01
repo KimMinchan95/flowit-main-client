@@ -10,9 +10,17 @@ type BoardContentProps = {
     tasks: Task[];
     onTaskStatusChange: (taskId: number, status: TaskStatus) => void;
     onAddTask?: (status: TaskStatus) => void;
+    onTaskClick?: (task: Task) => void;
 };
 
-export function BoardContent({ isPending, isError, tasks, onTaskStatusChange, onAddTask }: BoardContentProps) {
+export function BoardContent({
+    isPending,
+    isError,
+    tasks,
+    onTaskStatusChange,
+    onAddTask,
+    onTaskClick,
+}: BoardContentProps) {
     const t = useTranslations('board');
 
     if (isPending) {
@@ -33,7 +41,12 @@ export function BoardContent({ isPending, isError, tasks, onTaskStatusChange, on
 
     return (
         <div className="flex min-h-0 flex-1 flex-col">
-            <KanbanBoard tasks={tasks} onTaskStatusChange={onTaskStatusChange} onAddTask={onAddTask} />
+            <KanbanBoard
+                tasks={tasks}
+                onTaskStatusChange={onTaskStatusChange}
+                onAddTask={onAddTask}
+                onTaskClick={onTaskClick}
+            />
         </div>
     );
 }

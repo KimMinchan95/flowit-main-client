@@ -7,9 +7,9 @@ import { PencilIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import {
+    createProfileImageObjectUrl,
     useMeProfileImageQuery,
     useMeUserQuery,
-    useProfileImageObjectUrl,
     useUpdateMeProfileImageMutation,
 } from '@entities/user';
 
@@ -31,7 +31,7 @@ export function UserProfile() {
     const { data: profileImageBlob } = useMeProfileImageQuery({
         profileImageFileId: meUser?.profileImageFileId,
     });
-    const profileImageObjectUrl = useProfileImageObjectUrl(profileImageBlob);
+    const profileImageObjectUrl = createProfileImageObjectUrl(profileImageBlob);
     const {
         mutate: updateProfileImageMutate,
         isPending: isUploadingProfileImage,

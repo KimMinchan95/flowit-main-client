@@ -12,16 +12,32 @@ import { cn } from '@shared/lib';
 const ACTIVE_CLASSNAME = 'bg-white text-slate-900 shadow-sm hover:bg-white';
 const INACTIVE_CLASSNAME = 'text-slate-500 hover:bg-transparent hover:text-slate-700';
 
-const TEXTAREA_CLASSNAME =
-    'h-full min-h-full resize-none border-0 bg-transparent p-1 font-medium text-slate-900 shadow-none focus:border-transparent focus:bg-transparent focus:ring-0';
+const EDITOR_SIZE_CLASSNAMES = {
+    default: {
+        wrapper: 'min-h-[320px] lg:min-h-[400px]',
+        content: 'min-h-[280px] lg:min-h-[320px]',
+        field: 'min-h-[280px] lg:min-h-[320px]',
+        rows: 12,
+    },
+    compact: {
+        wrapper: 'min-h-[120px]',
+        content: 'min-h-[100px]',
+        field: 'min-h-[100px]',
+        rows: 4,
+    },
+} as const;
 
 type MarkdownEditorTab = 'write' | 'preview';
+type MarkdownEditorSize = keyof typeof EDITOR_SIZE_CLASSNAMES;
 
 type MarkdownEditorProps = {
     value: string;
     onChange: (value: string) => void;
     placeholder?: string;
+    size?: MarkdownEditorSize;
     minHeightClassName?: string;
+    maxLength?: number;
+    disabled?: boolean;
     writeLabel?: string;
     previewLabel?: string;
     emptyPreviewLabel?: string;
@@ -33,7 +49,10 @@ export function MarkdownEditor({
     value,
     onChange,
     placeholder,
-    minHeightClassName = 'min-h-[200px] lg:min-h-[360px]',
+    size = 'default',
+    minHeightClassName,
+    maxLength,
+    disabled = false,
     writeLabel = 'Write',
     previewLabel = 'Preview',
     emptyPreviewLabel = 'Nothing to preview yet.',
@@ -42,6 +61,19 @@ export function MarkdownEditor({
 }: MarkdownEditorProps) {
     const [activeTab, setActiveTab] = useState<MarkdownEditorTab>('write');
     const [isExpanded, setIsExpanded] = useState(false);
+
+    const sizeClassNames = EDITOR_SIZE_CLASSNAMES[size];
+    const wrapperMinHeightClassName = minHeightClassName ?? sizeClassNames.wrapper;
+
+    const textareaClassName = cn(
+        'flex-1 resize-none rounded-xl border border-slate-200/80 bg-white p-4 text-sm font-medium text-slate-900 shadow-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20',
+        sizeClassNames.field,
+    );
+
+    const previewPanelClassName = cn(
+        'flex-1 overflow-y-auto rounded-xl border border-slate-100 bg-slate-50/60 p-4',
+        sizeClassNames.field,
+    );
 
     return (
         <>
@@ -53,6 +85,7 @@ export function MarkdownEditor({
                             variant="ghost"
                             size="sm"
                             shadow={false}
+                            disabled={disabled}
                             className={cn(
                                 'rounded-md px-3 py-1.5',
                                 activeTab === 'write' ? ACTIVE_CLASSNAME : INACTIVE_CLASSNAME,
@@ -66,6 +99,7 @@ export function MarkdownEditor({
                             variant="ghost"
                             size="sm"
                             shadow={false}
+                            disabled={disabled}
                             className={cn(
                                 'rounded-md px-3 py-1.5',
                                 activeTab === 'preview' ? ACTIVE_CLASSNAME : INACTIVE_CLASSNAME,
@@ -82,6 +116,7 @@ export function MarkdownEditor({
                         size="sm"
                         shadow={false}
                         iconOnly
+                        disabled={disabled}
                         icon={<Maximize2 className="size-4" />}
                         className="rounded-md text-slate-500 hover:bg-white hover:text-slate-700"
                         onClick={() => setIsExpanded(true)}
@@ -91,20 +126,21 @@ export function MarkdownEditor({
                     </Button>
                 </div>
 
-                <div className={cn('p-3', minHeightClassName)}>
+                <div className={cn('flex flex-col p-3', wrapperMinHeightClassName, sizeClassNames.content)}>
                     {activeTab === 'write' ? (
                         <Textarea
                             value={value}
                             onChange={event => onChange(event.target.value)}
                             placeholder={placeholder}
-                            className={TEXTAREA_CLASSNAME}
+                            rows={sizeClassNames.rows}
+                            maxLength={maxLength}
+                            disabled={disabled}
+                            className={textareaClassName}
                         />
                     ) : (
-                        <MarkdownPreview
-                            value={value}
-                            emptyLabel={emptyPreviewLabel}
-                            className="h-full overflow-y-auto"
-                        />
+                        <div className={previewPanelClassName}>
+                            <MarkdownPreview value={value} emptyLabel={emptyPreviewLabel} />
+                        </div>
                     )}
                 </div>
             </div>

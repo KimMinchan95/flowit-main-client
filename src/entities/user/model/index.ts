@@ -14,7 +14,6 @@ export type { UserStatus } from './user.types';
 export { useMeProfileImageQuery } from './use-me-profile-image-query';
 export { useMeWorkspacesQuery } from './use-me-workspaces-query';
 export { useMeUserQuery } from './use-me-user-query';
-export { useProfileImageObjectUrl } from './use-profile-image-object-url';
 export { useUpdateMePasswordMutation } from './use-update-me-password-mutation';
 export { useUpdateMeProfileImageMutation } from './use-update-me-profile-image-mutation';
 export { useUpdateMeUserMutation } from './use-update-me-user-mutation';

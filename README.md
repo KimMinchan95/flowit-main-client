@@ -72,15 +72,17 @@
 
 - [x] Task 생성 API 연동
 
-- [ ] Task 수정 모달 구현
-- [ ] Task 수정 API 연동
+- [x] Task 수정 모달 구현
+- [x] Task 수정 API 연동
 
-- [ ] Task 상세 보기 패널
-  - [ ] Side / Center 뷰 토글 기능
+- [x] Task 상세 보기 패널
+  - [x] Side / Center 뷰 토글 기능
 
 - [ ] Task 상세 조회 API 연동
-  - [ ] Task 상세 뷰 - 댓글 기능
-  - [ ] Task 상세 뷰 - 활동 로그(Activity Log)
+  - [x] Task 상세 뷰 - 댓글 기능
+  - [x] Task 상세 뷰 - 활동 로그(Activity Log)
+  - [ ] Task 상세 뷰 - 댓글 삭제, 수정
+  - [ ] Task 상세 뷰 - 댓글, 활동 로그 페이징 기능 추가
 
 ---
 

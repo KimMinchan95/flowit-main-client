@@ -19,8 +19,11 @@ export function useUpdateWorkspaceTaskProgressMutation({ workspaceId }: UseUpdat
         mutationKey: taskMutationKeys.updateProgress(workspaceId),
         mutationFn: ({ taskId, progress }: UpdateWorkspaceTaskProgressParams) =>
             updateWorkspaceTaskProgress(workspaceId, taskId, { progress }),
-        onSuccess: async () => {
+        onSuccess: async (_data, variables) => {
             await queryClient.invalidateQueries({ queryKey: taskQueryKeys.lists() });
+            await queryClient.invalidateQueries({
+                queryKey: taskQueryKeys.detail({ workspaceId, taskId: variables.taskId }),
+            });
         },
     });
 }

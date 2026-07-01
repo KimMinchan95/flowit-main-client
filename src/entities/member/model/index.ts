@@ -16,3 +16,4 @@ export { useUpdateWorkspaceMemberRoleMutation } from './use-update-workspace-mem
 export { useWithdrawMemberMutation } from './use-withdraw-member-mutation';
 export { useWorkspaceMemberProfileImageQuery } from './use-workspace-member-profile-image-query';
 export { useWorkspaceMembersQuery } from './use-workspace-members-query';
+export { useWorkspaceMemberNameMap } from './use-workspace-member-name-map';

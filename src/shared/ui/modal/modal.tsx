@@ -17,6 +17,7 @@ type ModalProps = {
     footer?: ReactNode;
     className?: string;
     overlayClassName?: string;
+    bodyClassName?: string;
     onClose?: () => void;
     showCloseButton?: boolean;
     captureEscape?: boolean;
@@ -30,6 +31,7 @@ export function Modal({
     footer,
     className,
     overlayClassName,
+    bodyClassName,
     onClose,
     showCloseButton = true,
     captureEscape = false,
@@ -109,7 +111,7 @@ export function Modal({
                             {description}
                         </p>
                     ) : null}
-                    <div className="min-h-0 flex-1 overflow-y-auto py-3">{children}</div>
+                    <div className={cn('min-h-0 flex-1 overflow-y-auto py-3', bodyClassName)}>{children}</div>
                     {footer ? <div className="flex shrink-0 items-center justify-end pt-4">{footer}</div> : null}
                 </div>
             </div>

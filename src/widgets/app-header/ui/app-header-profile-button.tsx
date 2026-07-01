@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { useLogoutMutation } from '@features/logout';
-import { useMeProfileImageQuery, useMeUserQuery, useProfileImageObjectUrl } from '@entities/user';
+import { createProfileImageObjectUrl, useMeProfileImageQuery, useMeUserQuery } from '@entities/user';
 
 import { useChangeLocale } from '@shared/i18n';
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@shared/ui';
@@ -16,7 +16,7 @@ export function AppHeaderProfileButton() {
     const { data: profileImageBlob } = useMeProfileImageQuery({
         profileImageFileId: meUser?.profileImageFileId,
     });
-    const profileImageObjectUrl = useProfileImageObjectUrl(profileImageBlob);
+    const profileImageObjectUrl = createProfileImageObjectUrl(profileImageBlob);
     const profileText = meUser?.nickname?.trim().slice(0, 1) || 'U';
     const { mutate } = useLogoutMutation();
 

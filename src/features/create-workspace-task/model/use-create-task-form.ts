@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { INITIAL_CREATE_TASK_FORM_STATE, MAX_TASK_TAGS } from './create-task-form.constants';
 
@@ -13,26 +13,23 @@ function normalizeTag(tag: string) {
 export function useCreateTaskForm() {
     const [form, setForm] = useState<CreateTaskFormState>({ ...INITIAL_CREATE_TASK_FORM_STATE });
 
-    const updateField = useCallback(
-        <TField extends CreateTaskFormField>(field: TField, value: CreateTaskFormValues[TField]) => {
-            setForm(previous => ({ ...previous, [field]: value }));
-        },
-        [],
-    );
+    const updateField = <TField extends CreateTaskFormField>(field: TField, value: CreateTaskFormValues[TField]) => {
+        setForm(previous => ({ ...previous, [field]: value }));
+    };
 
-    const updateDateField = useCallback((field: 'startDate' | 'dueDate', value: string) => {
+    const updateDateField = (field: 'startDate' | 'dueDate', value: string) => {
         if (!isValidDateInput(value)) {
             return;
         }
 
         setForm(previous => ({ ...previous, [field]: value }));
-    }, []);
+    };
 
-    const setTagInput = useCallback((tagInput: string) => {
+    const setTagInput = (tagInput: string) => {
         setForm(previous => ({ ...previous, tagInput }));
-    }, []);
+    };
 
-    const addTag = useCallback(() => {
+    const addTag = () => {
         setForm(previous => {
             const tag = normalizeTag(previous.tagInput);
 
@@ -46,14 +43,14 @@ export function useCreateTaskForm() {
                 tagInput: '',
             };
         });
-    }, []);
+    };
 
-    const removeTag = useCallback((tag: string) => {
+    const removeTag = (tag: string) => {
         setForm(previous => ({
             ...previous,
             tags: previous.tags.filter(currentTag => currentTag !== tag),
         }));
-    }, []);
+    };
 
     const isTagLimitReached = form.tags.length >= MAX_TASK_TAGS;
 

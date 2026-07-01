@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 type UseModalOptions = {
     defaultOpen?: boolean;
@@ -9,17 +9,17 @@ type UseModalOptions = {
 export function useModal({ defaultOpen = false }: UseModalOptions = {}) {
     const [open, setOpen] = useState(defaultOpen);
 
-    const onOpen = useCallback(() => {
+    const onOpen = () => {
         setOpen(true);
-    }, []);
+    };
 
-    const onClose = useCallback(() => {
+    const onClose = () => {
         setOpen(false);
-    }, []);
+    };
 
-    const onToggle = useCallback(() => {
+    const onToggle = () => {
         setOpen(prev => !prev);
-    }, []);
+    };
 
     return {
         open,

@@ -6,4 +6,5 @@ export { AuthCard } from './auth-card';
 export { Modal } from './modal';
 export { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, useDropdown } from './dropdown';
 export { PageTitle } from './page-title';
+export { TaskTagInput } from './task-tag-input/task-tag-input';
 export { AppToaster } from './toaster';

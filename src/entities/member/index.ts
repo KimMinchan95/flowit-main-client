@@ -12,6 +12,7 @@ export {
     useUpdateWorkspaceMemberRoleMutation,
     useWorkspaceMemberProfileImageQuery,
     useWithdrawMemberMutation,
+    useWorkspaceMemberNameMap,
     useWorkspaceMembersQuery,
 } from './model';
 export { MemberAvatar } from './ui';
