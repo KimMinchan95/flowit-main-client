@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import { StompConnection } from './stomp-connection';
 
@@ -34,18 +34,10 @@ export function WebSocketProvider({ children, accessToken }: WebSocketProviderPr
         };
     }, [accessToken, connection]);
 
-    const subscribe = useCallback<WebSocketContextValue['subscribe']>(
-        (destination, handler) => connection.subscribe(destination, handler),
-        [connection],
-    );
-
-    const value = useMemo<WebSocketContextValue>(
-        () => ({
-            connectionState,
-            subscribe,
-        }),
-        [connectionState, subscribe],
-    );
+    const value: WebSocketContextValue = {
+        connectionState,
+        subscribe: (destination, handler) => connection.subscribe(destination, handler),
+    };
 
     return <WebSocketContext.Provider value={value}>{children}</WebSocketContext.Provider>;
 }
