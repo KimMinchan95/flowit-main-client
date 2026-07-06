@@ -75,7 +75,7 @@ export function formatEpochSeconds(
 export type TaskScheduleStatus = 'upcoming' | 'active' | 'overdue';
 
 function toDayStart(epochSeconds: number | null | undefined) {
-    if (epochSeconds == null) {
+    if (epochSeconds === null || epochSeconds === undefined) {
         return null;
     }
 

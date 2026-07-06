@@ -35,7 +35,7 @@ export function MemberAvatar({
     className,
 }: MemberAvatarProps) {
     const useMeProfile = profileImageSource === 'me';
-    const shouldResolveFromMembers = workspaceId != null && profileImageUrl === undefined;
+    const shouldResolveFromMembers = workspaceId !== null && workspaceId !== undefined && profileImageUrl === undefined;
 
     const { data: membersData } = useWorkspaceMembersQuery({
         workspaceId: workspaceId!,
@@ -52,7 +52,7 @@ export function MemberAvatar({
     const { data: meUser } = useMeUserQuery({ enabled: useMeProfile });
     const { data: meProfileBlob } = useMeProfileImageQuery({
         profileImageFileId: meUser?.profileImageFileId,
-        enabled: useMeProfile && meUser?.profileImageFileId != null,
+        enabled: useMeProfile && meUser?.profileImageFileId !== null && meUser?.profileImageFileId !== undefined,
     });
 
     const { data: memberProfileBlob } = useWorkspaceMemberProfileImageQuery({

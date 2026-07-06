@@ -6,7 +6,7 @@ type FindMemberProfileImageUrlParams = {
 };
 
 export function findMemberProfileImageUrl({ members, memberId }: FindMemberProfileImageUrlParams): string | null {
-    if (!members?.length || memberId == null) {
+    if (!members?.length || memberId === null || memberId === undefined) {
         return null;
     }
 

@@ -1,5 +1,6 @@
 export { createWorkspaceTask } from './create-workspace-task';
 export { createWorkspaceTaskComment } from './create-workspace-task-comment';
+export { deleteWorkspaceTaskComment } from './delete-workspace-task-comment';
 export { getWorkspaceTask } from './get-workspace-task';
 export { getWorkspaceTaskComments } from './get-workspace-task-comments';
 export { getWorkspaceTaskHistories } from './get-workspace-task-histories';
@@ -7,3 +8,4 @@ export { getWorkspaceTasks } from './get-workspace-tasks';
 export { updateWorkspaceTask } from './update-workspace-task';
 export { updateWorkspaceTaskProgress } from './update-workspace-task-progress';
 export { updateWorkspaceTaskStatus } from './update-workspace-task-status';
+export { updateWorkspaceTaskComment } from './update-workspace-task-comment';

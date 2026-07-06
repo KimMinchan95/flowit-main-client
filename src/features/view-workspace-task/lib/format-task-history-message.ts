@@ -85,7 +85,7 @@ function formatElementSpecificValue(
 }
 
 function formatHistoryValue(element: string, value: unknown, context: FormatHistoryValueContext): string {
-    if (value == null || value === '') {
+    if (value === null || value === undefined || value === '') {
         return formatEmptyHistoryValue(element, context);
     }
 

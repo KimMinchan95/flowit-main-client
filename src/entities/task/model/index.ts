@@ -1,4 +1,12 @@
 export {
+    DELETE_WORKSPACE_TASK_COMMENT_ERROR_CODES,
+    isDeleteWorkspaceTaskCommentErrorCode,
+} from './delete-workspace-task-comment-error-codes';
+export {
+    UPDATE_WORKSPACE_TASK_COMMENT_ERROR_CODES,
+    isUpdateWorkspaceTaskCommentErrorCode,
+} from './update-workspace-task-comment-error-codes';
+export {
     CREATE_WORKSPACE_TASK_COMMENT_ERROR_CODES,
     isCreateWorkspaceTaskCommentErrorCode,
 } from './create-workspace-task-comment-error-codes';
@@ -22,6 +30,8 @@ export {
     UPDATE_WORKSPACE_TASK_STATUS_ERROR_CODES,
 } from './update-workspace-task-status-error-codes';
 export { taskMutationKeys } from './task-mutation-keys';
+export type { DeleteWorkspaceTaskCommentErrorCode } from './delete-workspace-task-comment-error-codes';
+export type { UpdateWorkspaceTaskCommentErrorCode } from './update-workspace-task-comment-error-codes';
 export type { CreateWorkspaceTaskCommentErrorCode } from './create-workspace-task-comment-error-codes';
 export type { GetWorkspaceTaskCommentsErrorCode } from './get-workspace-task-comments-error-codes';
 export type { GetWorkspaceTaskHistoriesErrorCode } from './get-workspace-task-histories-error-codes';
@@ -32,6 +42,8 @@ export type { UpdateWorkspaceTaskProgressErrorCode } from './update-workspace-ta
 export type { UpdateWorkspaceTaskStatusErrorCode } from './update-workspace-task-status-error-codes';
 export { taskQueryKeys } from './task-query-keys';
 export { useCreateWorkspaceTaskCommentMutation } from './use-create-workspace-task-comment-mutation';
+export { useDeleteWorkspaceTaskCommentMutation } from './use-delete-workspace-task-comment-mutation';
+export { useUpdateWorkspaceTaskCommentMutation } from './use-update-workspace-task-comment-mutation';
 export { useWorkspaceTaskCommentsQuery } from './use-workspace-task-comments-query';
 export { useWorkspaceTaskHistoriesQuery } from './use-workspace-task-histories-query';
 export { useCreateWorkspaceTaskMutation } from './use-create-workspace-task-mutation';
@@ -40,6 +52,15 @@ export { useUpdateWorkspaceTaskMutation } from './use-update-workspace-task-muta
 export { useUpdateWorkspaceTaskStatusMutation } from './use-update-workspace-task-status-mutation';
 export { useWorkspaceTaskQuery } from './use-workspace-task-query';
 export { useWorkspaceTasksQuery } from './use-workspace-tasks-query';
+export type {
+    DeleteWorkspaceTaskCommentParams,
+    DeleteWorkspaceTaskCommentResponse,
+} from './delete-workspace-task-comment.types';
+export type {
+    UpdateWorkspaceTaskCommentParams,
+    UpdateWorkspaceTaskCommentRequest,
+    UpdateWorkspaceTaskCommentResponse,
+} from './update-workspace-task-comment.types';
 export type {
     CreateWorkspaceTaskCommentRequest,
     CreateWorkspaceTaskCommentResponse,

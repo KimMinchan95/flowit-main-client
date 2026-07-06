@@ -3,6 +3,10 @@ export const taskMutationKeys = {
     create: (workspaceId: string | number) => [...taskMutationKeys.all, 'create', workspaceId] as const,
     createComment: (workspaceId: string | number, taskId: number) =>
         [...taskMutationKeys.all, 'createComment', workspaceId, taskId] as const,
+    updateComment: (workspaceId: string | number, taskId: number) =>
+        [...taskMutationKeys.all, 'updateComment', workspaceId, taskId] as const,
+    deleteComment: (workspaceId: string | number, taskId: number) =>
+        [...taskMutationKeys.all, 'deleteComment', workspaceId, taskId] as const,
     updateProgress: (workspaceId: string | number) => [...taskMutationKeys.all, 'updateProgress', workspaceId] as const,
     updateStatus: (workspaceId: string | number) => [...taskMutationKeys.all, 'updateStatus', workspaceId] as const,
     updateTask: (workspaceId: string | number) => [...taskMutationKeys.all, 'updateTask', workspaceId] as const,

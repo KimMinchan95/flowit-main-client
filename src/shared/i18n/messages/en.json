@@ -278,6 +278,14 @@
       "commentSubmitting": "Posting...",
       "commentsLoadFailed": "Failed to load comments",
       "commentSubmit": "Post comment",
+      "commentEdit": "Edit comment",
+      "commentDelete": "Delete comment",
+      "commentEditSaving": "Saving...",
+      "commentEditExpandedTitle": "Edit comment",
+      "commentDeleteTitle": "Delete comment",
+      "commentDeleteDescription": "Delete this comment? This action cannot be undone.",
+      "commentDeleteConfirm": "Delete",
+      "commentDeleteDeleting": "Deleting...",
       "commentMarkdownExpandedTitle": "Write comment",
       "commentLength": "{count}/{max}",
       "markdownWrite": "Write",
@@ -358,6 +366,27 @@
       "AUTH_403_001": "You are not an active member of this workspace",
       "WORKSPACE_404_001": "This workspace does not exist",
       "TASK_404_001": "This task does not exist",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "updateCommentFailed": "Failed to update comment",
+    "updateCommentUnknownError": "An unknown error occurred. Please try again later",
+    "updateCommentErrors": {
+      "VALIDATION_400_001": "Comment content is invalid",
+      "AUTH_401_001": "You need to sign in or your session has expired",
+      "AUTH_403_001": "You can only edit comments you wrote",
+      "WORKSPACE_404_001": "This workspace does not exist",
+      "TASK_404_001": "This task does not exist",
+      "TASK_COMMENT_404_001": "This comment does not exist or has already been deleted",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "deleteCommentFailed": "Failed to delete comment",
+    "deleteCommentUnknownError": "An unknown error occurred. Please try again later",
+    "deleteCommentErrors": {
+      "AUTH_401_001": "You need to sign in or your session has expired",
+      "AUTH_403_001": "You can only delete comments you wrote",
+      "WORKSPACE_404_001": "This workspace does not exist",
+      "TASK_404_001": "This task does not exist",
+      "TASK_COMMENT_404_001": "This comment does not exist or has already been deleted",
       "INTERNAL_500_001": "A server error occurred. Please try again later"
     },
     "taskHistory": {
