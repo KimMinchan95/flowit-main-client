@@ -66,6 +66,7 @@ app → views → widgets → features → entities → shared
 - `src/pages/**` — Next.js Pages Router 예약 경로이므로 FSD 레이어로 사용하지 않는다.
 - Server Component / Client Component 구분은 Next.js 16 문서 기준.
 - RSC에서 클라이언트 전용 코드는 `'use client'` 경계 아래로.
+- **React Compiler** (`reactCompiler: true`): 성능 목적의 `useMemo` / `useCallback` / `memo`는 기본적으로 쓰지 않는다. 상세는 `.cursor/rules/react-compiler.mdc`.
 
 ## 파일·네이밍
 

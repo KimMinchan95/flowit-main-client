@@ -1,0 +1,20 @@
+---
+description: == / != 금지, === / !== 및 null·undefined 분리 검사
+globs: **/*.{ts,tsx,js,jsx,mjs,cjs}
+alwaysApply: false
+---
+
+# Strict equality only
+
+- `==` / `!=` 사용 금지. 항상 `===` / `!==`만 사용한다.
+- null/undefined 동시 검사가 필요하면 `value != null` 대신 아래처럼 작성한다.
+
+```typescript
+// Bad
+if (value != null) { ... }
+
+// Good
+if (value !== null && value !== undefined) { ... }
+```
+
+- ESLint `eqeqeq: ['error', 'always']` 규칙을 따른다.

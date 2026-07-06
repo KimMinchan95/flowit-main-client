@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
             import: importPlugin,
         },
         rules: {
+            eqeqeq: ['error', 'always'],
             'import/no-duplicates': 'error',
             'import/newline-after-import': ['warn', { count: 1 }],
             // import 순서는 Prettier(@ianvs/prettier-plugin-sort-imports)에서만 관리
