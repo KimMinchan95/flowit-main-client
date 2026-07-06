@@ -36,7 +36,10 @@
     "join": "참여하기",
     "joining": "참여 중...",
     "copy": "복사",
-    "copied": "복사됨"
+    "copied": "복사됨",
+    "paginationPrev": "이전",
+    "paginationNext": "다음",
+    "paginationPage": "{current} / {total}"
   },
   "notification": {
     "title": "알림",

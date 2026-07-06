@@ -2,6 +2,7 @@
 
 import { markdownPreviewComponents } from './markdown-preview-components';
 import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 
 import { cn } from '@shared/lib';
@@ -20,11 +21,11 @@ export function MarkdownPreview({ value, emptyLabel, className }: MarkdownPrevie
     return (
         <div
             className={cn(
-                'text-sm leading-relaxed text-slate-900 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0',
+                'text-sm leading-relaxed text-slate-900 [&>*+*]:mt-2 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0',
                 className,
             )}
         >
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownPreviewComponents}>
+            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={markdownPreviewComponents}>
                 {value}
             </ReactMarkdown>
         </div>

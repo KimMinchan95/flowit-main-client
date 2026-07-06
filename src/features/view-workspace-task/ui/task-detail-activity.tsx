@@ -1,5 +1,8 @@
 'use client';
 
+import { useState } from 'react';
+
+import { ListPagination } from './list-pagination';
 import { Loader2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -12,6 +15,8 @@ import { formatEpochSecondsRelativeTime } from '@shared/lib/date';
 import { formatTaskHistoryMessage } from '../lib/format-task-history-message';
 
 import type { GetWorkspaceTaskHistoriesErrorCode, TaskHistoryItem } from '@entities/task';
+
+const TASK_DETAIL_ACTIVITY_PAGE_SIZE = 20;
 
 const HISTORY_CHANGE_ELEMENTS = [
     'STATUS',
@@ -38,8 +43,20 @@ export function TaskDetailActivity({ workspaceId, taskId }: TaskDetailActivityPr
     const tColumns = useTranslations('board.columns');
     const tErrors = useTranslations('board.taskHistoryErrors');
 
+    const [page, setPage] = useState(0);
+
     const memberNameByMemberId = useWorkspaceMemberNameMap({ workspaceId });
-    const { data: historyPage, isPending, isError, error } = useWorkspaceTaskHistoriesQuery({ workspaceId, taskId });
+    const {
+        data: historyPage,
+        isPending,
+        isError,
+        error,
+    } = useWorkspaceTaskHistoriesQuery({
+        workspaceId,
+        taskId,
+        page,
+        size: TASK_DETAIL_ACTIVITY_PAGE_SIZE,
+    });
 
     const histories = historyPage?.items ?? [];
     const totalCount = historyPage?.totalCount ?? 0;
@@ -143,11 +160,12 @@ export function TaskDetailActivity({ workspaceId, taskId }: TaskDetailActivityPr
                     </div>
                 </div>
             ))}
-            {totalCount > histories.length ? (
-                <p className="text-center text-xs font-medium text-slate-400">
-                    {t('activityTruncated', { shown: histories.length, total: totalCount })}
-                </p>
-            ) : null}
+            <ListPagination
+                page={page}
+                pageSize={TASK_DETAIL_ACTIVITY_PAGE_SIZE}
+                totalCount={totalCount}
+                onPageChange={setPage}
+            />
         </div>
     );
 }

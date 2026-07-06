@@ -36,7 +36,10 @@
     "join": "Join",
     "joining": "Joining...",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "paginationPrev": "Previous",
+    "paginationNext": "Next",
+    "paginationPage": "{current} / {total}"
   },
   "notification": {
     "title": "Notifications",

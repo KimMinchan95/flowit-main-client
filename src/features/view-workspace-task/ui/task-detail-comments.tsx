@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { ListPagination } from './list-pagination';
 import { Loader2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -19,6 +20,10 @@ import { MarkdownPreview } from '@shared/ui/markdown-editor/markdown-preview';
 import { getMappedApiErrorMessage } from '@shared/api';
 import { formatEpochSecondsRelativeTime } from '@shared/lib/date';
 
+import { getLastPageIndexAfterItemAdded } from '../lib/get-last-page-index';
+
+const TASK_DETAIL_COMMENTS_PAGE_SIZE = 20;
+
 type TaskDetailCommentsProps = {
     workspaceId: string | number;
     taskId: number;
@@ -32,13 +37,19 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
     const tCreateErrors = useTranslations('board.createCommentErrors');
 
     const [commentInput, setCommentInput] = useState('');
+    const [page, setPage] = useState(0);
 
     const {
         data: commentPage,
         isPending: isCommentsPending,
         isError: isCommentsError,
         error: commentsError,
-    } = useWorkspaceTaskCommentsQuery({ workspaceId, taskId });
+    } = useWorkspaceTaskCommentsQuery({
+        workspaceId,
+        taskId,
+        page,
+        size: TASK_DETAIL_COMMENTS_PAGE_SIZE,
+    });
 
     const {
         mutateAsync: createCommentAsync,
@@ -88,6 +99,7 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
         try {
             await createCommentAsync({ contentMarkdown: trimmedComment });
             setCommentInput('');
+            setPage(getLastPageIndexAfterItemAdded(totalCount, TASK_DETAIL_COMMENTS_PAGE_SIZE));
         } catch {
             // surfaced via mutation state
         }
@@ -141,10 +153,13 @@ export function TaskDetailComments({ workspaceId, taskId }: TaskDetailCommentsPr
                     <p className="py-8 text-center text-sm font-medium text-slate-400">{t('noComments')}</p>
                 ) : null}
 
-                {!isCommentsPending && !commentsErrorMessage && totalCount > comments.length ? (
-                    <p className="text-center text-xs font-medium text-slate-400">
-                        {t('commentsTruncated', { shown: comments.length, total: totalCount })}
-                    </p>
+                {!isCommentsPending && !commentsErrorMessage ? (
+                    <ListPagination
+                        page={page}
+                        pageSize={TASK_DETAIL_COMMENTS_PAGE_SIZE}
+                        totalCount={totalCount}
+                        onPageChange={setPage}
+                    />
                 ) : null}
             </div>
 
