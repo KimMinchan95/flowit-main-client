@@ -41,6 +41,20 @@ function formatTagsValue(value: unknown): string {
     return value.map(tag => String(tag)).join(', ');
 }
 
+function formatAssigneeValue(value: unknown, memberNameByMemberId: Map<number, string>): string | null {
+    if (typeof value !== 'object' || value === null) {
+        return null;
+    }
+    const assignee = value as { memberId?: number; displayName?: string | null };
+    if (assignee.displayName) {
+        return assignee.displayName;
+    }
+    if (typeof assignee.memberId !== 'number') {
+        return null;
+    }
+    return memberNameByMemberId.get(assignee.memberId) ?? String(assignee.memberId);
+}
+
 function formatEmptyHistoryValue(
     element: string,
     { formatEmpty, formatUnassigned }: Pick<FormatHistoryValueContext, 'formatEmpty' | 'formatUnassigned'>,
@@ -73,8 +87,8 @@ function formatElementSpecificValue(
         return `${value}%`;
     }
 
-    if (element === 'ASSIGNEE' && typeof value === 'number') {
-        return memberNameByMemberId.get(value) ?? String(value);
+    if (element === 'ASSIGNEE') {
+        return formatAssigneeValue(value, memberNameByMemberId);
     }
 
     if (element === 'TAGS') {
