@@ -2,6 +2,7 @@ export { flattenNotificationsPages } from './flatten-notifications-pages';
 export { invalidateNotificationQueries } from './invalidate-notification-queries';
 export { markAllNotificationsReadInCache } from './mark-all-notifications-read-in-cache';
 export { parseNotificationWsMessage } from './parse-notification-ws-message';
+export { resetNotificationsInfiniteQuery } from './reset-notifications-infinite-query';
 export { getNotificationMessageValues } from './get-notification-message-values';
 export { getNotificationRoleChange } from './get-notification-role-change';
 export { getNotificationStatusChange } from './get-notification-status-change';

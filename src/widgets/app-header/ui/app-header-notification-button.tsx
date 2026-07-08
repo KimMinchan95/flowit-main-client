@@ -1,11 +1,13 @@
 'use client';
 
 import { NotificationList } from './notification-list';
+import { useQueryClient } from '@tanstack/react-query';
 import { Bell } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import {
     flattenNotificationsPages,
+    resetNotificationsInfiniteQuery,
     useMarkNotificationsReadAllMutation,
     useMarkNotificationsSeenMutation,
     useNotificationsInfiniteQuery,
@@ -17,6 +19,7 @@ import { cn } from '@shared/lib';
 
 function NotificationDropdownContent() {
     const t = useTranslations('notification');
+    const queryClient = useQueryClient();
     const { isOpen } = useDropdown();
     const { data: summary } = useNotificationsSummaryQuery();
     const { mutate: markNotificationsSeen } = useMarkNotificationsSeenMutation();
@@ -30,6 +33,7 @@ function NotificationDropdownContent() {
 
     const handleOpenNotifications = () => {
         if (!isOpen) {
+            resetNotificationsInfiniteQuery(queryClient);
             markNotificationsSeen();
         }
     };
