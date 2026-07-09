@@ -11,6 +11,8 @@ export type {
     NotificationChange,
     NotificationLink,
     NotificationLinkType,
+    NotificationProfile,
+    NotificationProfileSourceType,
     NotificationScope,
     NotificationsResponse,
     NotificationSubject,

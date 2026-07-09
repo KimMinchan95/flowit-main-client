@@ -19,6 +19,14 @@ export type NotificationSubjectType = 'TASK' | 'WORKSPACE_MEMBER';
 
 export type NotificationLinkType = 'NONE' | 'TASK_DETAIL' | 'WORKSPACE_MEMBERS';
 
+export type NotificationProfileSourceType = 'ACTOR' | 'SUBJECT' | 'RECIPIENT';
+
+export type NotificationProfile = {
+    source: NotificationProfileSourceType;
+    profileImageUrl: string | null;
+    displayName: string | null;
+};
+
 export type NotificationScope = {
     type: NotificationScopeType;
     id: number;
@@ -29,7 +37,6 @@ export type NotificationActor = {
     type: NotificationActorType;
     id: number | null;
     name: string | null;
-    profileImageUrl: string | null;
 };
 
 export type NotificationSubject = {
@@ -53,6 +60,7 @@ export type Notification = {
     id: number;
     type: NotificationAlertType;
     occurredAt: number;
+    profile: NotificationProfile;
     scope: NotificationScope;
     actor: NotificationActor;
     subject: NotificationSubject;
