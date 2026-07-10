@@ -3,6 +3,8 @@
 import { Activity, AlertTriangle, Clock, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import { cn } from '@shared/lib';
+
 import type { WorkspaceTaskIndicatorsResponse } from '@entities/task';
 import type { LucideIcon } from 'lucide-react';
 
@@ -77,19 +79,28 @@ export function DashboardIndicatorCards({ indicators, isPending }: DashboardIndi
                     >
                         <div className="flex items-center justify-between">
                             <span
-                                className={`text-[15px] font-bold tracking-tight text-slate-600 ${card.labelClassName ?? ''}`}
+                                className={cn(
+                                    'text-[15px] font-bold tracking-tight text-slate-600',
+                                    card.labelClassName,
+                                )}
                             >
                                 {t(card.labelKey)}
                             </span>
                             <div
-                                className={`flex h-9 w-9 items-center justify-center rounded-xl ${card.iconClassName}`}
+                                className={cn(
+                                    'flex h-9 w-9 items-center justify-center rounded-xl',
+                                    card.iconClassName,
+                                )}
                             >
                                 <Icon size={18} strokeWidth={2.5} />
                             </div>
                         </div>
                         <div className="flex flex-col">
                             <span
-                                className={`text-[40px] leading-none font-extrabold tracking-tight text-slate-900 ${card.valueClassName ?? ''}`}
+                                className={cn(
+                                    'text-[40px] leading-none font-extrabold tracking-tight text-slate-900',
+                                    card.valueClassName,
+                                )}
                             >
                                 {value}
                             </span>

@@ -82,7 +82,7 @@ export function TaskCard({ task, onClick, onDragStart }: TaskCardProps) {
                 </div>
                 <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
                     <div
-                        className={`h-full rounded-full bg-blue-500 transition-all duration-500`}
+                        className="h-full rounded-full bg-blue-500 transition-all duration-500"
                         style={{ width: `${task.progress}%` }}
                     />
                 </div>

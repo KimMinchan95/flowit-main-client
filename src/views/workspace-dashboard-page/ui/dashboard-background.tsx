@@ -1,5 +1,7 @@
 import './dashboard-background.css';
 
+import { cn } from '@shared/lib';
+
 type ConfettiParticle = {
     id: string;
     top: string;
@@ -262,7 +264,7 @@ function ConfettiShape({ particle }: { particle: ConfettiParticle }) {
     if (shape === 'ring') {
         return (
             <div
-                className={`rounded-full border-2 bg-transparent ${color}`}
+                className={cn('rounded-full border-2 bg-transparent', color)}
                 style={{ width: size, height: size, transform: `rotate(${rotate}deg)` }}
             />
         );
@@ -271,7 +273,7 @@ function ConfettiShape({ particle }: { particle: ConfettiParticle }) {
     if (shape === 'pill') {
         return (
             <div
-                className={`rounded-full ${color}`}
+                className={cn('rounded-full', color)}
                 style={{ width: size * 2.2, height: size * 0.55, transform: `rotate(${rotate}deg)` }}
             />
         );
@@ -280,13 +282,13 @@ function ConfettiShape({ particle }: { particle: ConfettiParticle }) {
     if (shape === 'square') {
         return (
             <div
-                className={`rounded-[2px] ${color}`}
+                className={cn('rounded-[2px]', color)}
                 style={{ width: size, height: size, transform: `rotate(${rotate}deg)` }}
             />
         );
     }
 
-    return <div className={`rounded-full ${color}`} style={{ width: size, height: size }} />;
+    return <div className={cn('rounded-full', color)} style={{ width: size, height: size }} />;
 }
 
 export function DashboardBackground() {
@@ -303,7 +305,7 @@ export function DashboardBackground() {
                 {CONFETTI_PARTICLES.map(particle => (
                     <div
                         key={particle.id}
-                        className={`confetti-particle confetti-${particle.animation}`}
+                        className={cn('confetti-particle', `confetti-${particle.animation}`)}
                         style={{
                             top: particle.top,
                             right: particle.right,
