@@ -1,6 +1,6 @@
 'use client';
 
-import { Activity, CheckCircle2, Clock, FileText } from 'lucide-react';
+import { Activity, AlertTriangle, Clock, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import type { WorkspaceTaskIndicatorsResponse } from '@entities/task';
@@ -12,10 +12,10 @@ type DashboardIndicatorCardsProps = {
 };
 
 type IndicatorCardConfig = {
-    key: 'total' | 'inProgress' | 'dueToday' | 'pendingReview';
+    key: 'total' | 'inProgress' | 'dueToday' | 'expired';
     valueKey: keyof WorkspaceTaskIndicatorsResponse;
-    labelKey: 'total' | 'inProgress' | 'dueToday' | 'pendingReview';
-    descriptionKey: 'totalDescription' | 'inProgressDescription' | 'dueTodayDescription' | 'pendingReviewDescription';
+    labelKey: 'total' | 'inProgress' | 'dueToday' | 'expired';
+    descriptionKey: 'totalDescription' | 'inProgressDescription' | 'dueTodayDescription' | 'expiredDescription';
     icon: LucideIcon;
     iconClassName: string;
     valueClassName?: string;
@@ -50,12 +50,14 @@ const INDICATOR_CARDS: IndicatorCardConfig[] = [
         labelClassName: 'text-orange-600',
     },
     {
-        key: 'pendingReview',
-        valueKey: 'pendingReview',
-        labelKey: 'pendingReview',
-        descriptionKey: 'pendingReviewDescription',
-        icon: CheckCircle2,
-        iconClassName: 'bg-purple-50 text-purple-600',
+        key: 'expired',
+        valueKey: 'expired',
+        labelKey: 'expired',
+        descriptionKey: 'expiredDescription',
+        icon: AlertTriangle,
+        iconClassName: 'bg-red-50 text-red-600',
+        valueClassName: 'text-red-600',
+        labelClassName: 'text-red-600',
     },
 ];
 

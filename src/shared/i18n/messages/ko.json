@@ -118,8 +118,8 @@
       "inProgressDescription": "현재 진행 중인 업무",
       "dueToday": "오늘 마감",
       "dueTodayDescription": "오늘 마감 예정 업무",
-      "pendingReview": "리뷰 대기",
-      "pendingReviewDescription": "리뷰 대기 중인 업무"
+      "expired": "기한 초과",
+      "expiredDescription": "마감일이 지난 미완료 업무"
     },
     "myTasks": "내 작업",
     "recentActivities": "최근 활동",

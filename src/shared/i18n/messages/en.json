@@ -118,8 +118,8 @@
       "inProgressDescription": "Tasks currently in progress",
       "dueToday": "Due today",
       "dueTodayDescription": "Tasks due today",
-      "pendingReview": "Pending review",
-      "pendingReviewDescription": "Tasks waiting for review"
+      "expired": "Overdue",
+      "expiredDescription": "Incomplete tasks past the due date"
     },
     "myTasks": "My tasks",
     "recentActivities": "Recent activity",
