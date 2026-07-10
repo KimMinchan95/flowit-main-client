@@ -109,7 +109,7 @@
     "myPage": "My page"
   },
   "dashboard": {
-    "greeting": "Hello, {name}!",
+    "greeting": "Hello, <highlight>{name}</highlight>!",
     "subtitle": "Have a productive day.",
     "indicators": {
       "total": "All tasks",

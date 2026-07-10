@@ -1,0 +1,97 @@
+@keyframes confetti-float-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: translate(-14px, 18px) rotate(12deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes confetti-float-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(16px, -12px) rotate(-10deg);
+    opacity: 0.85;
+  }
+}
+
+@keyframes confetti-float-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translate(-10px, -16px) rotate(8deg);
+    opacity: 0.95;
+  }
+}
+
+@keyframes confetti-float-4 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translate(12px, 14px) rotate(-14deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes confetti-prism-shift {
+  0%,
+  100% {
+    transform: rotate(35deg) translateY(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: rotate(35deg) translateY(-20px);
+    opacity: 0.75;
+  }
+}
+
+.confetti-particle {
+  position: absolute;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.confetti-float-1 {
+  animation-name: confetti-float-1;
+}
+
+.confetti-float-2 {
+  animation-name: confetti-float-2;
+}
+
+.confetti-float-3 {
+  animation-name: confetti-float-3;
+}
+
+.confetti-float-4 {
+  animation-name: confetti-float-4;
+}
+
+.confetti-prism {
+  animation: confetti-prism-shift 16s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-particle,
+  .confetti-prism {
+    animation: none;
+  }
+}

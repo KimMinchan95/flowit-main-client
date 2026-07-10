@@ -109,7 +109,7 @@
     "myPage": "마이페이지"
   },
   "dashboard": {
-    "greeting": "{name}님, 안녕하세요!",
+    "greeting": "<highlight>{name}</highlight>님, 안녕하세요!",
     "subtitle": "오늘도 생산적인 하루 보내세요.",
     "indicators": {
       "total": "전체 업무",
