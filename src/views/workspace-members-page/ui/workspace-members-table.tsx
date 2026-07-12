@@ -8,9 +8,11 @@ import { WorkspaceMemberRow } from './workspace-member-row';
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { useWorkspaceMembersQuery } from '@entities/member';
+import { isGetWorkspaceMembersErrorCode, useWorkspaceMembersQuery } from '@entities/member';
 import { useMeUserQuery, useMeWorkspacesQuery } from '@entities/user';
 import { findWorkspaceById, isWorkspaceManager } from '@entities/workspace';
+
+import { getMappedApiErrorMessage } from '@shared/api';
 
 import { getMemberActions } from '../lib/get-member-actions';
 
@@ -27,9 +29,10 @@ type Props = {
 
 export function WorkspaceMembersTable({ workspaceId }: Props) {
     const t = useTranslations('members');
+    const tErrors = useTranslations('members.loadErrors');
     const { data: meUser } = useMeUserQuery();
     const { data: meWorkspaces } = useMeWorkspacesQuery();
-    const { data, isPending, isError } = useWorkspaceMembersQuery({ workspaceId, enabled: !!workspaceId });
+    const { data, isPending, isError, error } = useWorkspaceMembersQuery({ workspaceId, enabled: !!workspaceId });
 
     const [activeAction, setActiveAction] = useState<MemberActionState | null>(null);
 
@@ -46,9 +49,19 @@ export function WorkspaceMembersTable({ workspaceId }: Props) {
     }
 
     if (isError || !data) {
+        const errorMessage = isError
+            ? getMappedApiErrorMessage({
+                  error,
+                  fallback: t('loadFailed'),
+                  unknownError: t('loadUnknownError'),
+                  isKnownErrorCode: isGetWorkspaceMembersErrorCode,
+                  getKnownErrorMessage: errorCode => tErrors(errorCode),
+              })
+            : t('loadFailed');
+
         return (
             <div className="rounded-2xl border border-slate-200/80 bg-white px-6 py-8 text-center text-sm font-medium text-rose-500 shadow-sm">
-                {t('loadFailed')}
+                {errorMessage}
             </div>
         );
     }

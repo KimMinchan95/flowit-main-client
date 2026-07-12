@@ -13,6 +13,8 @@ type DashboardMyTasksProps = {
     workspaceId: string;
     tasks: Task[];
     isPending: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
 };
 
 function DashboardMyTasksSkeleton() {
@@ -35,13 +37,25 @@ type DashboardMyTasksBodyProps = {
     workspaceId: string;
     tasks: Task[];
     isPending: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
 };
 
-function DashboardMyTasksBody({ workspaceId, tasks, isPending }: DashboardMyTasksBodyProps) {
+function DashboardMyTasksBody({
+    workspaceId,
+    tasks,
+    isPending,
+    isError = false,
+    errorMessage = null,
+}: DashboardMyTasksBodyProps) {
     const t = useTranslations('dashboard');
 
     if (isPending) {
         return <DashboardMyTasksSkeleton />;
+    }
+
+    if (isError) {
+        return <p className="px-1 py-6 text-sm font-medium text-rose-500">{errorMessage ?? t('tasksLoadFailed')}</p>;
     }
 
     if (tasks.length === 0) {
@@ -65,7 +79,13 @@ function DashboardMyTasksBody({ workspaceId, tasks, isPending }: DashboardMyTask
     );
 }
 
-export function DashboardMyTasks({ workspaceId, tasks, isPending }: DashboardMyTasksProps) {
+export function DashboardMyTasks({
+    workspaceId,
+    tasks,
+    isPending,
+    isError = false,
+    errorMessage = null,
+}: DashboardMyTasksProps) {
     const t = useTranslations('dashboard');
     const boardHref = WORKSPACE_ROUTES.board(workspaceId);
 
@@ -82,7 +102,13 @@ export function DashboardMyTasks({ workspaceId, tasks, isPending }: DashboardMyT
             </div>
 
             <div className="xl:min-h-0 xl:flex-1 xl:overflow-y-auto">
-                <DashboardMyTasksBody workspaceId={workspaceId} tasks={tasks} isPending={isPending} />
+                <DashboardMyTasksBody
+                    workspaceId={workspaceId}
+                    tasks={tasks}
+                    isPending={isPending}
+                    isError={isError}
+                    errorMessage={errorMessage}
+                />
             </div>
         </div>
     );

@@ -2,6 +2,8 @@ export type { JoinUserData, JoinUserRequest } from './join-user.types';
 export { JOIN_USER_ERROR_CODES, isJoinUserErrorCode } from './join-user-error-codes';
 export type { JoinUserErrorCode } from './join-user-error-codes';
 export { meWorkspacesQueryKeys } from './me-workspaces-query-keys';
+export { ME_WORKSPACES_ERROR_CODES, isMeWorkspacesErrorCode } from './me-workspaces-error-codes';
+export type { MeWorkspacesErrorCode } from './me-workspaces-error-codes';
 export type { MeWorkspaceItem, MeWorkspacesResponse } from './me-workspaces.types';
 export { mePasswordMutationKeys } from './me-password-mutation-keys';
 export { meProfileImageMutationKeys } from './me-profile-image-mutation-keys';

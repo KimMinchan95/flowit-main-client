@@ -9,10 +9,12 @@ export {
 } from './api';
 export {
     JOIN_USER_ERROR_CODES,
+    ME_WORKSPACES_ERROR_CODES,
     UPDATE_ME_PASSWORD_ERROR_CODES,
     UPDATE_ME_PROFILE_IMAGE_ERROR_CODES,
     UPDATE_ME_USER_ERROR_CODES,
     isJoinUserErrorCode,
+    isMeWorkspacesErrorCode,
     isUpdateMePasswordErrorCode,
     isUpdateMeProfileImageErrorCode,
     isUpdateMeUserErrorCode,
@@ -35,6 +37,7 @@ export type {
     JoinUserErrorCode,
     JoinUserRequest,
     MeWorkspaceItem,
+    MeWorkspacesErrorCode,
     MeWorkspacesResponse,
     MeUserResponse,
     UpdateMePasswordErrorCode,

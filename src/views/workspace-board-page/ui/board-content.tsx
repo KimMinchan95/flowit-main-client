@@ -7,6 +7,7 @@ import type { Task, TaskStatus } from '@entities/task';
 type BoardContentProps = {
     isPending: boolean;
     isError: boolean;
+    errorMessage?: string | null;
     tasks: Task[];
     onTaskStatusChange: (taskId: number, status: TaskStatus) => void;
     onAddTask?: (status: TaskStatus) => void;
@@ -16,6 +17,7 @@ type BoardContentProps = {
 export function BoardContent({
     isPending,
     isError,
+    errorMessage,
     tasks,
     onTaskStatusChange,
     onAddTask,
@@ -34,7 +36,7 @@ export function BoardContent({
     if (isError) {
         return (
             <div className="flex min-h-0 flex-1 items-center justify-center rounded-2xl border border-slate-200/80 bg-white py-16 text-sm font-medium text-rose-500 shadow-sm">
-                {t('loadFailed')}
+                {errorMessage ?? t('loadFailed')}
             </div>
         );
     }

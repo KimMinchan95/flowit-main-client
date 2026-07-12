@@ -12,6 +12,7 @@ import { CreateWorkspaceTaskModal } from '@features/create-workspace-task';
 import { InviteWorkspaceMemberModal } from '@features/invite-workspace-member';
 import { WorkspaceTaskDetailModal } from '@features/view-workspace-task';
 import {
+    isGetWorkspaceTasksErrorCode,
     isUpdateWorkspaceTaskStatusErrorCode,
     useUpdateWorkspaceTaskStatusMutation,
     useWorkspaceTasksQuery,
@@ -42,6 +43,7 @@ function parseTaskIdFromSearchParams(searchParams: ReadonlyURLSearchParams): num
 export function WorkspaceBoardPage({ workspaceId }: Props) {
     const tBoard = useTranslations('board');
     const tErrors = useTranslations('board.updateTaskStatusErrors');
+    const tLoadErrors = useTranslations('board.loadErrors');
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -61,6 +63,7 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
         data: tasksData,
         isPending: isTasksPending,
         isError: isTasksError,
+        error: tasksError,
     } = useWorkspaceTasksQuery({
         workspaceId,
         enabled: !!workspaceId,
@@ -105,6 +108,16 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
           })
         : null;
 
+    const tasksErrorMessage = isTasksError
+        ? getMappedApiErrorMessage({
+              error: tasksError,
+              fallback: tBoard('loadFailed'),
+              unknownError: tBoard('loadUnknownError'),
+              isKnownErrorCode: isGetWorkspaceTasksErrorCode,
+              getKnownErrorMessage: errorCode => tLoadErrors(errorCode),
+          })
+        : null;
+
     return (
         <div className="flex h-full min-h-0 flex-col overflow-hidden p-8">
             <BoardHeader
@@ -117,6 +130,7 @@ export function WorkspaceBoardPage({ workspaceId }: Props) {
             <BoardContent
                 isPending={isTasksPending}
                 isError={isTasksError}
+                errorMessage={tasksErrorMessage}
                 tasks={tasksData?.items ?? []}
                 onTaskStatusChange={handleTaskStatusChange}
                 onAddTask={openCreateTaskModal}

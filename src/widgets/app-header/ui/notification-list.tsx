@@ -9,6 +9,8 @@ import type { Notification } from '@entities/notification';
 type NotificationListProps = {
     items: Notification[];
     isLoading: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
     hasMore?: boolean;
     isLoadingMore?: boolean;
     onLoadMore?: () => void;
@@ -46,6 +48,8 @@ function NotificationListEmpty() {
 export function NotificationList({
     items,
     isLoading,
+    isError = false,
+    errorMessage = null,
     hasMore = false,
     isLoadingMore = false,
     onLoadMore,
@@ -54,6 +58,14 @@ export function NotificationList({
 
     if (isLoading) {
         return <NotificationListSkeleton />;
+    }
+
+    if (isError) {
+        return (
+            <div className="flex flex-col items-center justify-center px-6 py-12 text-center">
+                <p className="text-[13px] font-medium text-rose-500">{errorMessage ?? t('loadFailed')}</p>
+            </div>
+        );
     }
 
     if (items.length === 0) {

@@ -11,6 +11,8 @@ import type { LucideIcon } from 'lucide-react';
 type DashboardIndicatorCardsProps = {
     indicators?: WorkspaceTaskIndicatorsResponse;
     isPending: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
 };
 
 type IndicatorCardConfig = {
@@ -63,8 +65,21 @@ const INDICATOR_CARDS: IndicatorCardConfig[] = [
     },
 ];
 
-export function DashboardIndicatorCards({ indicators, isPending }: DashboardIndicatorCardsProps) {
+export function DashboardIndicatorCards({
+    indicators,
+    isPending,
+    isError = false,
+    errorMessage = null,
+}: DashboardIndicatorCardsProps) {
     const t = useTranslations('dashboard.indicators');
+
+    if (isError) {
+        return (
+            <div className="relative z-10 mb-12 flex min-h-[150px] items-center justify-center rounded-2xl border border-slate-200/70 bg-white p-7 text-sm font-medium text-rose-500 shadow-sm">
+                {errorMessage}
+            </div>
+        );
+    }
 
     return (
         <div className="relative z-10 mb-12 grid shrink-0 grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">

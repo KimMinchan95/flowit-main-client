@@ -6,6 +6,8 @@ export {
     withdrawMember,
 } from './api';
 export {
+    GET_WORKSPACE_MEMBERS_ERROR_CODES,
+    isGetWorkspaceMembersErrorCode,
     memberMutationKeys,
     memberQueryKeys,
     useRemoveWorkspaceMemberMutation,
@@ -17,6 +19,7 @@ export {
 } from './model';
 export { MemberAvatar } from './ui';
 export type {
+    GetWorkspaceMembersErrorCode,
     JoinWorkspaceByInviteCodeRequest,
     JoinWorkspaceByInviteCodeResponse,
     RemoveWorkspaceMemberResponse,

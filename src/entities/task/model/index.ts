@@ -20,6 +20,11 @@ export {
 } from './get-workspace-task-histories-error-codes';
 export { CREATE_WORKSPACE_TASK_ERROR_CODES, isCreateWorkspaceTaskErrorCode } from './create-workspace-task-error-codes';
 export { GET_WORKSPACE_TASK_ERROR_CODES, isGetWorkspaceTaskErrorCode } from './get-workspace-task-error-codes';
+export {
+    GET_WORKSPACE_TASK_INDICATORS_ERROR_CODES,
+    isGetWorkspaceTaskIndicatorsErrorCode,
+} from './get-workspace-task-indicators-error-codes';
+export { GET_WORKSPACE_TASKS_ERROR_CODES, isGetWorkspaceTasksErrorCode } from './get-workspace-tasks-error-codes';
 export { isUpdateWorkspaceTaskErrorCode, UPDATE_WORKSPACE_TASK_ERROR_CODES } from './update-workspace-task-error-codes';
 export {
     isUpdateWorkspaceTaskProgressErrorCode,
@@ -37,6 +42,8 @@ export type { GetWorkspaceTaskCommentsErrorCode } from './get-workspace-task-com
 export type { GetWorkspaceTaskHistoriesErrorCode } from './get-workspace-task-histories-error-codes';
 export type { CreateWorkspaceTaskErrorCode } from './create-workspace-task-error-codes';
 export type { GetWorkspaceTaskErrorCode } from './get-workspace-task-error-codes';
+export type { GetWorkspaceTaskIndicatorsErrorCode } from './get-workspace-task-indicators-error-codes';
+export type { GetWorkspaceTasksErrorCode } from './get-workspace-tasks-error-codes';
 export type { UpdateWorkspaceTaskErrorCode } from './update-workspace-task-error-codes';
 export type { UpdateWorkspaceTaskProgressErrorCode } from './update-workspace-task-progress-error-codes';
 export type { UpdateWorkspaceTaskStatusErrorCode } from './update-workspace-task-status-error-codes';

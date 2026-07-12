@@ -63,6 +63,18 @@
     "unknownActor": "Unknown user",
     "fallback": "You have a new notification.",
     "dismiss": "Dismiss",
+    "loadFailed": "Failed to load notifications",
+    "loadUnknownError": "An unknown error occurred. Please try again later",
+    "loadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "markAllReadFailed": "Failed to mark all as read",
+    "markAllReadUnknownError": "An unknown error occurred. Please try again later",
+    "markAllReadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
     "types": {
       "WORKSPACE_MEMBER_JOINED": "<bold>{actor}</bold> joined {workspace}.",
       "WORKSPACE_MEMBER_ROLE_CHANGED": "<bold>{actor}</bold> changed <bold>{subject}</bold>'s role in {workspace} from {roleFrom} to {roleTo}.",
@@ -88,6 +100,12 @@
     "createWorkspace": "Create new workspace",
     "enter": "Enter",
     "activeUsers": "{count} active users",
+    "loadFailed": "Failed to load workspaces",
+    "loadUnknownError": "An unknown error occurred. Please try again later",
+    "loadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
     "workspaceName": "Workspace name",
     "descriptionOptional": "Description (optional)",
     "createWorkspaceButton": "Create workspace",
@@ -156,6 +174,31 @@
     "noDueDate": "—",
     "noTasks": "No tasks to show",
     "noActivities": "No recent activity",
+    "indicatorsLoadFailed": "Failed to load indicators",
+    "indicatorsLoadUnknownError": "An unknown error occurred. Please try again later",
+    "indicatorsLoadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "Workspace not found",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "tasksLoadFailed": "Failed to load your tasks",
+    "tasksLoadUnknownError": "An unknown error occurred. Please try again later",
+    "tasksLoadErrors": {
+      "VALIDATION_400_001": "The request value is invalid",
+      "AUTH_401_001": "Login is required or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "Workspace not found",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
+    "activitiesLoadFailed": "Failed to load recent activity",
+    "activitiesLoadUnknownError": "An unknown error occurred. Please try again later",
+    "activitiesLoadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "Workspace not found",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
     "unknownActor": "Unknown user",
     "taskStatus": {
       "TODO": "To do",
@@ -214,6 +257,13 @@
     "action": "Action",
     "me": "Me",
     "loadFailed": "Failed to load members",
+    "loadUnknownError": "An unknown error occurred. Please try again later",
+    "loadErrors": {
+      "AUTH_401_001": "Login is required or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "Workspace not found",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
     "memberActions": "Member actions",
     "changeRole": "Change role",
     "removeMember": "Remove member",
@@ -268,6 +318,14 @@
     "addTask": "Add task",
     "progress": "Progress",
     "loadFailed": "Failed to load tasks",
+    "loadUnknownError": "An unknown error occurred. Please try again later",
+    "loadErrors": {
+      "VALIDATION_400_001": "The request value is invalid",
+      "AUTH_401_001": "You need to sign in or your session has expired",
+      "AUTH_403_001": "You are not an active member of this workspace",
+      "WORKSPACE_404_001": "This workspace does not exist",
+      "INTERNAL_500_001": "A server error occurred. Please try again later"
+    },
     "createTaskFailed": "Failed to create task",
     "createTaskProgressFailed": "The task was created, but setting progress failed",
     "createTaskUnknownError": "An unknown error occurred. Please try again later",

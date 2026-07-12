@@ -13,19 +13,33 @@ type DashboardRecentActivitiesProps = {
     workspaceId: string;
     activities: ActivityRecord[];
     isPending: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
 };
 
 type DashboardRecentActivitiesBodyProps = {
     workspaceId: string;
     activities: ActivityRecord[];
     isPending: boolean;
+    isError?: boolean;
+    errorMessage?: string | null;
 };
 
-function DashboardRecentActivitiesBody({ workspaceId, activities, isPending }: DashboardRecentActivitiesBodyProps) {
+function DashboardRecentActivitiesBody({
+    workspaceId,
+    activities,
+    isPending,
+    isError = false,
+    errorMessage = null,
+}: DashboardRecentActivitiesBodyProps) {
     const t = useTranslations('dashboard');
 
     if (isPending) {
         return <p className="py-6 text-sm font-medium text-slate-400">…</p>;
+    }
+
+    if (isError) {
+        return <p className="py-6 text-sm font-medium text-rose-500">{errorMessage ?? t('activitiesLoadFailed')}</p>;
     }
 
     if (activities.length === 0) {
@@ -42,7 +56,13 @@ function DashboardRecentActivitiesBody({ workspaceId, activities, isPending }: D
     );
 }
 
-export function DashboardRecentActivities({ workspaceId, activities, isPending }: DashboardRecentActivitiesProps) {
+export function DashboardRecentActivities({
+    workspaceId,
+    activities,
+    isPending,
+    isError = false,
+    errorMessage = null,
+}: DashboardRecentActivitiesProps) {
     const t = useTranslations('dashboard');
     const boardHref = WORKSPACE_ROUTES.board(workspaceId);
 
@@ -63,6 +83,8 @@ export function DashboardRecentActivities({ workspaceId, activities, isPending }
                     workspaceId={workspaceId}
                     activities={activities}
                     isPending={isPending}
+                    isError={isError}
+                    errorMessage={errorMessage}
                 />
             </div>
         </div>

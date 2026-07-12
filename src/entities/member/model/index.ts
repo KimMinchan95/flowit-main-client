@@ -1,5 +1,7 @@
 export { memberMutationKeys } from './member-mutation-keys';
 export { memberQueryKeys } from './member-query-keys';
+export { GET_WORKSPACE_MEMBERS_ERROR_CODES, isGetWorkspaceMembersErrorCode } from './get-workspace-members-error-codes';
+export type { GetWorkspaceMembersErrorCode } from './get-workspace-members-error-codes';
 export type {
     JoinWorkspaceByInviteCodeRequest,
     JoinWorkspaceByInviteCodeResponse,
