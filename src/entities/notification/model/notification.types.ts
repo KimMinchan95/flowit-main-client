@@ -3,6 +3,7 @@ export type NotificationAlertType =
     | 'TASK_DATE_CHANGED'
     | 'TASK_STATUS_CHANGED'
     | 'TASK_PROGRESS_CHANGED'
+    | 'TASK_COMMENT_CREATED'
     | 'TASK_ASSIGNED'
     | 'TASK_UNASSIGNED'
     | 'WORKSPACE_MEMBER_JOINED'

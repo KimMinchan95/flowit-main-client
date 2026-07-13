@@ -97,6 +97,7 @@
       "TASK_DATE_CHANGED": "The schedule for task <bold>{subject}</bold> was changed.",
       "TASK_STATUS_CHANGED": "<bold>{actor}</bold> changed <bold>{subject}</bold> status from {statusFrom} to {statusTo}.",
       "TASK_PROGRESS_CHANGED": "The progress of task <bold>{subject}</bold> was changed.",
+      "TASK_COMMENT_CREATED": "<bold>{actor}</bold> commented on task <bold>{subject}</bold>.",
       "TASK_ASSIGNED": "You were assigned to task <bold>{subject}</bold>.",
       "TASK_UNASSIGNED": "You were unassigned from task <bold>{subject}</bold>."
     }
