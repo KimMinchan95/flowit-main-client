@@ -1,6 +1,6 @@
 'use client';
 
-import { notFound } from 'next/navigation';
+import { forbidden, notFound } from 'next/navigation';
 
 import { useWorkspaceRouteAccess } from '../model';
 
@@ -16,8 +16,12 @@ export function WorkspaceRouteGuard({ workspaceId, children }: WorkspaceRouteGua
         return null;
     }
 
-    if (isError || !isAllowed) {
+    if (isError) {
         notFound();
+    }
+
+    if (!isAllowed) {
+        forbidden();
     }
 
     return children;
