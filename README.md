@@ -52,7 +52,7 @@
   - [x] 알림 모두 읽음 처리 API 연동
   - [x] 알림 web socket 연동
   - [x] Task 알림 추가
-  - [ ] 댓글 알림 추가 
+  - [x] 댓글 알림 추가 
 
 - [x] 유저 프로필 Dropdown
   - [x] 프로필 정보 UI
@@ -135,4 +135,4 @@
   - [ ] 로그인 후 returnUrl 복귀
   - [ ] locale 라우팅 정리
 - [x] 언어 전환 UI
-- [ ] 페이지 title/metadata
+- [x] 페이지 title/metadata

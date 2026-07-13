@@ -4,6 +4,10 @@ import { Loader2 } from 'lucide-react';
 
 import { WorkspaceBoardPage } from '@views/workspace-board-page';
 
+import { createMetaTitle } from '@shared/i18n/create-meta-title';
+
+export const generateMetadata = createMetaTitle('board');
+
 type PageProps = {
     params: Promise<{ workspaceId: string; locale: string }>;
 };
