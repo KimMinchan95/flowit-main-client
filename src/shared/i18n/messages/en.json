@@ -1,4 +1,15 @@
 {
+  "meta": {
+    "login": "Login",
+    "signup": "Sign up",
+    "workspaces": "Workspaces",
+    "dashboard": "Dashboard",
+    "board": "Board",
+    "members": "Members",
+    "settings": "Settings",
+    "myPage": "My page",
+    "notFound": "Page not found"
+  },
   "auth": {
     "login": "Login",
     "logout": "Logout",

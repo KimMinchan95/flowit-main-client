@@ -135,4 +135,4 @@
   - [ ] 로그인 후 returnUrl 복귀
   - [ ] locale 라우팅 정리
 - [x] 언어 전환 UI
-- [ ] 페이지 title/metadata
+- [x] 페이지 title/metadata

@@ -10,7 +10,10 @@ import { AppProviders } from '@/app/providers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Flowit',
+    title: {
+        default: 'Flowit',
+        template: '%s | Flowit',
+    },
     description: 'Flowit',
 };
 

@@ -1,4 +1,15 @@
 {
+  "meta": {
+    "login": "로그인",
+    "signup": "회원가입",
+    "workspaces": "워크스페이스",
+    "dashboard": "대시보드",
+    "board": "보드",
+    "members": "멤버",
+    "settings": "설정",
+    "myPage": "마이페이지",
+    "notFound": "페이지를 찾을 수 없습니다"
+  },
   "auth": {
     "login": "로그인",
     "logout": "로그아웃",
