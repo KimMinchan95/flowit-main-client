@@ -125,6 +125,14 @@
     "description": "You do not have permission to access this page.",
     "goHome": "Go back home"
   },
+  "errorPage": {
+    "logoAlt": "Flowit logo",
+    "title": "Something went wrong",
+    "description": "A temporary error occurred. Please try again.",
+    "workspaceDescription": "An error occurred while loading the workspace.",
+    "retry": "Try again",
+    "goHome": "Go back home"
+  },
   "workspaces": {
     "myWorkspaces": "My workspaces",
     "createWorkspace": "Create new workspace",

@@ -126,13 +126,8 @@
 
 - [x] 404 페이지 (`not-found.tsx`)
 - [x] 403 / 접근 불가 페이지
-- [ ] 전역·워크스페이스 구간 error boundary
+- [x] 전역·워크스페이스 구간 error boundary
 - [ ] 라우트/데이터 로딩 UI (loading, Skeleton)
 - [x] 토스트 알림 (성공/실패 공통)
-- [ ] 빈 상태 UI (워크스페이스, Task, 멤버 등)
-- [ ] URL·라우팅 가드
-  - [ ] 잘못된/없는 workspaceId 처리
-  - [ ] 로그인 후 returnUrl 복귀
-  - [ ] locale 라우팅 정리
 - [x] 언어 전환 UI
 - [x] 페이지 title/metadata
